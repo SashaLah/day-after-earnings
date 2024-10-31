@@ -5,6 +5,8 @@ const App = () => {
   const [stockData, setStockData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showAllData, setShowAllData] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 12;
 
   const fetchStockData = async (e) => {
     e.preventDefault();
@@ -76,22 +78,56 @@ const App = () => {
     const upMoves = validMoves.filter(change => change > 0);
     const downMoves = validMoves.filter(change => change < 0);
     
+    // Calculate streaks
+    let longestPositiveStreak = 0;
+    let longestNegativeStreak = 0;
+    let currentPositiveStreak = 0;
+    let currentNegativeStreak = 0;
+
+    validMoves.forEach(move => {
+      if (move > 0) {
+        currentPositiveStreak++;
+        currentNegativeStreak = 0;
+        if (currentPositiveStreak > longestPositiveStreak) {
+          longestPositiveStreak = currentPositiveStreak;
+        }
+      } else if (move < 0) {
+        currentNegativeStreak++;
+        currentPositiveStreak = 0;
+        if (currentNegativeStreak > longestNegativeStreak) {
+          longestNegativeStreak = currentNegativeStreak;
+        }
+      }
+    });
+
+    // Calculate volatility
+    const averageMove = validMoves.reduce((a, b) => a + b, 0) / validMoves.length;
+    const variance = validMoves.reduce((a, b) => a + Math.pow(b - averageMove, 2), 0) / validMoves.length;
+    const volatility = Math.sqrt(variance);
+    
     return {
       totalMoves: validMoves.length,
       upMoves: upMoves.length,
       downMoves: downMoves.length,
       averageMove: validMoves.reduce((a, b) => a + b, 0) / validMoves.length,
       averageUpMove: upMoves.length ? upMoves.reduce((a, b) => a + b, 0) / upMoves.length : 0,
-      averageDownMove: downMoves.length ? downMoves.reduce((a, b) => a + b, 0) / downMoves.length : 0
+      averageDownMove: downMoves.length ? downMoves.reduce((a, b) => a + b, 0) / downMoves.length : 0,
+      longestPositiveStreak,
+      longestNegativeStreak,
+      volatility,
+      maxGain: Math.max(...validMoves),
+      maxLoss: Math.min(...validMoves),
+      winRate: (upMoves.length / validMoves.length * 100).toFixed(1)
     };
   };
 
   const stats = stockData ? calculateStats(stockData) : null;
+  const displayData = showAllData ? stockData : stockData?.slice(0, INITIAL_DISPLAY_COUNT);
 
   return (
     <div className="container">
       <h1>Earnings Stock Movement History</h1>
-      <h2 className="subtitle">Price of Stock before and after earnings announcements</h2>
+      <h2 className="subtitle">Historical Earnings Price Movements</h2>
       
       <form onSubmit={fetchStockData} className="search-form">
         <input
@@ -117,20 +153,27 @@ const App = () => {
               <div className="stat-row">
                 <div className="stat-item positive">
                   <h3>Moves Higher</h3>
-                  <p className="green">{stats.upMoves} Times</p>
+                  <p className="green">{stats.upMoves} Times ({stats.winRate}%)</p>
                   <p className="avg-move">Avg: +{stats.averageUpMove.toFixed(2)}%</p>
+                  <p className="streak">Longest Streak: {stats.longestPositiveStreak}</p>
                 </div>
                 <div className="stat-item negative">
                   <h3>Moves Lower</h3>
                   <p className="red">{stats.downMoves} Times</p>
                   <p className="avg-move">Avg: {stats.averageDownMove.toFixed(2)}%</p>
+                  <p className="streak">Longest Streak: {stats.longestNegativeStreak}</p>
                 </div>
               </div>
-              <div className="stat-total">
-                <h3>Average Overall Move</h3>
-                <p className={stats.averageMove >= 0 ? 'green' : 'red'}>
-                  {stats.averageMove >= 0 ? '+' : ''}{stats.averageMove.toFixed(2)}%
-                </p>
+              <div className="stat-row">
+                <div className="stat-item">
+                  <h3>Volatility</h3>
+                  <p>{stats.volatility.toFixed(2)}%</p>
+                </div>
+                <div className="stat-item">
+                  <h3>Best/Worst Move</h3>
+                  <p className="green">+{stats.maxGain.toFixed(2)}%</p>
+                  <p className="red">{stats.maxLoss.toFixed(2)}%</p>
+                </div>
               </div>
             </div>
           </div>
@@ -140,15 +183,15 @@ const App = () => {
               <thead>
                 <tr>
                   <th>Earnings Date</th>
-                  <th>Day Open</th>
-                  <th>Day Close</th>
-                  <th>Next Day Close</th>
-                  <th>Day Change</th>
-                  <th>Earnings Move</th>
+                  <th>Earnings Day Open</th>
+                  <th>Earnings Day Close</th>
+                  <th>Day After Earnings Close</th>
+                  <th>Earnings Day Change</th>
+                  <th>Day After Earnings Change</th>
                 </tr>
               </thead>
               <tbody>
-                {stockData.map((earning, index) => (
+                {displayData.map((earning, index) => (
                   <tr key={index}>
                     <td>{earning.date}</td>
                     <td>${earning.dayOpen}</td>
@@ -165,6 +208,17 @@ const App = () => {
               </tbody>
             </table>
           </div>
+
+          {stockData.length > INITIAL_DISPLAY_COUNT && (
+            <div className="show-more-container">
+              <button 
+                className="show-more-button"
+                onClick={() => setShowAllData(!showAllData)}
+              >
+                {showAllData ? 'Show Less' : `Show More (${stockData.length - INITIAL_DISPLAY_COUNT} more earnings)`}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

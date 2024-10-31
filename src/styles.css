@@ -117,25 +117,11 @@
     color: #666;
   }
   
-  .stat-total {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin-top: 20px;
-  }
-  
-  .stat-total h3 {
-    margin: 0 0 10px 0;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .stat-total p {
-    margin: 0;
-    font-size: 28px;
-    font-weight: bold;
+  .stat-item .streak {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #666;
+    font-weight: normal;
   }
   
   .green {
@@ -182,14 +168,25 @@
     font-family: 'Courier New', monospace;
   }
   
-  .earnings-table td.green {
-    color: #2e7d32;
-    font-weight: bold;
+  .show-more-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
   }
   
-  .earnings-table td.red {
-    color: #c62828;
-    font-weight: bold;
+  .show-more-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .show-more-button:hover {
+    background-color: #e0e0e0;
   }
   
   /* Animation for results */
@@ -248,7 +245,8 @@
   
   /* Accessibility Improvements */
   .search-input:focus,
-  .search-button:focus {
+  .search-button:focus,
+  .show-more-button:focus {
     outline: 2px solid #4CAF50;
     outline-offset: 2px;
   }

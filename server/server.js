@@ -22,9 +22,8 @@ async function getEarningsData(symbol) {
       throw new Error('No earnings data available for this symbol');
     }
 
-    // Get last 2 earnings dates
+    // Get all earnings dates
     const earnings = response.data.quarterlyEarnings
-      .slice(0, 2)
       .map(earning => ({
         date: earning.reportedDate
       }));
