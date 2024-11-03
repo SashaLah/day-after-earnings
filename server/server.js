@@ -65,7 +65,6 @@ let metadataCache = {};
 // Initialize storage system
 async function initializeStorage() {
     try {
-        // Create storage directory if it doesn't exist
         await fs.mkdir(STORAGE_DIR, { recursive: true });
         
         try {
@@ -127,7 +126,6 @@ function needsUpdate(symbol) {
     const lastUpdate = new Date(metadata.lastUpdate);
     const now = new Date();
     
-    // Update if last update was more than 12 hours ago during market hours
     const marketHours = now.getUTCHours() >= 13 && now.getUTCHours() <= 20; // 9 AM - 4 PM EST
     const isWeekday = now.getDay() > 0 && now.getDay() < 6;
     
@@ -135,29 +133,24 @@ function needsUpdate(symbol) {
         return now - lastUpdate > 12 * 60 * 60 * 1000; // 12 hours
     }
     
-    // Otherwise, update if older than 24 hours
     return now - lastUpdate > 24 * 60 * 60 * 1000;
 }
 
 async function getEarningsData(symbol) {
-    // Store the cached data in scope that's accessible to both try and catch blocks
     const cachedData = earningsCache[symbol];
     
     try {
-        // Validate symbol format
         if (!/^[A-Z]{1,5}$/.test(symbol)) {
             throw new Error('Invalid symbol format');
         }
 
         const needsRefresh = needsUpdate(symbol);
 
-        // Return cached data if it exists and doesn't need refresh
         if (cachedData && !needsRefresh) {
             console.log(`Using cached earnings data for ${symbol}`);
             return cachedData;
         }
 
-        // Fetch new data
         const url = `https://www.alphavantage.co/query?function=EARNINGS&symbol=${symbol}&apikey=${API_KEY}`;
         console.log(`Fetching new earnings data for ${symbol}`);
         
@@ -173,12 +166,11 @@ async function getEarningsData(symbol) {
 
         const newEarnings = response.data.quarterlyEarnings.map(earning => ({
             date: earning.reportedDate,
-            symbol: symbol // Add symbol to each earning record
+            symbol: symbol
         }));
 
         let updatedEarnings;
         if (cachedData) {
-            // Merge new earnings with cached data
             const allEarnings = [...newEarnings];
             const existingDates = new Set(newEarnings.map(e => e.date));
             
@@ -188,17 +180,13 @@ async function getEarningsData(symbol) {
                 }
             });
 
-            // Sort by date
             allEarnings.sort((a, b) => new Date(b.date) - new Date(a.date));
             updatedEarnings = allEarnings;
         } else {
             updatedEarnings = newEarnings;
         }
 
-        // Update cache
         earningsCache[symbol] = updatedEarnings;
-
-        // Update metadata
         metadataCache[symbol] = {
             lastUpdate: new Date().toISOString(),
             lastEarningsDate: newEarnings[0]?.date,
@@ -218,18 +206,15 @@ async function getEarningsData(symbol) {
 }
 
 async function getPriceData(symbol, fromDate, toDate) {
-    // Store the cached data in scope that's accessible to both try and catch blocks
     const cachedData = pricesCache[symbol];
     
     try {
-        // Validate dates
         if (!/^\d{4}-\d{2}-\d{2}$/.test(fromDate) || !/^\d{4}-\d{2}-\d{2}$/.test(toDate)) {
             throw new Error('Invalid date format. Use YYYY-MM-DD');
         }
 
         const needsRefresh = needsUpdate(symbol);
 
-        // Check if we have all the required data in cache
         if (cachedData && !needsRefresh) {
             const filteredData = cachedData.filter(
                 price => price.date >= fromDate && price.date <= toDate
@@ -240,7 +225,6 @@ async function getPriceData(symbol, fromDate, toDate) {
             }
         }
 
-        // Fetch new data
         const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${API_KEY}`;
         console.log(`Fetching new price data for ${symbol}`);
         
@@ -259,12 +243,11 @@ async function getPriceData(symbol, fromDate, toDate) {
             date,
             open: parseFloat(data['1. open']),
             close: parseFloat(data['4. close']),
-            symbol: symbol // Add symbol to each price record
+            symbol: symbol
         }));
 
         let updatedPrices;
         if (cachedData) {
-            // Merge new prices with cached data
             const allPrices = [...newPriceData];
             const existingDates = new Set(newPriceData.map(p => p.date));
             
@@ -274,17 +257,13 @@ async function getPriceData(symbol, fromDate, toDate) {
                 }
             });
 
-            // Sort by date
             allPrices.sort((a, b) => new Date(b.date) - new Date(a.date));
             updatedPrices = allPrices;
         } else {
             updatedPrices = newPriceData;
         }
 
-        // Update cache
         pricesCache[symbol] = updatedPrices;
-
-        // Update metadata
         metadataCache[symbol] = {
             ...metadataCache[symbol],
             lastUpdate: new Date().toISOString(),
@@ -308,7 +287,6 @@ async function getPriceData(symbol, fromDate, toDate) {
     }
 }
 
-// Pre-fetch popular symbols data
 async function prefetchPopularData() {
     for (const symbol of POPULAR_SYMBOLS) {
         try {
@@ -316,7 +294,7 @@ async function prefetchPopularData() {
             await getEarningsData(symbol);
             console.log(`Completed earnings pre-fetch for ${symbol}`);
             
-            await new Promise(resolve => setTimeout(resolve, 15000)); // Respect API limits
+            await new Promise(resolve => setTimeout(resolve, 15000));
             
             const today = new Date().toISOString().split('T')[0];
             await getPriceData(symbol, '2000-01-01', today);
@@ -333,7 +311,7 @@ async function prefetchPopularData() {
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
-// Company search endpoint
+// Unified search endpoint for both company names and symbols
 app.get('/api/search/companies', (req, res) => {
     const query = req.query.q?.toLowerCase();
     
@@ -344,7 +322,7 @@ app.get('/api/search/companies', (req, res) => {
     const matches = companiesData.companies.filter(company => 
         company.name.toLowerCase().includes(query) || 
         company.symbol.toLowerCase().includes(query)
-    ).slice(0, 10); // Limit to 10 results
+    ).slice(0, 10);
 
     res.json(matches);
 });
@@ -371,6 +349,7 @@ app.get('/api/stock/:symbol', async (req, res) => {
         });
     }
 });
+
 app.get('/api/prices/:symbol', async (req, res) => {
     try {
         const { symbol } = req.params;
@@ -392,6 +371,7 @@ app.get('/api/prices/:symbol', async (req, res) => {
         });
     }
 });
+
 app.get('/api/status', (req, res) => {
     res.json({
         status: 'ok',
