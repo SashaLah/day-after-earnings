@@ -1,3 +1,4 @@
+/* Base Styles */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -163,7 +164,6 @@ h1 {
 }
   
 .table-container {
-    overflow-x: auto;
     margin-top: 20px;
     background-color: white;
     border-radius: 12px;
@@ -309,145 +309,177 @@ h1 {
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-  
-/* Animation for column transitions */
-.earnings-table th,
-.earnings-table td {
-    animation: fadeIn 0.3s ease-out;
-}
-  
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-  
-/* Updated Mobile Responsive Design */
+
+/* Mobile Responsive Design */
 @media (max-width: 768px) {
+    /* Container adjustments */
     .container {
         padding: 10px;
     }
     
+    /* Header adjustments */
     h1 {
-        font-size: 22px;
+        font-size: 20px;
         margin-bottom: 5px;
+        padding: 0 10px;
+        line-height: 1.3;
     }
     
     .subtitle {
         font-size: 14px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        padding: 0 10px;
+        line-height: 1.4;
     }
     
+    /* Search form adjustments */
     .search-form {
         flex-direction: column;
-        align-items: stretch;
         gap: 8px;
         margin-bottom: 20px;
+        padding: 0 10px;
     }
     
-    .search-input {
+    .search-input,
+    .search-button {
         width: 100%;
-        max-width: none;
     }
-    
+
+    /* Stats grid adjustments */
     .stat-row {
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 12px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 8px;
     }
     
     .stat-item {
-        padding: 16px;
+        padding: 12px 8px;
+        min-height: auto;
+    }
+    
+    .stat-item h3 {
+        font-size: 11px;
+        margin-bottom: 6px;
+        white-space: normal;
+        line-height: 1.3;
     }
     
     .stat-item p {
-        font-size: 22px;
+        font-size: 16px;
+        line-height: 1.2;
     }
     
     .stat-item .avg-move,
     .stat-item .streak {
-        font-size: 12px;
+        font-size: 11px;
         margin-top: 4px;
+        line-height: 1.2;
     }
     
-    /* Compact table for mobile */
-    .table-container {
-        margin-top: 12px;
+    /* Table adjustments */
+    .results {
+        padding: 12px;
+        margin: 0 -5px;
         border-radius: 8px;
-        max-width: 100vw;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        position: relative;
     }
     
-    .earnings-table {
-        font-size: 12px;
-        width: auto;
-        min-width: 100%;
+    .table-container {
+        margin: 10px -8px 0;
+        border-radius: 8px;
     }
-    
-    .earnings-table th,
-    .earnings-table td {
-        padding: 10px 8px;
-        min-width: 70px;
+
+    /* Convert table to cards for mobile */
+    .earnings-table,
+    .earnings-table tbody,
+    .earnings-table tr {
+        display: block;
     }
-    
-    .earnings-table th:first-child,
-    .earnings-table td:first-child {
-        position: sticky;
-        left: 0;
+
+    .earnings-table thead {
+        display: none;
+    }
+
+    .earnings-table tr {
+        margin-bottom: 12px;
+        padding: 12px;
         background: white;
-        z-index: 2;
-        border-right: 1px solid #f0f0f0;
-        min-width: 90px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    
-    .earnings-table th:first-child {
-        background: #f8f9fa;
+
+    .earnings-table td {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 6px 0;
+        text-align: left;
+        border: none;
+        font-size: 13px;
     }
-    
-    .effect-container {
+
+    .earnings-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
         font-size: 12px;
-        white-space: nowrap;
     }
-    
-    .arrow-icon {
-        font-size: 10px;
+
+    /* Adjust specific cells */
+    .earnings-table td[data-label="Earnings Date"] {
+        font-weight: 600;
+        color: #2c3e50;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+        margin-bottom: 4px;
     }
-    
-    .expand-button {
-        width: 20px;
-        height: 20px;
-        font-size: 14px;
-        margin-left: 4px;
+
+    .effect-container {
+        justify-content: flex-start;
     }
-    
+
+    /* Show More button adjustments */
     .show-more-container {
-        margin-top: 16px;
-        padding-top: 16px;
+        margin: 16px -8px 0;
+        padding: 16px 8px 0;
         position: sticky;
         bottom: 0;
         background: white;
-        z-index: 3;
-        box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+        z-index: 10;
+        box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
     }
-    
+
     .show-more-button {
         width: 100%;
         padding: 12px;
         font-size: 14px;
+        margin: 0;
     }
-    
-    .results {
-        padding: 12px;
-        border-radius: 8px;
+
+    /* Pre-earnings toggle adjustments */
+    .expand-button {
+        width: 24px;
+        height: 24px;
+        font-size: 18px;
+        margin-left: auto;
+    }
+
+    /* Effect display adjustments */
+    .effect-cell {
+        padding-right: 0 !important;
+    }
+
+    .positive-effect,
+    .negative-effect {
+        font-size: 14px;
+    }
+
+    .arrow-icon {
+        font-size: 12px;
     }
 }
 
-/* Print Styles - Unchanged */
+/* Print Styles */
 @media print {
     .search-form,
     .show-more-container,

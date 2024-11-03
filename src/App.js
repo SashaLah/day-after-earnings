@@ -213,7 +213,7 @@ const App = () => {
                   {showPreEarnings && (
                     <>
                       <th>Pre-Earnings Open</th>
-                      <th>Day Change</th>
+                      <th className="pre-earnings-change">Day Change</th>
                     </>
                   )}
                   <th>Post-Earnings Open</th>
@@ -234,19 +234,22 @@ const App = () => {
               <tbody>
                 {displayData.map((earning, index) => (
                   <tr key={index}>
-                    <td>{earning.date}</td>
-                    <td>${earning.preEarningsClose}</td>
+                    <td data-label="Earnings Date">{earning.date}</td>
+                    <td data-label="Pre-Earnings Close">${earning.preEarningsClose}</td>
                     {showPreEarnings && (
                       <>
-                        <td>${earning.preEarningsOpen}</td>
-                        <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
+                        <td data-label="Pre-Earnings Open">${earning.preEarningsOpen}</td>
+                        <td 
+                          data-label="Day Change" 
+                          className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}
+                        >
                           {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange}%
                         </td>
                       </>
                     )}
-                    <td>${earning.postEarningsOpen}</td>
-                    <td className="effect-cell">
+                    <td data-label="Post-Earnings Open">${earning.postEarningsOpen}</td>
+                    <td data-label="Earnings Effect" className="effect-cell">
                       {renderEarningsEffect(earning.earningsEffect)}
                     </td>
                   </tr>
@@ -261,7 +264,7 @@ const App = () => {
                 className="show-more-button"
                 onClick={() => setShowAllData(!showAllData)}
               >
-                {showAllData ? 'Show Less' : `+${stockData.length - INITIAL_DISPLAY_COUNT} more`}
+                {showAllData ? 'Show Less' : `Show ${stockData.length - INITIAL_DISPLAY_COUNT} More`}
               </button>
             </div>
           )}
