@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const App = () => {
   const [symbol, setSymbol] = useState('');
@@ -6,7 +6,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showAllData, setShowAllData] = useState(false);
-  const INITIAL_DISPLAY_COUNT = 12;
+  const [showPreEarnings, setShowPreEarnings] = useState(false);
+  const INITIAL_DISPLAY_COUNT = 10;
 
   const fetchStockData = async (e) => {
     e.preventDefault();
@@ -29,41 +30,46 @@ const App = () => {
       const processedData = await Promise.all(
         earningsData.map(async (earning) => {
           const earningsDate = new Date(earning.date);
-          const afterDate = new Date(earningsDate);
-          afterDate.setDate(earningsDate.getDate() + 1);
-
-          const fromDate = earningsDate.toISOString().split('T')[0];
-          const toDate = afterDate.toISOString().split('T')[0];
+          const priorDay = new Date(earningsDate);
+          const nextDay = new Date(earningsDate);
+          priorDay.setDate(earningsDate.getDate());
+          nextDay.setDate(earningsDate.getDate() + 1);
 
           const priceResponse = await fetch(
-            `/api/prices/${symbol}?from=${fromDate}&to=${toDate}`
+            `/api/prices/${symbol}?from=${priorDay.toISOString().split('T')[0]}&to=${nextDay.toISOString().split('T')[0]}`
           );
+          
+          if (!priceResponse.ok) {
+            throw new Error('Failed to fetch price data');
+          }
+          
           const priceData = await priceResponse.json();
 
-          const dayOfPrices = priceData[0] || {};
-          const nextDayPrice = priceData[priceData.length - 1] || {};
+          const nextDayPrices = priceData[0] || {};
+          const earningsDayPrices = priceData[1] || {};
 
-          const openToClose = dayOfPrices.open && dayOfPrices.close
-            ? ((dayOfPrices.close - dayOfPrices.open) / dayOfPrices.open) * 100
+          const preEarningsChange = earningsDayPrices.open && earningsDayPrices.close
+            ? ((earningsDayPrices.close - earningsDayPrices.open) / earningsDayPrices.open) * 100
             : null;
 
-          const closeToNextClose = dayOfPrices.close && nextDayPrice.close
-            ? ((nextDayPrice.close - dayOfPrices.close) / dayOfPrices.close) * 100
+          const earningsEffect = earningsDayPrices.close && nextDayPrices.open
+            ? ((nextDayPrices.open - earningsDayPrices.close) / earningsDayPrices.close) * 100
             : null;
 
           return {
             date: earning.date,
-            dayOpen: dayOfPrices.open?.toFixed(2) || 'N/A',
-            dayClose: dayOfPrices.close?.toFixed(2) || 'N/A',
-            nextDayClose: nextDayPrice.close?.toFixed(2) || 'N/A',
-            openToCloseChange: openToClose?.toFixed(2) || 'N/A',
-            closeToNextChange: closeToNextClose?.toFixed(2) || 'N/A'
+            preEarningsOpen: earningsDayPrices.open?.toFixed(2) || 'N/A',
+            preEarningsClose: earningsDayPrices.close?.toFixed(2) || 'N/A',
+            postEarningsOpen: nextDayPrices.open?.toFixed(2) || 'N/A',
+            preEarningsChange: preEarningsChange?.toFixed(2) || 'N/A',
+            earningsEffect: earningsEffect?.toFixed(2) || 'N/A'
           };
         })
       );
 
       setStockData(processedData);
     } catch (err) {
+      console.error('Error fetching stock data:', err);
       setError(err.message);
       setStockData(null);
     } finally {
@@ -71,14 +77,18 @@ const App = () => {
     }
   };
 
-  const calculateStats = (data) => {
+  const calculateStats = useCallback((data) => {
     if (!data || !data.length) return null;
     
-    const validMoves = data.filter(d => d.closeToNextChange !== 'N/A').map(d => parseFloat(d.closeToNextChange));
+    const validMoves = data
+      .filter(d => d.earningsEffect !== 'N/A')
+      .map(d => parseFloat(d.earningsEffect));
+    
+    if (validMoves.length === 0) return null;
+    
     const upMoves = validMoves.filter(change => change > 0);
     const downMoves = validMoves.filter(change => change < 0);
-    
-    // Calculate streaks
+
     let longestPositiveStreak = 0;
     let longestNegativeStreak = 0;
     let currentPositiveStreak = 0;
@@ -100,7 +110,6 @@ const App = () => {
       }
     });
 
-    // Calculate volatility
     const averageMove = validMoves.reduce((a, b) => a + b, 0) / validMoves.length;
     const variance = validMoves.reduce((a, b) => a + Math.pow(b - averageMove, 2), 0) / validMoves.length;
     const volatility = Math.sqrt(variance);
@@ -119,6 +128,23 @@ const App = () => {
       maxLoss: Math.min(...validMoves),
       winRate: (upMoves.length / validMoves.length * 100).toFixed(1)
     };
+  }, []);
+
+  const renderEarningsEffect = (effect) => {
+    if (effect === 'N/A') return <span className="neutral-effect">−</span>;
+    const value = parseFloat(effect);
+    const effectClassName = value >= 0 ? 'positive-effect' : 'negative-effect';
+    
+    return (
+      <div className="effect-container">
+        <span className={effectClassName}>
+          {value > 0 ? '+' : ''}{effect}%
+          <span className="arrow-icon">
+            {value > 0 ? '▲' : '▼'}
+          </span>
+        </span>
+      </div>
+    );
   };
 
   const stats = stockData ? calculateStats(stockData) : null;
@@ -183,25 +209,45 @@ const App = () => {
               <thead>
                 <tr>
                   <th>Earnings Date</th>
-                  <th>Earnings Day Open</th>
-                  <th>Earnings Day Close</th>
-                  <th>Day After Earnings Close</th>
-                  <th>Earnings Day Change</th>
-                  <th>Day After Earnings Change</th>
+                  <th>Pre-Earnings Close</th>
+                  {showPreEarnings && (
+                    <>
+                      <th>Pre-Earnings Open</th>
+                      <th>Day Change</th>
+                    </>
+                  )}
+                  <th>Post-Earnings Open</th>
+                  <th className="effect-header">
+                    <div className="effect-header-container">
+                      <span>Earnings Effect</span>
+                      <button 
+                        className="expand-button"
+                        onClick={() => setShowPreEarnings(!showPreEarnings)}
+                        title={showPreEarnings ? "Hide details" : "Show details"}
+                      >
+                        {showPreEarnings ? '−' : '+'}
+                      </button>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {displayData.map((earning, index) => (
                   <tr key={index}>
                     <td>{earning.date}</td>
-                    <td>${earning.dayOpen}</td>
-                    <td>${earning.dayClose}</td>
-                    <td>${earning.nextDayClose}</td>
-                    <td className={parseFloat(earning.openToCloseChange) >= 0 ? 'green' : 'red'}>
-                      {earning.openToCloseChange > 0 ? '+' : ''}{earning.openToCloseChange}%
-                    </td>
-                    <td className={parseFloat(earning.closeToNextChange) >= 0 ? 'green' : 'red'}>
-                      {earning.closeToNextChange > 0 ? '+' : ''}{earning.closeToNextChange}%
+                    <td>${earning.preEarningsClose}</td>
+                    {showPreEarnings && (
+                      <>
+                        <td>${earning.preEarningsOpen}</td>
+                        <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
+                          {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
+                          {earning.preEarningsChange}%
+                        </td>
+                      </>
+                    )}
+                    <td>${earning.postEarningsOpen}</td>
+                    <td className="effect-cell">
+                      {renderEarningsEffect(earning.earningsEffect)}
                     </td>
                   </tr>
                 ))}
@@ -215,7 +261,7 @@ const App = () => {
                 className="show-more-button"
                 onClick={() => setShowAllData(!showAllData)}
               >
-                {showAllData ? 'Show Less' : `Show More (${stockData.length - INITIAL_DISPLAY_COUNT} more earnings)`}
+                {showAllData ? 'Show Less' : `+${stockData.length - INITIAL_DISPLAY_COUNT} more`}
               </button>
             </div>
           )}

@@ -1,0 +1,5 @@
+{
+    "ignore": ["server/storage/*"],
+    "watch": ["server"],
+    "ext": "js,mjs,cjs,json"
+  }
