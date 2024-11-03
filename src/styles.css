@@ -5,32 +5,32 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #f8f9fa;
     min-height: 100vh;
-  }
+}
   
-  h1 {
+h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 10px;
     font-size: 32px;
     font-weight: 600;
-  }
+}
   
-  .subtitle {
+.subtitle {
     text-align: center;
     color: #7f8c8d;
     margin-bottom: 30px;
     font-size: 18px;
     font-weight: normal;
-  }
+}
   
-  .search-form {
+.search-form {
     display: flex;
     justify-content: center;
     gap: 12px;
     margin-bottom: 30px;
-  }
+}
   
-  .search-input {
+.search-input {
     padding: 12px 16px;
     font-size: 16px;
     border: 2px solid #e0e0e0;
@@ -38,16 +38,16 @@
     width: 240px;
     transition: all 0.2s ease;
     background-color: white;
-  }
+}
   
-  .search-input:focus {
+.search-input:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
     transform: translateY(-1px);
-  }
+}
   
-  .search-button {
+.search-button {
     padding: 12px 24px;
     font-size: 16px;
     background-color: #3498db;
@@ -57,22 +57,22 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: 500;
-  }
+}
   
-  .search-button:hover {
+.search-button:hover {
     background-color: #2980b9;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+}
   
-  .search-button:disabled {
+.search-button:disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
-  }
+}
   
-  .error {
+.error {
     color: #e74c3c;
     background-color: rgba(231, 76, 60, 0.1);
     padding: 12px;
@@ -81,36 +81,36 @@
     text-align: center;
     font-weight: 500;
     border: 1px solid rgba(231, 76, 60, 0.2);
-  }
+}
   
-  .loading {
+.loading {
     text-align: center;
     color: #7f8c8d;
     margin: 20px 0;
     font-weight: 500;
-  }
+}
   
-  .results {
+.results {
     background-color: white;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  }
+}
   
-  .earnings-summary {
+.earnings-summary {
     width: 100%;
     max-width: 900px;
     margin: 0 auto 30px;
-  }
+}
   
-  .stat-row {
+.stat-row {
     display: flex;
     justify-content: space-between;
     gap: 24px;
     margin-bottom: 24px;
-  }
+}
   
-  .stat-item {
+.stat-item {
     flex: 1;
     text-align: center;
     padding: 24px;
@@ -119,73 +119,73 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: all 0.2s ease;
     border: 1px solid #f0f0f0;
-  }
+}
   
-  .stat-item:hover {
+.stat-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
+}
   
-  .stat-item h3 {
+.stat-item h3 {
     margin: 0 0 12px 0;
     color: #2c3e50;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-  }
+}
   
-  .stat-item p {
+.stat-item p {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
-  }
+}
   
-  .stat-item .avg-move {
+.stat-item .avg-move {
     font-size: 14px;
     margin-top: 8px;
     color: #7f8c8d;
-  }
+}
   
-  .stat-item .streak {
+.stat-item .streak {
     font-size: 14px;
     margin-top: 8px;
     color: #7f8c8d;
     font-weight: normal;
-  }
+}
   
-  .green {
+.green {
     color: #2ecc71;
-  }
+}
   
-  .red {
+.red {
     color: #e74c3c;
-  }
+}
   
-  .table-container {
+.table-container {
     overflow-x: auto;
     margin-top: 20px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
+}
   
-  .earnings-table {
+.earnings-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     font-size: 14px;
-  }
+}
   
-  .earnings-table th,
-  .earnings-table td {
+.earnings-table th,
+.earnings-table td {
     padding: 16px;
     text-align: right;
     border-bottom: 1px solid #f0f0f0;
     transition: all 0.2s ease;
-  }
+}
   
-  .earnings-table th {
+.earnings-table th {
     background-color: #f8f9fa;
     font-weight: 600;
     color: #2c3e50;
@@ -196,29 +196,29 @@
     position: sticky;
     top: 0;
     z-index: 1;
-  }
+}
   
-  .earnings-table tr:hover {
+.earnings-table tr:hover {
     background-color: #f8f9fa;
-  }
+}
   
-  .earnings-table tr:last-child td {
+.earnings-table tr:last-child td {
     border-bottom: none;
-  }
+}
   
-  .effect-header {
+.effect-header {
     padding-right: 8px !important;
-  }
+}
   
-  .effect-header-container {
+.effect-header-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
     white-space: nowrap;
-  }
+}
   
-  .expand-button {
+.expand-button {
     background: #e9ecef;
     border: none;
     border-radius: 4px;
@@ -234,65 +234,65 @@
     transition: all 0.2s ease;
     margin-left: 8px;
     font-weight: bold;
-  }
+}
   
-  .expand-button:hover {
+.expand-button:hover {
     background: #dee2e6;
     transform: translateY(-1px);
-  }
+}
   
-  .expand-button:focus {
+.expand-button:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
-  }
+}
   
-  .effect-cell {
+.effect-cell {
     padding-right: 16px !important;
-  }
+}
   
-  .effect-container {
+.effect-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
     white-space: nowrap;
-  }
+}
   
-  .positive-effect {
+.positive-effect {
     display: flex;
     align-items: center;
     gap: 4px;
     color: #2ecc71;
     font-weight: 600;
-  }
+}
   
-  .negative-effect {
+.negative-effect {
     display: flex;
     align-items: center;
     gap: 4px;
     color: #e74c3c;
     font-weight: 600;
-  }
+}
   
-  .neutral-effect {
+.neutral-effect {
     color: #95a5a6;
     font-weight: 600;
-  }
+}
   
-  .arrow-icon {
+.arrow-icon {
     font-size: 12px;
     line-height: 1;
     margin-top: -2px;
-  }
+}
   
-  .show-more-container {
+.show-more-container {
     text-align: center;
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #f0f0f0;
-  }
+}
   
-  .show-more-button {
+.show-more-button {
     padding: 8px 16px;
     font-size: 13px;
     background-color: #f8f9fa;
@@ -302,104 +302,174 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: 500;
-  }
+}
   
-  .show-more-button:hover {
+.show-more-button:hover {
     background-color: #e9ecef;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
+}
   
-  /* Animation for column transitions */
-  .earnings-table th,
-  .earnings-table td {
+/* Animation for column transitions */
+.earnings-table th,
+.earnings-table td {
     animation: fadeIn 0.3s ease-out;
-  }
+}
   
-  @keyframes fadeIn {
+@keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
+/* Updated Mobile Responsive Design */
+@media (max-width: 768px) {
     .container {
-      padding: 12px;
-    }
-    
-    .stat-row {
-      flex-direction: column;
-    }
-    
-    .search-form {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .search-input {
-      width: 100%;
-      max-width: 300px;
-    }
-    
-    .earnings-table {
-      font-size: 13px;
-    }
-    
-    .earnings-table th,
-    .earnings-table td {
-      padding: 12px 8px;
+        padding: 10px;
     }
     
     h1 {
-      font-size: 24px;
+        font-size: 22px;
+        margin-bottom: 5px;
     }
     
     .subtitle {
-      font-size: 16px;
-    }
-  
-    .effect-container {
-      font-size: 12px;
-    }
-  
-    .arrow-icon {
-      font-size: 10px;
-    }
-  
-    .expand-button {
-      width: 20px;
-      height: 20px;
-      font-size: 14px;
-    }
-  }
-  
-  /* Print Styles */
-  @media print {
-    .search-form,
-    .show-more-container,
-    .expand-button {
-      display: none;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
     
-    .container {
-      padding: 0;
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        margin-bottom: 20px;
     }
     
-    .results {
-      box-shadow: none;
+    .search-input {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .stat-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .stat-item {
+        padding: 16px;
+    }
+    
+    .stat-item p {
+        font-size: 22px;
+    }
+    
+    .stat-item .avg-move,
+    .stat-item .streak {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    
+    /* Compact table for mobile */
+    .table-container {
+        margin-top: 12px;
+        border-radius: 8px;
+        max-width: 100vw;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+    
+    .earnings-table {
+        font-size: 12px;
+        width: auto;
+        min-width: 100%;
     }
     
     .earnings-table th,
     .earnings-table td {
-      border: 1px solid #e9ecef;
+        padding: 10px 8px;
+        min-width: 70px;
+    }
+    
+    .earnings-table th:first-child,
+    .earnings-table td:first-child {
+        position: sticky;
+        left: 0;
+        background: white;
+        z-index: 2;
+        border-right: 1px solid #f0f0f0;
+        min-width: 90px;
+    }
+    
+    .earnings-table th:first-child {
+        background: #f8f9fa;
+    }
+    
+    .effect-container {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    
+    .arrow-icon {
+        font-size: 10px;
+    }
+    
+    .expand-button {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+        margin-left: 4px;
+    }
+    
+    .show-more-container {
+        margin-top: 16px;
+        padding-top: 16px;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        z-index: 3;
+        box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .show-more-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .results {
+        padding: 12px;
+        border-radius: 8px;
+    }
+}
+
+/* Print Styles - Unchanged */
+@media print {
+    .search-form,
+    .show-more-container,
+    .expand-button {
+        display: none;
+    }
+    
+    .container {
+        padding: 0;
+    }
+    
+    .results {
+        box-shadow: none;
+    }
+    
+    .earnings-table th,
+    .earnings-table td {
+        border: 1px solid #e9ecef;
     }
   
     .stat-item {
-      box-shadow: none;
-      border: 1px solid #e9ecef;
+        box-shadow: none;
+        border: 1px solid #e9ecef;
     }
-  }
+}
