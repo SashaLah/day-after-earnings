@@ -248,22 +248,32 @@ const App = () => {
             <table className="earnings-table">
               <thead>
                 <tr>
-                  <th className="table-header">Earnings<br/>Date</th>
-                  <th className="table-header">Pre-Earnings<br/>Close</th>
+                  <th className="table-header" title="The date when earnings were reported">
+                    Date
+                  </th>
+                  <th className="table-header" title="The closing price of the stock on the day of earnings">
+                    Pre Close
+                  </th>
                   {showPreEarnings && (
                     <>
-                      <th className="table-header">Pre-Earnings<br/>Open</th>
-                      <th className="table-header pre-earnings-change">Day<br/>Change</th>
+                      <th className="table-header" title="The opening price of the stock on the day of earnings">
+                        Pre Open
+                      </th>
+                      <th className="table-header pre-earnings-change" title="The price change during earnings day trading">
+                        Day Change
+                      </th>
                     </>
                   )}
-                  <th className="table-header">Post-Earnings<br/>Open</th>
+                  <th className="table-header" title="The opening price of the stock on the day after earnings">
+                    Post Open
+                  </th>
                   <th className="effect-header">
                     <div className="effect-header-container">
-                      <span>Earnings<br/>Effect</span>
+                      <span title="Percentage change from earnings day close to next day open">Effect</span>
                       <button 
                         className="expand-button"
                         onClick={() => setShowPreEarnings(!showPreEarnings)}
-                        title={showPreEarnings ? "Hide details" : "Show details"}
+                        title={showPreEarnings ? "Hide pre-earnings details" : "Show pre-earnings details"}
                       >
                         {showPreEarnings ? '−' : '+'}
                       </button>
