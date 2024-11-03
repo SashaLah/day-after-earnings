@@ -4,6 +4,42 @@ const axios = require('axios');
 const fs = require('fs').promises;
 require('dotenv').config();
 
+// Company data for search functionality
+const companiesData = {
+    companies: [
+        { symbol: "AAPL", name: "Apple Inc." },
+        { symbol: "MSFT", name: "Microsoft Corporation" },
+        { symbol: "GOOGL", name: "Alphabet Inc." },
+        { symbol: "AMZN", name: "Amazon.com Inc." },
+        { symbol: "META", name: "Meta Platforms Inc." },
+        { symbol: "NVDA", name: "NVIDIA Corporation" },
+        { symbol: "TSLA", name: "Tesla Inc." },
+        { symbol: "JPM", name: "JPMorgan Chase & Co." },
+        { symbol: "V", name: "Visa Inc." },
+        { symbol: "WMT", name: "Walmart Inc." },
+        { symbol: "JNJ", name: "Johnson & Johnson" },
+        { symbol: "MA", name: "Mastercard Incorporated" },
+        { symbol: "PG", name: "Procter & Gamble Company" },
+        { symbol: "NFLX", name: "Netflix Inc." },
+        { symbol: "DIS", name: "The Walt Disney Company" },
+        { symbol: "ADBE", name: "Adobe Inc." },
+        { symbol: "CSCO", name: "Cisco Systems Inc." },
+        { symbol: "INTC", name: "Intel Corporation" },
+        { symbol: "VZ", name: "Verizon Communications Inc." },
+        { symbol: "KO", name: "The Coca-Cola Company" },
+        { symbol: "PEP", name: "PepsiCo Inc." },
+        { symbol: "MCD", name: "McDonald's Corporation" },
+        { symbol: "NKE", name: "Nike Inc." },
+        { symbol: "PYPL", name: "PayPal Holdings Inc." },
+        { symbol: "T", name: "AT&T Inc." },
+        { symbol: "BAC", name: "Bank of America Corporation" },
+        { symbol: "HD", name: "The Home Depot Inc." },
+        { symbol: "CRM", name: "Salesforce Inc." },
+        { symbol: "AMD", name: "Advanced Micro Devices Inc." },
+        { symbol: "QCOM", name: "Qualcomm Incorporated" }
+    ]
+};
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
@@ -297,6 +333,22 @@ async function prefetchPopularData() {
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
+// Company search endpoint
+app.get('/api/search/companies', (req, res) => {
+    const query = req.query.q?.toLowerCase();
+    
+    if (!query) {
+        return res.json([]);
+    }
+
+    const matches = companiesData.companies.filter(company => 
+        company.name.toLowerCase().includes(query) || 
+        company.symbol.toLowerCase().includes(query)
+    ).slice(0, 10); // Limit to 10 results
+
+    res.json(matches);
+});
+
 app.get('/api/stock/:symbol', async (req, res) => {
     try {
         const { symbol } = req.params;
@@ -319,7 +371,6 @@ app.get('/api/stock/:symbol', async (req, res) => {
         });
     }
 });
-
 app.get('/api/prices/:symbol', async (req, res) => {
     try {
         const { symbol } = req.params;
@@ -341,7 +392,6 @@ app.get('/api/prices/:symbol', async (req, res) => {
         });
     }
 });
-
 app.get('/api/status', (req, res) => {
     res.json({
         status: 'ok',

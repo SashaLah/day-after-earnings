@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 
 const App = () => {
+  const [search, setSearch] = useState('');
   const [symbol, setSymbol] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [stockData, setStockData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -9,19 +11,42 @@ const App = () => {
   const [showPreEarnings, setShowPreEarnings] = useState(false);
   const INITIAL_DISPLAY_COUNT = 10;
 
+  const handleSearch = async (searchText) => {
+    setSearch(searchText);
+    if (searchText.length > 1) {
+      try {
+        const response = await fetch(`/api/search/companies?q=${encodeURIComponent(searchText)}`);
+        const data = await response.json();
+        setSuggestions(data);
+      } catch (error) {
+        console.error('Error searching companies:', error);
+        setSuggestions([]);
+      }
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const selectCompany = (selectedSymbol) => {
+    setSymbol(selectedSymbol);
+    setSearch(selectedSymbol);
+    setSuggestions([]);
+  };
+
   const fetchStockData = async (e) => {
     e.preventDefault();
-    if (!symbol.trim()) {
-      setError('Please enter a stock symbol');
+    if (!symbol && !search.trim()) {
+      setError('Please enter a company name or stock symbol');
       return;
     }
-    
+
+    const searchSymbol = symbol || search.toUpperCase();
     setLoading(true);
     setError(null);
     setStockData(null);
     
     try {
-      const earningsResponse = await fetch(`/api/stock/${symbol.toUpperCase()}`);
+      const earningsResponse = await fetch(`/api/stock/${searchSymbol}`);
       const earningsData = await earningsResponse.json();
       
       if (!earningsResponse.ok) throw new Error(earningsData.error || 'Failed to fetch data');
@@ -36,7 +61,7 @@ const App = () => {
           nextDay.setDate(earningsDate.getDate() + 1);
 
           const priceResponse = await fetch(
-            `/api/prices/${symbol}?from=${priorDay.toISOString().split('T')[0]}&to=${nextDay.toISOString().split('T')[0]}`
+            `/api/prices/${searchSymbol}?from=${priorDay.toISOString().split('T')[0]}&to=${nextDay.toISOString().split('T')[0]}`
           );
           
           if (!priceResponse.ok) {
@@ -156,16 +181,31 @@ const App = () => {
       <h2 className="subtitle">Historical Earnings Price Movements</h2>
       
       <form onSubmit={fetchStockData} className="search-form">
-        <input
-          type="text"
-          value={symbol}
-          onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-          placeholder="Enter stock symbol (e.g., AAPL)"
-          required
-          className="search-input"
-        />
+        <div className="search-container">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+            placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
+            className="search-input"
+          />
+          {suggestions.length > 0 && (
+            <div className="suggestions-dropdown">
+              {suggestions.map((company, index) => (
+                <div
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => selectCompany(company.symbol)}
+                >
+                  <span className="company-name">{company.name}</span>
+                  <span className="company-symbol">{company.symbol}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <button type="submit" disabled={loading} className="search-button">
-          {loading ? 'Loading...' : 'Analyze'}
+          {loading ? 'Loading...' : 'Search'}
         </button>
       </form>
 
@@ -208,18 +248,18 @@ const App = () => {
             <table className="earnings-table">
               <thead>
                 <tr>
-                  <th>Earnings Date</th>
-                  <th>Pre-Earnings Close</th>
+                  <th className="table-header">Earnings<br/>Date</th>
+                  <th className="table-header">Pre-Earnings<br/>Close</th>
                   {showPreEarnings && (
                     <>
-                      <th>Pre-Earnings Open</th>
-                      <th className="pre-earnings-change">Day Change</th>
+                      <th className="table-header">Pre-Earnings<br/>Open</th>
+                      <th className="table-header pre-earnings-change">Day<br/>Change</th>
                     </>
                   )}
-                  <th>Post-Earnings Open</th>
+                  <th className="table-header">Post-Earnings<br/>Open</th>
                   <th className="effect-header">
                     <div className="effect-header-container">
-                      <span>Earnings Effect</span>
+                      <span>Earnings<br/>Effect</span>
                       <button 
                         className="expand-button"
                         onClick={() => setShowPreEarnings(!showPreEarnings)}
@@ -234,22 +274,19 @@ const App = () => {
               <tbody>
                 {displayData.map((earning, index) => (
                   <tr key={index}>
-                    <td data-label="Earnings Date">{earning.date}</td>
-                    <td data-label="Pre-Earnings Close">${earning.preEarningsClose}</td>
+                    <td>{earning.date}</td>
+                    <td>${earning.preEarningsClose}</td>
                     {showPreEarnings && (
                       <>
-                        <td data-label="Pre-Earnings Open">${earning.preEarningsOpen}</td>
-                        <td 
-                          data-label="Day Change" 
-                          className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}
-                        >
+                        <td>${earning.preEarningsOpen}</td>
+                        <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
                           {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange}%
                         </td>
                       </>
                     )}
-                    <td data-label="Post-Earnings Open">${earning.postEarningsOpen}</td>
-                    <td data-label="Earnings Effect" className="effect-cell">
+                    <td>${earning.postEarningsOpen}</td>
+                    <td className="effect-cell">
                       {renderEarningsEffect(earning.earningsEffect)}
                     </td>
                   </tr>
