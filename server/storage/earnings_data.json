@@ -940,133 +940,176 @@
   ],
   "GOOG": [
     {
-      "date": "2024-10-29"
+      "date": "2024-10-29",
+      "symbol": "GOOG"
     },
     {
-      "date": "2024-07-23"
+      "date": "2024-07-23",
+      "symbol": "GOOG"
     },
     {
-      "date": "2024-04-25"
+      "date": "2024-04-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2024-01-30"
+      "date": "2024-01-30",
+      "symbol": "GOOG"
     },
     {
-      "date": "2023-10-23"
+      "date": "2023-10-23",
+      "symbol": "GOOG"
     },
     {
-      "date": "2023-07-25"
+      "date": "2023-07-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2023-04-25"
+      "date": "2023-04-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2023-02-02"
+      "date": "2023-02-02",
+      "symbol": "GOOG"
     },
     {
-      "date": "2022-10-25"
+      "date": "2022-10-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2022-07-26"
+      "date": "2022-07-26",
+      "symbol": "GOOG"
     },
     {
-      "date": "2022-04-26"
+      "date": "2022-04-26",
+      "symbol": "GOOG"
     },
     {
-      "date": "2022-02-01"
+      "date": "2022-02-01",
+      "symbol": "GOOG"
     },
     {
-      "date": "2021-10-26"
+      "date": "2021-10-26",
+      "symbol": "GOOG"
     },
     {
-      "date": "2021-07-27"
+      "date": "2021-07-27",
+      "symbol": "GOOG"
     },
     {
-      "date": "2021-04-27"
+      "date": "2021-04-27",
+      "symbol": "GOOG"
     },
     {
-      "date": "2021-02-02"
+      "date": "2021-02-02",
+      "symbol": "GOOG"
     },
     {
-      "date": "2020-10-29"
+      "date": "2020-10-29",
+      "symbol": "GOOG"
     },
     {
-      "date": "2020-07-30"
+      "date": "2020-07-30",
+      "symbol": "GOOG"
     },
     {
-      "date": "2020-04-28"
+      "date": "2020-04-28",
+      "symbol": "GOOG"
     },
     {
-      "date": "2020-02-03"
+      "date": "2020-02-03",
+      "symbol": "GOOG"
     },
     {
-      "date": "2019-10-28"
+      "date": "2019-10-28",
+      "symbol": "GOOG"
     },
     {
-      "date": "2019-07-25"
+      "date": "2019-07-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2019-04-29"
+      "date": "2019-04-29",
+      "symbol": "GOOG"
     },
     {
-      "date": "2019-02-04"
+      "date": "2019-02-04",
+      "symbol": "GOOG"
     },
     {
-      "date": "2018-10-25"
+      "date": "2018-10-25",
+      "symbol": "GOOG"
     },
     {
-      "date": "2018-07-23"
+      "date": "2018-07-23",
+      "symbol": "GOOG"
     },
     {
-      "date": "2018-04-23"
+      "date": "2018-04-23",
+      "symbol": "GOOG"
     },
     {
-      "date": "2018-02-01"
+      "date": "2018-02-01",
+      "symbol": "GOOG"
     },
     {
-      "date": "2017-10-26"
+      "date": "2017-10-26",
+      "symbol": "GOOG"
     },
     {
-      "date": "2017-07-24"
+      "date": "2017-07-24",
+      "symbol": "GOOG"
     },
     {
-      "date": "2017-04-27"
+      "date": "2017-04-27",
+      "symbol": "GOOG"
     },
     {
-      "date": "2017-01-26"
+      "date": "2017-01-26",
+      "symbol": "GOOG"
     },
     {
-      "date": "2016-10-27"
+      "date": "2016-10-27",
+      "symbol": "GOOG"
     },
     {
-      "date": "2016-07-28"
+      "date": "2016-07-28",
+      "symbol": "GOOG"
     },
     {
-      "date": "2016-04-21"
+      "date": "2016-04-21",
+      "symbol": "GOOG"
     },
     {
-      "date": "2016-02-01"
+      "date": "2016-02-01",
+      "symbol": "GOOG"
     },
     {
-      "date": "2015-10-22"
+      "date": "2015-10-22",
+      "symbol": "GOOG"
     },
     {
-      "date": "2015-07-16"
+      "date": "2015-07-16",
+      "symbol": "GOOG"
     },
     {
-      "date": "2015-04-23"
+      "date": "2015-04-23",
+      "symbol": "GOOG"
     },
     {
-      "date": "2015-01-29"
+      "date": "2015-01-29",
+      "symbol": "GOOG"
     },
     {
-      "date": "2014-10-16"
+      "date": "2014-10-16",
+      "symbol": "GOOG"
     },
     {
-      "date": "2014-07-17"
+      "date": "2014-07-17",
+      "symbol": "GOOG"
     },
     {
-      "date": "2014-04-16"
+      "date": "2014-04-16",
+      "symbol": "GOOG"
     }
   ],
   "RDDT": [
@@ -1873,6 +1916,240 @@
     },
     {
       "date": "1999-05-18"
+    }
+  ],
+  "TSLA": [
+    {
+      "date": "2024-10-23",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2024-07-23",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2024-04-23",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2024-01-24",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2023-10-18",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2023-07-19",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2023-04-19",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2023-01-25",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2022-10-19",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2022-07-20",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2022-04-20",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2022-01-26",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2021-10-20",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2021-07-26",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2021-04-26",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2021-01-27",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2020-10-21",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2020-07-22",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2020-04-29",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2020-01-29",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2019-10-23",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2019-07-24",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2019-04-24",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2019-01-30",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2018-10-24",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2018-08-01",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2018-05-02",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2018-02-07",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2017-11-01",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2017-08-02",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2017-05-03",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2017-02-22",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2016-10-26",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2016-08-03",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2016-05-04",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2016-02-10",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2015-11-03",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2015-08-05",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2015-05-06",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2015-02-11",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2014-11-05",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2014-07-31",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2014-05-07",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2014-02-19",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2013-11-05",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2013-08-07",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2013-05-08",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2013-02-20",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2012-11-05",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2012-07-25",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2012-05-09",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2012-02-15",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2011-11-02",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2011-08-03",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2011-05-04",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2011-02-15",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2010-11-09",
+      "symbol": "TSLA"
+    },
+    {
+      "date": "2010-08-05",
+      "symbol": "TSLA"
     }
   ]
 }

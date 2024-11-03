@@ -114,6 +114,12 @@ const App = () => {
     const upMoves = validMoves.filter(change => change > 0);
     const downMoves = validMoves.filter(change => change < 0);
 
+    // Calculate recent earnings stats (last 10)
+    const recentMoves = validMoves.slice(0, 10);
+    const recentUpMoves = recentMoves.filter(change => change > 0);
+    const recentAverage = recentMoves.reduce((a, b) => a + b, 0) / recentMoves.length;
+    const recentWinRate = (recentUpMoves.length / recentMoves.length * 100).toFixed(1);
+
     let longestPositiveStreak = 0;
     let longestNegativeStreak = 0;
     let currentPositiveStreak = 0;
@@ -134,10 +140,6 @@ const App = () => {
         }
       }
     });
-
-    const averageMove = validMoves.reduce((a, b) => a + b, 0) / validMoves.length;
-    const variance = validMoves.reduce((a, b) => a + Math.pow(b - averageMove, 2), 0) / validMoves.length;
-    const volatility = Math.sqrt(variance);
     
     return {
       totalMoves: validMoves.length,
@@ -148,10 +150,14 @@ const App = () => {
       averageDownMove: downMoves.length ? downMoves.reduce((a, b) => a + b, 0) / downMoves.length : 0,
       longestPositiveStreak,
       longestNegativeStreak,
-      volatility,
       maxGain: Math.max(...validMoves),
       maxLoss: Math.min(...validMoves),
-      winRate: (upMoves.length / validMoves.length * 100).toFixed(1)
+      winRate: (upMoves.length / validMoves.length * 100).toFixed(1),
+      // Recent earnings stats
+      recentAverage: recentAverage,
+      recentWinRate: recentWinRate,
+      recentUpMoves: recentUpMoves.length,
+      recentTotal: recentMoves.length
     };
   }, []);
 
@@ -231,9 +237,13 @@ const App = () => {
                 </div>
               </div>
               <div className="stat-row">
-                <div className="stat-item">
-                  <h3>Volatility</h3>
-                  <p>{stats.volatility.toFixed(2)}%</p>
+                <div className="stat-item recent" title="Statistics from the most recent 10 earnings reports">
+                  <h3>Last 10 Earnings</h3>
+                  <p className={stats.recentAverage >= 0 ? "green" : "red"}>
+                    {stats.recentAverage >= 0 ? '+' : ''}{stats.recentAverage.toFixed(2)}%
+                  </p>
+                  <p className="avg-move">{stats.recentUpMoves} Up, {stats.recentTotal - stats.recentUpMoves} Down</p>
+                  <p className="streak">Win Rate: {stats.recentWinRate}%</p>
                 </div>
                 <div className="stat-item">
                   <h3>Best/Worst Move</h3>
