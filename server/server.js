@@ -3,6 +3,12 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs').promises;
 require('dotenv').config();
+const { connectDB } = require('./db/mongodb');
+const stockService = require('./db/stockService');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
 // Company data for search functionality
 const companiesData = {
@@ -39,10 +45,6 @@ const companiesData = {
         { symbol: "QCOM", name: "Qualcomm Incorporated" }
     ]
 };
-
-const app = express();
-const PORT = process.env.PORT || 3001;
-const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
 // Storage configuration
 const STORAGE_DIR = path.join(__dirname, 'storage');
@@ -91,9 +93,9 @@ async function initializeStorage() {
             await fs.writeFile(METADATA_FILE, JSON.stringify(metadataCache, null, 2));
         }
 
-        console.log('Storage system initialized successfully');
+        console.log('File storage system initialized successfully');
     } catch (error) {
-        console.error('Error initializing storage:', error);
+        console.error('Error initializing file storage:', error);
         throw error;
     }
 }
@@ -111,16 +113,15 @@ async function saveToStorage() {
                 fs.writeFile(PRICES_FILE, JSON.stringify(pricesCache, null, 2)),
                 fs.writeFile(METADATA_FILE, JSON.stringify(metadataCache, null, 2))
             ]);
-            console.log('Data saved to storage');
+            console.log('Data saved to file storage');
         } catch (error) {
-            console.error('Error saving to storage:', error);
+            console.error('Error saving to file storage:', error);
         }
     }, SAVE_DELAY);
 }
 
 // Check if data needs updating
-function needsUpdate(symbol) {
-    const metadata = metadataCache[symbol];
+function needsUpdate(metadata) {
     if (!metadata) return true;
 
     const lastUpdate = new Date(metadata.lastUpdate);
@@ -135,22 +136,34 @@ function needsUpdate(symbol) {
     
     return now - lastUpdate > 24 * 60 * 60 * 1000;
 }
-
 async function getEarningsData(symbol) {
-    const cachedData = earningsCache[symbol];
-    
     try {
         if (!/^[A-Z]{1,5}$/.test(symbol)) {
             throw new Error('Invalid symbol format');
         }
 
-        const needsRefresh = needsUpdate(symbol);
+        // Try MongoDB first
+        try {
+            const mongoData = await stockService.getEarningsData(symbol);
+            if (mongoData && mongoData.length > 0) {
+                const lastUpdate = mongoData[0].lastUpdated;
+                if (!needsUpdate({ lastUpdate })) {
+                    console.log(`Using MongoDB earnings data for ${symbol}`);
+                    return mongoData;
+                }
+            }
+        } catch (mongoError) {
+            console.log('Falling back to file cache for earnings data');
+        }
 
-        if (cachedData && !needsRefresh) {
-            console.log(`Using cached earnings data for ${symbol}`);
+        // Check file cache
+        const cachedData = earningsCache[symbol];
+        if (cachedData && !needsUpdate(metadataCache[symbol])) {
+            console.log(`Using file cached earnings data for ${symbol}`);
             return cachedData;
         }
 
+        // Fetch new data if needed
         const url = `https://www.alphavantage.co/query?function=EARNINGS&symbol=${symbol}&apikey=${API_KEY}`;
         console.log(`Fetching new earnings data for ${symbol}`);
         
@@ -186,6 +199,7 @@ async function getEarningsData(symbol) {
             updatedEarnings = newEarnings;
         }
 
+        // Save to both storage systems
         earningsCache[symbol] = updatedEarnings;
         metadataCache[symbol] = {
             lastUpdate: new Date().toISOString(),
@@ -194,37 +208,52 @@ async function getEarningsData(symbol) {
         };
 
         await saveToStorage();
+        await stockService.upsertEarnings(symbol, updatedEarnings);
+
         return updatedEarnings;
     } catch (error) {
         console.error(`Error fetching earnings data for ${symbol}:`, error.message);
-        if (cachedData) {
-            console.log(`Returning cached data for ${symbol} after error`);
-            return cachedData;
+        if (earningsCache[symbol]) {
+            console.log(`Returning file cached data for ${symbol} after error`);
+            return earningsCache[symbol];
         }
         throw error;
     }
 }
 
 async function getPriceData(symbol, fromDate, toDate) {
-    const cachedData = pricesCache[symbol];
-    
     try {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(fromDate) || !/^\d{4}-\d{2}-\d{2}$/.test(toDate)) {
             throw new Error('Invalid date format. Use YYYY-MM-DD');
         }
 
-        const needsRefresh = needsUpdate(symbol);
+        // Try MongoDB first
+        try {
+            const mongoData = await stockService.getPriceData(symbol, fromDate, toDate);
+            if (mongoData && mongoData.length > 0) {
+                const lastUpdate = mongoData[0].lastUpdated;
+                if (!needsUpdate({ lastUpdate })) {
+                    console.log(`Using MongoDB price data for ${symbol}`);
+                    return mongoData;
+                }
+            }
+        } catch (mongoError) {
+            console.log('Falling back to file cache for price data');
+        }
 
-        if (cachedData && !needsRefresh) {
+        // Check file cache
+        const cachedData = pricesCache[symbol];
+        if (cachedData && !needsUpdate(metadataCache[symbol])) {
             const filteredData = cachedData.filter(
                 price => price.date >= fromDate && price.date <= toDate
             );
             if (filteredData.length > 0) {
-                console.log(`Using cached price data for ${symbol}`);
+                console.log(`Using file cached price data for ${symbol}`);
                 return filteredData;
             }
         }
 
+        // Fetch new data if needed
         const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${API_KEY}`;
         console.log(`Fetching new price data for ${symbol}`);
         
@@ -239,31 +268,15 @@ async function getPriceData(symbol, fromDate, toDate) {
             throw new Error('No price data available');
         }
 
-        const newPriceData = Object.entries(dailyData).map(([date, data]) => ({
+        const priceData = Object.entries(dailyData).map(([date, data]) => ({
             date,
             open: parseFloat(data['1. open']),
             close: parseFloat(data['4. close']),
             symbol: symbol
         }));
 
-        let updatedPrices;
-        if (cachedData) {
-            const allPrices = [...newPriceData];
-            const existingDates = new Set(newPriceData.map(p => p.date));
-            
-            cachedData.forEach(price => {
-                if (!existingDates.has(price.date)) {
-                    allPrices.push(price);
-                }
-            });
-
-            allPrices.sort((a, b) => new Date(b.date) - new Date(a.date));
-            updatedPrices = allPrices;
-        } else {
-            updatedPrices = newPriceData;
-        }
-
-        pricesCache[symbol] = updatedPrices;
+        // Save to both storage systems
+        pricesCache[symbol] = priceData;
         metadataCache[symbol] = {
             ...metadataCache[symbol],
             lastUpdate: new Date().toISOString(),
@@ -271,15 +284,16 @@ async function getPriceData(symbol, fromDate, toDate) {
         };
 
         await saveToStorage();
+        await stockService.upsertPrices(symbol, priceData);
 
-        return updatedPrices.filter(
+        return priceData.filter(
             price => price.date >= fromDate && price.date <= toDate
         );
     } catch (error) {
         console.error(`Error fetching price data for ${symbol}:`, error.message);
-        if (cachedData) {
-            console.log(`Returning cached price data for ${symbol} after error`);
-            return cachedData.filter(
+        if (pricesCache[symbol]) {
+            console.log(`Returning file cached price data for ${symbol} after error`);
+            return pricesCache[symbol].filter(
                 price => price.date >= fromDate && price.date <= toDate
             );
         }
@@ -387,12 +401,16 @@ app.get('*', (req, res) => {
 // Initialize and start server
 (async () => {
     try {
+        // Connect to MongoDB first
+        await connectDB();
+        console.log('MongoDB connected successfully');
+
+        // Then initialize file storage
         await initializeStorage();
         console.log('Storage initialized, starting pre-fetch...');
         
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
-            // Start pre-fetching popular symbols
             prefetchPopularData();
         });
     } catch (error) {
@@ -400,3 +418,5 @@ app.get('*', (req, res) => {
         process.exit(1);
     }
 })();
+
+module.exports = app;

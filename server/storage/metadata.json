@@ -1,11 +1,13 @@
 {
   "AAPL": {
-    "lastUpdate": "2024-11-02T18:30:35.179Z",
-    "lastEarningsDate": "2024-10-31"
+    "lastUpdate": "2024-11-03T02:50:41.471Z",
+    "lastEarningsDate": "2024-10-31",
+    "symbol": "AAPL"
   },
   "GOOGL": {
-    "lastUpdate": "2024-11-02T18:15:45.741Z",
-    "lastEarningsDate": "2024-10-29"
+    "lastUpdate": "2024-11-04T00:48:57.439Z",
+    "lastEarningsDate": "2024-10-29",
+    "symbol": "GOOGL"
   },
   "GOOG": {
     "lastUpdate": "2024-11-03T02:36:44.908Z",
@@ -13,23 +15,26 @@
     "symbol": "GOOG"
   },
   "MSFT": {
-    "lastUpdate": "2024-11-02T18:18:12.237Z",
-    "lastEarningsDate": "2024-10-30"
+    "lastUpdate": "2024-11-03T02:51:38.473Z",
+    "lastEarningsDate": "2024-10-30",
+    "symbol": "MSFT"
   },
   "RDDT": {
     "lastUpdate": "2024-11-02T18:15:03.990Z",
     "lastEarningsDate": "2024-10-29"
   },
   "AMZN": {
-    "lastUpdate": "2024-11-02T18:21:39.270Z",
-    "lastEarningsDate": "2024-10-31"
+    "lastUpdate": "2024-11-04T00:52:02.911Z",
+    "lastEarningsDate": "2024-10-31",
+    "symbol": "AMZN"
   },
   "META": {
-    "lastUpdate": "2024-11-02T18:26:06.693Z",
-    "lastEarningsDate": "2024-10-30"
+    "lastUpdate": "2024-11-04T00:52:33.969Z",
+    "lastEarningsDate": "2024-10-30",
+    "symbol": "META"
   },
   "NVDA": {
-    "lastUpdate": "2024-11-03T02:21:23.494Z",
+    "lastUpdate": "2024-11-04T02:24:25.391Z",
     "lastEarningsDate": "2024-08-28",
     "symbol": "NVDA"
   },
