@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 const App = () => {
   const [search, setSearch] = useState('');
@@ -8,8 +8,44 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showAllData, setShowAllData] = useState(false);
-  const [showPreEarnings, setShowPreEarnings] = useState(false);
   const INITIAL_DISPLAY_COUNT = 10;
+  
+  // New state for filters
+  const [selectedTimeRange, setSelectedTimeRange] = useState('all');
+  const [selectedMovementType, setSelectedMovementType] = useState('after');
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Time range options
+  const timeRangeOptions = [
+    { value: 'all', label: 'All History' },
+    { value: '1', label: '1 Year' },
+    { value: '2', label: '2 Years' },
+    { value: '3', label: '3 Years' },
+    { value: '4', label: '4 Years' },
+    { value: '5', label: '5 Years' },
+    { value: '6', label: '6 Years' },
+    { value: '7', label: '7 Years' },
+    { value: '8', label: '8 Years' },
+    { value: '9', label: '9 Years' },
+    { value: '10', label: '10 Years' }
+  ];
+
+  // Movement type options
+  const movementTypeOptions = [
+    { value: 'after', label: 'Movement After Earnings' },
+    { value: 'during', label: 'Movement During Day of Earnings' }
+  ];
+
+  // Load AAPL data by default
+  useEffect(() => {
+    const loadDefaultData = async () => {
+      setSymbol('AAPL');
+      setSearch('AAPL');
+      const event = { preventDefault: () => {} };
+      await fetchStockData(event);
+    };
+    loadDefaultData();
+  }, []);
 
   const handleSearch = async (searchText) => {
     setSearch(searchText);
@@ -31,6 +67,13 @@ const App = () => {
     setSymbol(selectedSymbol);
     setSearch(selectedSymbol);
     setSuggestions([]);
+  };
+
+  const handleSearchFocus = () => {
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+      searchInput.select();
+    }
   };
 
   const fetchStockData = async (e) => {
@@ -105,9 +148,18 @@ const App = () => {
   const calculateStats = useCallback((data) => {
     if (!data || !data.length) return null;
     
-    const validMoves = data
-      .filter(d => d.earningsEffect !== 'N/A')
-      .map(d => parseFloat(d.earningsEffect));
+    let filteredData = [...data];
+    
+    // Apply time range filter
+    if (selectedTimeRange !== 'all') {
+      const yearsAgo = new Date();
+      yearsAgo.setFullYear(yearsAgo.getFullYear() - parseInt(selectedTimeRange));
+      filteredData = filteredData.filter(d => new Date(d.date) >= yearsAgo);
+    }
+
+    const validMoves = filteredData
+      .filter(d => selectedMovementType === 'after' ? d.earningsEffect !== 'N/A' : d.preEarningsChange !== 'N/A')
+      .map(d => selectedMovementType === 'after' ? parseFloat(d.earningsEffect) : parseFloat(d.preEarningsChange));
     
     if (validMoves.length === 0) return null;
     
@@ -153,13 +205,12 @@ const App = () => {
       maxGain: Math.max(...validMoves),
       maxLoss: Math.min(...validMoves),
       winRate: (upMoves.length / validMoves.length * 100).toFixed(1),
-      // Recent earnings stats
       recentAverage: recentAverage,
       recentWinRate: recentWinRate,
       recentUpMoves: recentUpMoves.length,
       recentTotal: recentMoves.length
     };
-  }, []);
+  }, [selectedTimeRange, selectedMovementType]);
 
   const renderEarningsEffect = (effect) => {
     if (effect === 'N/A') return <span className="neutral-effect">−</span>;
@@ -184,7 +235,7 @@ const App = () => {
   return (
     <div className="container">
       <h1>Earnings Stock Movement History</h1>
-      <h2 className="subtitle">Historical Earnings Price Movements</h2>
+      {symbol && <h2 className="subtitle">Viewing {symbol}</h2>}
       
       <form onSubmit={fetchStockData} className="search-form">
         <div className="search-container">
@@ -192,6 +243,7 @@ const App = () => {
             type="text"
             value={search}
             onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+            onFocus={handleSearchFocus}
             placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
             className="search-input"
           />
@@ -210,10 +262,50 @@ const App = () => {
             </div>
           )}
         </div>
-        <button type="submit" disabled={loading} className="search-button">
-          {loading ? 'Loading...' : 'Search'}
-        </button>
+        <div className="button-group">
+          <button type="submit" disabled={loading} className="search-button">
+            {loading ? 'Loading...' : 'Search'}
+          </button>
+          <button 
+            type="button" 
+            className="filter-button"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            Filter
+          </button>
+        </div>
       </form>
+
+      {showFilters && (
+        <div className="filters-container">
+          <div className="filter-group">
+            <label>Movement Type:</label>
+            <select 
+              value={selectedMovementType}
+              onChange={(e) => setSelectedMovementType(e.target.value)}
+            >
+              {movementTypeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="filter-group">
+            <label>Time Range:</label>
+            <select 
+              value={selectedTimeRange}
+              onChange={(e) => setSelectedTimeRange(e.target.value)}
+            >
+              {timeRangeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
 
       {error && <div className="error">{error}</div>}
       {loading && <div className="loading">Loading data...</div>}
@@ -261,54 +353,55 @@ const App = () => {
                   <th className="table-header" title="The date when earnings were reported">
                     Date
                   </th>
-                  <th className="table-header" title="The closing price of the stock on the day of earnings">
-                    Pre Close
-                  </th>
-                  {showPreEarnings && (
+                  {selectedMovementType === 'during' ? (
                     <>
                       <th className="table-header" title="The opening price of the stock on the day of earnings">
                         Pre Open
                       </th>
-                      <th className="table-header pre-earnings-change" title="The price change during earnings day trading">
+                      <th className="table-header" title="The closing price of the stock on the day of earnings">
+                        Pre Close
+                      </th>
+                      <th className="table-header" title="The price change during earnings day trading">
                         Day Change
                       </th>
                     </>
+                  ) : (
+                    <>
+                      <th className="table-header" title="The closing price of the stock on the day of earnings">
+                        Pre Close
+                      </th>
+                      <th className="table-header" title="The opening price of the stock on the day after earnings">
+                        Post Open
+                      </th>
+                      <th className="table-header" title="Percentage change from earnings day close to next day open">
+                        Effect
+                      </th>
+                    </>
                   )}
-                  <th className="table-header" title="The opening price of the stock on the day after earnings">
-                    Post Open
-                  </th>
-                  <th className="effect-header">
-                    <div className="effect-header-container">
-                      <span title="Percentage change from earnings day close to next day open">Effect</span>
-                      <button 
-                        className="expand-button"
-                        onClick={() => setShowPreEarnings(!showPreEarnings)}
-                        title={showPreEarnings ? "Hide pre-earnings details" : "Show pre-earnings details"}
-                      >
-                        {showPreEarnings ? '−' : '+'}
-                      </button>
-                    </div>
-                  </th>
                 </tr>
               </thead>
               <tbody>
                 {displayData.map((earning, index) => (
                   <tr key={index}>
                     <td>{earning.date}</td>
-                    <td>${earning.preEarningsClose}</td>
-                    {showPreEarnings && (
+                    {selectedMovementType === 'during' ? (
                       <>
                         <td>${earning.preEarningsOpen}</td>
+                        <td>${earning.preEarningsClose}</td>
                         <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
                           {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange}%
                         </td>
                       </>
+                    ) : (
+                      <>
+                        <td>${earning.preEarningsClose}</td>
+                        <td>${earning.postEarningsOpen}</td>
+                        <td className="effect-cell">
+                          {renderEarningsEffect(earning.earningsEffect)}
+                        </td>
+                      </>
                     )}
-                    <td>${earning.postEarningsOpen}</td>
-                    <td className="effect-cell">
-                      {renderEarningsEffect(earning.earningsEffect)}
-                    </td>
                   </tr>
                 ))}
               </tbody>
