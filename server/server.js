@@ -136,6 +136,7 @@ function needsUpdate(metadata) {
     
     return now - lastUpdate > 24 * 60 * 60 * 1000;
 }
+
 async function getEarningsData(symbol) {
     try {
         if (!/^[A-Z]{1,5}$/.test(symbol)) {
@@ -160,6 +161,15 @@ async function getEarningsData(symbol) {
         const cachedData = earningsCache[symbol];
         if (cachedData && !needsUpdate(metadataCache[symbol])) {
             console.log(`Using file cached earnings data for ${symbol}`);
+            
+            // Save to MongoDB while returning the data
+            try {
+                await stockService.upsertEarnings(symbol, cachedData);
+                console.log(`Saved ${symbol} earnings data to MongoDB`);
+            } catch (saveError) {
+                console.error('Error saving to MongoDB:', saveError);
+            }
+            
             return cachedData;
         }
 
@@ -207,14 +217,25 @@ async function getEarningsData(symbol) {
             symbol: symbol
         };
 
-        await saveToStorage();
-        await stockService.upsertEarnings(symbol, updatedEarnings);
+        await Promise.all([
+            saveToStorage(),
+            stockService.upsertEarnings(symbol, updatedEarnings)
+        ]);
 
         return updatedEarnings;
     } catch (error) {
         console.error(`Error fetching earnings data for ${symbol}:`, error.message);
         if (earningsCache[symbol]) {
             console.log(`Returning file cached data for ${symbol} after error`);
+            
+            // Try to save cached data to MongoDB even in error case
+            try {
+                await stockService.upsertEarnings(symbol, earningsCache[symbol]);
+                console.log(`Saved cached ${symbol} earnings data to MongoDB during error recovery`);
+            } catch (saveError) {
+                console.error('Error saving to MongoDB during error recovery:', saveError);
+            }
+            
             return earningsCache[symbol];
         }
         throw error;
@@ -249,6 +270,15 @@ async function getPriceData(symbol, fromDate, toDate) {
             );
             if (filteredData.length > 0) {
                 console.log(`Using file cached price data for ${symbol}`);
+                
+                // Save to MongoDB while returning the data
+                try {
+                    await stockService.upsertPrices(symbol, cachedData);
+                    console.log(`Saved ${symbol} price data to MongoDB`);
+                } catch (saveError) {
+                    console.error('Error saving to MongoDB:', saveError);
+                }
+                
                 return filteredData;
             }
         }
@@ -283,8 +313,10 @@ async function getPriceData(symbol, fromDate, toDate) {
             symbol: symbol
         };
 
-        await saveToStorage();
-        await stockService.upsertPrices(symbol, priceData);
+        await Promise.all([
+            saveToStorage(),
+            stockService.upsertPrices(symbol, priceData)
+        ]);
 
         return priceData.filter(
             price => price.date >= fromDate && price.date <= toDate
@@ -293,6 +325,15 @@ async function getPriceData(symbol, fromDate, toDate) {
         console.error(`Error fetching price data for ${symbol}:`, error.message);
         if (pricesCache[symbol]) {
             console.log(`Returning file cached price data for ${symbol} after error`);
+            
+            // Try to save cached data to MongoDB even in error case
+            try {
+                await stockService.upsertPrices(symbol, pricesCache[symbol]);
+                console.log(`Saved cached ${symbol} price data to MongoDB during error recovery`);
+            } catch (saveError) {
+                console.error('Error saving to MongoDB during error recovery:', saveError);
+            }
+            
             return pricesCache[symbol].filter(
                 price => price.date >= fromDate && price.date <= toDate
             );

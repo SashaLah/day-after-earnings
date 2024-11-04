@@ -4,13 +4,11 @@ const stockService = {
   async upsertCompany(symbol, name) {
     try {
       console.log(`MongoDB: Upserting company data for ${symbol}`);
-      const result = await Company.findOneAndUpdate(
+      return await Company.findOneAndUpdate(
         { symbol: symbol.toUpperCase() },
         { name },
         { upsert: true, new: true }
       );
-      console.log(`MongoDB: Company data upserted successfully for ${symbol}`);
-      return result;
     } catch (error) {
       console.error('MongoDB Error upserting company:', error);
       throw error;
@@ -44,7 +42,7 @@ const stockService = {
             $set: { 
               symbol: symbol.toUpperCase(),
               date: new Date(earning.date),
-              lastUpdated: new Date() 
+              lastUpdated: new Date()
             }
           },
           upsert: true
@@ -52,15 +50,10 @@ const stockService = {
       }));
 
       const result = await Earnings.bulkWrite(operations);
-      console.log(`MongoDB: Successfully upserted earnings for ${symbol}:`, {
-        matched: result.matchedCount,
-        modified: result.modifiedCount,
-        upserted: result.upsertedCount
-      });
+      console.log(`MongoDB: Successfully upserted earnings for ${symbol}`);
       return result;
     } catch (error) {
       console.error('MongoDB Error upserting earnings:', error);
-      console.error('Sample data causing error:', earningsData[0]);
       throw error;
     }
   },
@@ -81,33 +74,31 @@ const stockService = {
       return data;
     } catch (error) {
       console.error('MongoDB Error getting price data:', error);
-      console.error('Query parameters:', { symbol, fromDate, toDate });
       throw error;
     }
   },
 
   async upsertPrices(symbol, priceData) {
     try {
+      if (!Array.isArray(priceData)) {
+        console.error('Invalid price data format');
+        return;
+      }
+
       console.log(`MongoDB: Upserting ${priceData.length} price records for ${symbol}`);
       
-      // Validate and transform price data
-      const validatedPriceData = priceData.map(price => ({
-        symbol: symbol.toUpperCase(),
-        date: new Date(price.date),
-        open: parseFloat(price.open),
-        close: parseFloat(price.close)
-      }));
-
-      // Create bulk operations
-      const operations = validatedPriceData.map(price => ({
+      const operations = priceData.map(price => ({
         updateOne: {
           filter: { 
-            symbol: price.symbol, 
-            date: price.date
+            symbol: symbol.toUpperCase(), 
+            date: new Date(price.date)
           },
           update: { 
             $set: { 
-              ...price,
+              symbol: symbol.toUpperCase(),
+              date: new Date(price.date),
+              open: parseFloat(price.open),
+              close: parseFloat(price.close),
               lastUpdated: new Date()
             }
           },
@@ -115,40 +106,24 @@ const stockService = {
         }
       }));
 
-      // Log sample operation for debugging
-      if (operations.length > 0) {
-        console.log('MongoDB: Sample price operation:', JSON.stringify(operations[0], null, 2));
-      }
-
       const result = await PriceHistory.bulkWrite(operations);
-      console.log(`MongoDB: Successfully upserted prices for ${symbol}:`, {
-        matched: result.matchedCount,
-        modified: result.modifiedCount,
-        upserted: result.upsertedCount
-      });
+      console.log(`MongoDB: Successfully upserted ${result.nUpserted + result.nModified} price records for ${symbol}`);
       return result;
     } catch (error) {
       console.error('MongoDB Error upserting prices:', error);
-      if (priceData.length > 0) {
-        console.error('Sample data causing error:', priceData[0]);
-      }
+      console.error('Sample price data:', priceData[0]);
       throw error;
     }
   },
 
-  // Utility function to check data validity
-  async verifyData(symbol) {
+  async saveNewStockData(symbol, fileData) {
     try {
-      const earnings = await Earnings.find({ symbol: symbol.toUpperCase() }).count();
-      const prices = await PriceHistory.find({ symbol: symbol.toUpperCase() }).count();
-      return {
-        symbol,
-        earningsCount: earnings,
-        pricesCount: prices,
-        timestamp: new Date()
-      };
+      const { earnings, prices } = fileData;
+      await this.upsertEarnings(symbol, earnings);
+      await this.upsertPrices(symbol, prices);
+      console.log(`MongoDB: Successfully saved all data for ${symbol}`);
     } catch (error) {
-      console.error('MongoDB Error verifying data:', error);
+      console.error('Error saving new stock data:', error);
       throw error;
     }
   }
