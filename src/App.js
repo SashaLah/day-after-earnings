@@ -1,3 +1,5 @@
+// src/App.js
+
 import React, { useState, useCallback, useEffect } from 'react';
 
 const App = () => {
@@ -14,8 +16,6 @@ const App = () => {
   const [selectedTimeRange, setSelectedTimeRange] = useState('all');
   const [selectedMovementType, setSelectedMovementType] = useState('after');
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedEventType, setSelectedEventType] = useState('earnings');
-  const [customDate, setCustomDate] = useState('');
 
   const timeRangeOptions = [
     { value: 'all', label: 'All History' },
@@ -31,18 +31,9 @@ const App = () => {
     { value: '10', label: '10 Years' }
   ];
 
-  const eventOptions = [
-    { value: 'earnings', label: 'Earnings Reports' },
-    { value: 'trump', label: 'Trump Elected (Nov 8, 2016)' },
-    { value: 'covid', label: 'Covid Started (Mar 11, 2020)' },
-    { value: 'iphone', label: 'First iPhone Launch (Jan 9, 2007)' },
-    { value: 'custom', label: 'Enter Custom Date' }
-  ];
-
   const movementTypeOptions = [
-    { value: 'after', label: 'Day After' },
-    { value: 'during', label: 'Day Of' },
-    { value: 'since', label: 'Since Event' }
+    { value: 'after', label: 'Movement After Earnings' },
+    { value: 'during', label: 'Movement During Day of Earnings' }
   ];
 
   // Load AAPL data by default
@@ -50,7 +41,8 @@ const App = () => {
     const loadDefaultData = async () => {
       setSymbol('AAPL');
       setSearch('AAPL');
-      await fetchStockData();
+      const event = { preventDefault: () => {} };
+      await fetchStockData(event);
     };
     loadDefaultData();
   }, []);
@@ -75,7 +67,6 @@ const App = () => {
     setSymbol(selectedSymbol);
     setSearch(selectedSymbol);
     setSuggestions([]);
-    fetchStockData();
   };
 
   const handleSearchFocus = () => {
@@ -85,7 +76,8 @@ const App = () => {
     }
   };
 
-  const fetchStockData = async () => {
+  const fetchStockData = async (e) => {
+    e.preventDefault();
     if (!symbol && !search.trim()) {
       setError('Please enter a company name or stock symbol');
       return;
@@ -217,70 +209,78 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Stock Movement Analysis</h1>
-      <h2 className="subtitle">See how stocks moved after important events</h2>
+      <h1>Earnings Stock Movement History</h1>
+      {symbol && <h2 className="subtitle">Viewing {symbol}</h2>}
       
-      <div className="search-form">
-        <div className="search-container flex items-center space-x-4">
-          <div className="search-box relative">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => handleSearch(e.target.value.toUpperCase())}
-              onFocus={handleSearchFocus}
-              placeholder="Enter stock symbol"
-              className="search-input h-10 px-3 py-2"
-            />
-            {suggestions.length > 0 && (
-              <div className="suggestions-dropdown">
-                {suggestions.map((company, index) => (
-                  <div
-                    key={index}
-                    className="suggestion-item"
-                    onClick={() => selectCompany(company.symbol)}
-                  >
-                    <span className="company-name">{company.name}</span>
-                    <span className="company-symbol">{company.symbol}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <select
-            value={selectedMovementType}
-            onChange={(e) => setSelectedMovementType(e.target.value)}
-            className="movement-select h-10 px-3 py-2"
-          >
-            {movementTypeOptions.map((type) => (
-              <option key={type.value} value={type.value}>
-                {type.label}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={selectedEventType}
-            onChange={(e) => setSelectedEventType(e.target.value)}
-            className="event-select h-10 px-3 py-2"
-          >
-            {eventOptions.map((event) => (
-              <option key={event.value} value={event.value}>
-                {event.label}
-              </option>
-            ))}
-          </select>
-
-          {selectedEventType === 'custom' && (
-            <input
-              type="date"
-              value={customDate}
-              onChange={(e) => setCustomDate(e.target.value)}
-              className="date-input h-10 px-3 py-2"
-            />
+      <form onSubmit={fetchStockData} className="search-form">
+        <div className="search-container">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+            onFocus={handleSearchFocus}
+            placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
+            className="search-input"
+          />
+          {suggestions.length > 0 && (
+            <div className="suggestions-dropdown">
+              {suggestions.map((company, index) => (
+                <div
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => selectCompany(company.symbol)}
+                >
+                  <span className="company-name">{company.name}</span>
+                  <span className="company-symbol">{company.symbol}</span>
+                </div>
+              ))}
+            </div>
           )}
         </div>
-      </div>
+        <div className="button-group">
+          <button type="submit" disabled={loading} className="search-button">
+            {loading ? 'Loading...' : 'Search'}
+          </button>
+          <button 
+            type="button" 
+            className="filter-button"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            Filter
+          </button>
+        </div>
+      </form>
+
+      {showFilters && (
+        <div className="filters-container">
+          <div className="filter-group">
+            <label>Movement Type:</label>
+            <select 
+              value={selectedMovementType}
+              onChange={(e) => setSelectedMovementType(e.target.value)}
+            >
+              {movementTypeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="filter-group">
+            <label>Time Range:</label>
+            <select 
+              value={selectedTimeRange}
+              onChange={(e) => setSelectedTimeRange(e.target.value)}
+            >
+              {timeRangeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
 
       {error && <div className="error">{error}</div>}
       {loading && <div className="loading">Loading data...</div>}
@@ -364,7 +364,6 @@ const App = () => {
                         <td>${earning.preEarningsOpen}</td>
                         <td>${earning.preEarningsClose}</td>
                         <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
-                          {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange}%
                         </td>
