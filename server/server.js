@@ -1,402 +1,214 @@
+// server/server.js
+
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-const fs = require('fs').promises;
+const stockService = require('./db/stockService');
+const { connectDB, Company, Earnings, PriceHistory } = require('./db/mongodb'); // Added Company
 require('dotenv').config();
-
-// Company data for search functionality
-const companiesData = {
-    companies: [
-        { symbol: "AAPL", name: "Apple Inc." },
-        { symbol: "MSFT", name: "Microsoft Corporation" },
-        { symbol: "GOOGL", name: "Alphabet Inc." },
-        { symbol: "AMZN", name: "Amazon.com Inc." },
-        { symbol: "META", name: "Meta Platforms Inc." },
-        { symbol: "NVDA", name: "NVIDIA Corporation" },
-        { symbol: "TSLA", name: "Tesla Inc." },
-        { symbol: "JPM", name: "JPMorgan Chase & Co." },
-        { symbol: "V", name: "Visa Inc." },
-        { symbol: "WMT", name: "Walmart Inc." },
-        { symbol: "JNJ", name: "Johnson & Johnson" },
-        { symbol: "MA", name: "Mastercard Incorporated" },
-        { symbol: "PG", name: "Procter & Gamble Company" },
-        { symbol: "NFLX", name: "Netflix Inc." },
-        { symbol: "DIS", name: "The Walt Disney Company" },
-        { symbol: "ADBE", name: "Adobe Inc." },
-        { symbol: "CSCO", name: "Cisco Systems Inc." },
-        { symbol: "INTC", name: "Intel Corporation" },
-        { symbol: "VZ", name: "Verizon Communications Inc." },
-        { symbol: "KO", name: "The Coca-Cola Company" },
-        { symbol: "PEP", name: "PepsiCo Inc." },
-        { symbol: "MCD", name: "McDonald's Corporation" },
-        { symbol: "NKE", name: "Nike Inc." },
-        { symbol: "PYPL", name: "PayPal Holdings Inc." },
-        { symbol: "T", name: "AT&T Inc." },
-        { symbol: "BAC", name: "Bank of America Corporation" },
-        { symbol: "HD", name: "The Home Depot Inc." },
-        { symbol: "CRM", name: "Salesforce Inc." },
-        { symbol: "AMD", name: "Advanced Micro Devices Inc." },
-        { symbol: "QCOM", name: "Qualcomm Incorporated" }
-    ]
-};
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
-// Storage configuration
-const STORAGE_DIR = path.join(__dirname, 'storage');
-const EARNINGS_FILE = path.join(STORAGE_DIR, 'earnings_data.json');
-const PRICES_FILE = path.join(STORAGE_DIR, 'prices_data.json');
-const METADATA_FILE = path.join(STORAGE_DIR, 'metadata.json');
+// Rate limiting setup
+let lastApiCall = 0;
+const API_DELAY = 12000; // 12 seconds between calls
 
-// Save debouncing
-let saveTimeout = null;
-const SAVE_DELAY = 5000; // 5 seconds
+const waitForApiDelay = async () => {
+  const now = Date.now();
+  const timeSinceLastCall = now - lastApiCall;
+  const waitTime = Math.max(0, API_DELAY - timeSinceLastCall);
+  if (waitTime > 0) {
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+  lastApiCall = Date.now();
+};
 
-// Frequently searched symbols
-const POPULAR_SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'META', 'NVDA', 'TSLA'];
-
-// In-memory cache
-let earningsCache = {};
-let pricesCache = {};
-let metadataCache = {};
-
-// Initialize storage system
-async function initializeStorage() {
-    try {
-        await fs.mkdir(STORAGE_DIR, { recursive: true });
-        
-        try {
-            const earningsData = await fs.readFile(EARNINGS_FILE, 'utf8');
-            earningsCache = JSON.parse(earningsData);
-        } catch (e) {
-            earningsCache = {};
-            await fs.writeFile(EARNINGS_FILE, JSON.stringify(earningsCache, null, 2));
-        }
-
-        try {
-            const pricesData = await fs.readFile(PRICES_FILE, 'utf8');
-            pricesCache = JSON.parse(pricesData);
-        } catch (e) {
-            pricesCache = {};
-            await fs.writeFile(PRICES_FILE, JSON.stringify(pricesCache, null, 2));
-        }
-
-        try {
-            const metadataData = await fs.readFile(METADATA_FILE, 'utf8');
-            metadataCache = JSON.parse(metadataData);
-        } catch (e) {
-            metadataCache = {};
-            await fs.writeFile(METADATA_FILE, JSON.stringify(metadataCache, null, 2));
-        }
-
-        console.log('Storage system initialized successfully');
-    } catch (error) {
-        console.error('Error initializing storage:', error);
-        throw error;
-    }
-}
-
-// Debounced save to storage
-async function saveToStorage() {
-    if (saveTimeout) {
-        clearTimeout(saveTimeout);
-    }
-    
-    saveTimeout = setTimeout(async () => {
-        try {
-            await Promise.all([
-                fs.writeFile(EARNINGS_FILE, JSON.stringify(earningsCache, null, 2)),
-                fs.writeFile(PRICES_FILE, JSON.stringify(pricesCache, null, 2)),
-                fs.writeFile(METADATA_FILE, JSON.stringify(metadataCache, null, 2))
-            ]);
-            console.log('Data saved to storage');
-        } catch (error) {
-            console.error('Error saving to storage:', error);
-        }
-    }, SAVE_DELAY);
-}
-
-// Check if data needs updating
-function needsUpdate(symbol) {
-    const metadata = metadataCache[symbol];
-    if (!metadata) return true;
-
-    const lastUpdate = new Date(metadata.lastUpdate);
-    const now = new Date();
-    
-    const marketHours = now.getUTCHours() >= 13 && now.getUTCHours() <= 20; // 9 AM - 4 PM EST
-    const isWeekday = now.getDay() > 0 && now.getDay() < 6;
-    
-    if (isWeekday && marketHours) {
-        return now - lastUpdate > 12 * 60 * 60 * 1000; // 12 hours
-    }
-    
-    return now - lastUpdate > 24 * 60 * 60 * 1000;
-}
-
-async function getEarningsData(symbol) {
-    const cachedData = earningsCache[symbol];
-    
-    try {
-        if (!/^[A-Z]{1,5}$/.test(symbol)) {
-            throw new Error('Invalid symbol format');
-        }
-
-        const needsRefresh = needsUpdate(symbol);
-
-        if (cachedData && !needsRefresh) {
-            console.log(`Using cached earnings data for ${symbol}`);
-            return cachedData;
-        }
-
-        const url = `https://www.alphavantage.co/query?function=EARNINGS&symbol=${symbol}&apikey=${API_KEY}`;
-        console.log(`Fetching new earnings data for ${symbol}`);
-        
-        const response = await axios.get(url);
-        
-        if (response.data.Note || response.data.Information) {
-            throw new Error(response.data.Note || response.data.Information);
-        }
-
-        if (!response.data.quarterlyEarnings || !response.data.quarterlyEarnings.length) {
-            throw new Error('No earnings data available');
-        }
-
-        const newEarnings = response.data.quarterlyEarnings.map(earning => ({
-            date: earning.reportedDate,
-            symbol: symbol
-        }));
-
-        let updatedEarnings;
-        if (cachedData) {
-            const allEarnings = [...newEarnings];
-            const existingDates = new Set(newEarnings.map(e => e.date));
-            
-            cachedData.forEach(earning => {
-                if (!existingDates.has(earning.date)) {
-                    allEarnings.push(earning);
-                }
-            });
-
-            allEarnings.sort((a, b) => new Date(b.date) - new Date(a.date));
-            updatedEarnings = allEarnings;
-        } else {
-            updatedEarnings = newEarnings;
-        }
-
-        earningsCache[symbol] = updatedEarnings;
-        metadataCache[symbol] = {
-            lastUpdate: new Date().toISOString(),
-            lastEarningsDate: newEarnings[0]?.date,
-            symbol: symbol
-        };
-
-        await saveToStorage();
-        return updatedEarnings;
-    } catch (error) {
-        console.error(`Error fetching earnings data for ${symbol}:`, error.message);
-        if (cachedData) {
-            console.log(`Returning cached data for ${symbol} after error`);
-            return cachedData;
-        }
-        throw error;
-    }
-}
-
-async function getPriceData(symbol, fromDate, toDate) {
-    const cachedData = pricesCache[symbol];
-    
-    try {
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(fromDate) || !/^\d{4}-\d{2}-\d{2}$/.test(toDate)) {
-            throw new Error('Invalid date format. Use YYYY-MM-DD');
-        }
-
-        const needsRefresh = needsUpdate(symbol);
-
-        if (cachedData && !needsRefresh) {
-            const filteredData = cachedData.filter(
-                price => price.date >= fromDate && price.date <= toDate
-            );
-            if (filteredData.length > 0) {
-                console.log(`Using cached price data for ${symbol}`);
-                return filteredData;
-            }
-        }
-
-        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${API_KEY}`;
-        console.log(`Fetching new price data for ${symbol}`);
-        
-        const response = await axios.get(url);
-        
-        if (response.data.Note || response.data.Information) {
-            throw new Error(response.data.Note || response.data.Information);
-        }
-
-        const dailyData = response.data['Time Series (Daily)'];
-        if (!dailyData) {
-            throw new Error('No price data available');
-        }
-
-        const newPriceData = Object.entries(dailyData).map(([date, data]) => ({
-            date,
-            open: parseFloat(data['1. open']),
-            close: parseFloat(data['4. close']),
-            symbol: symbol
-        }));
-
-        let updatedPrices;
-        if (cachedData) {
-            const allPrices = [...newPriceData];
-            const existingDates = new Set(newPriceData.map(p => p.date));
-            
-            cachedData.forEach(price => {
-                if (!existingDates.has(price.date)) {
-                    allPrices.push(price);
-                }
-            });
-
-            allPrices.sort((a, b) => new Date(b.date) - new Date(a.date));
-            updatedPrices = allPrices;
-        } else {
-            updatedPrices = newPriceData;
-        }
-
-        pricesCache[symbol] = updatedPrices;
-        metadataCache[symbol] = {
-            ...metadataCache[symbol],
-            lastUpdate: new Date().toISOString(),
-            symbol: symbol
-        };
-
-        await saveToStorage();
-
-        return updatedPrices.filter(
-            price => price.date >= fromDate && price.date <= toDate
-        );
-    } catch (error) {
-        console.error(`Error fetching price data for ${symbol}:`, error.message);
-        if (cachedData) {
-            console.log(`Returning cached price data for ${symbol} after error`);
-            return cachedData.filter(
-                price => price.date >= fromDate && price.date <= toDate
-            );
-        }
-        throw error;
-    }
-}
-
-async function prefetchPopularData() {
-    for (const symbol of POPULAR_SYMBOLS) {
-        try {
-            console.log(`Starting pre-fetch for ${symbol}...`);
-            await getEarningsData(symbol);
-            console.log(`Completed earnings pre-fetch for ${symbol}`);
-            
-            await new Promise(resolve => setTimeout(resolve, 15000));
-            
-            const today = new Date().toISOString().split('T')[0];
-            await getPriceData(symbol, '2000-01-01', today);
-            console.log(`Completed price data pre-fetch for ${symbol}`);
-            
-            await new Promise(resolve => setTimeout(resolve, 15000));
-        } catch (error) {
-            console.error(`Error pre-fetching data for ${symbol}:`, error.message);
-        }
-    }
-}
-
-// Express routes
-app.use(express.static(path.join(__dirname, '../dist')));
+// Middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../dist')));
 
-// Unified search endpoint for both company names and symbols
-app.get('/api/search/companies', (req, res) => {
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err.stack);
+  res.status(500).json({ 
+    error: 'Internal server error',
+    message: err.message 
+  });
+});
+
+// Updated Company search endpoint using MongoDB
+app.get('/api/search/companies', async (req, res) => {
+  try {
     const query = req.query.q?.toLowerCase();
-    
     if (!query) {
-        return res.json([]);
+      return res.json([]);
     }
 
-    const matches = companiesData.companies.filter(company => 
-        company.name.toLowerCase().includes(query) || 
-        company.symbol.toLowerCase().includes(query)
-    ).slice(0, 10);
+    // Search MongoDB for companies
+    const matches = await Company.find({
+      $or: [
+        { symbol: { $regex: query, $options: 'i' }},
+        { name: { $regex: query, $options: 'i' }}
+      ]
+    })
+    .limit(10)
+    .lean();
 
     res.json(matches);
+  } catch (error) {
+    console.error('Search error:', error);
+    res.status(500).json({ error: 'Search failed' });
+  }
 });
 
+// Main stock data endpoint with debug logging
 app.get('/api/stock/:symbol', async (req, res) => {
-    try {
-        const { symbol } = req.params;
-        const upperSymbol = symbol.toUpperCase();
-        
-        console.log(`Processing earnings request for ${upperSymbol}`);
-        const data = await getEarningsData(upperSymbol);
-        
-        if (!data || data.length === 0) {
-            console.log(`No earnings data found for ${upperSymbol}`);
-            return res.status(404).json({ error: 'No earnings data found for this symbol' });
-        }
-        
-        console.log(`Successfully retrieved earnings data for ${upperSymbol}`);
-        res.json(data);
-    } catch (error) {
-        console.error('Error processing earnings request:', error.message);
-        res.status(500).json({ 
-            error: error.message || 'Failed to fetch stock data'
-        });
+  try {
+    const { symbol } = req.params;
+    if (!symbol || !/^[A-Za-z]{1,5}$/.test(symbol)) {
+      return res.status(400).json({ error: 'Invalid symbol format' });
     }
+
+    console.log('\n=== Debug Info Start ===');
+    console.log('Symbol requested:', symbol);
+
+    // Direct MongoDB checks
+    const earnings = await Earnings.find({ symbol: symbol.toUpperCase() }).lean();
+    const prices = await PriceHistory.find({ symbol: symbol.toUpperCase() }).lean();
+    
+    console.log('DEBUG - Earnings count:', earnings.length);
+    console.log('DEBUG - First earnings record:', JSON.stringify(earnings[0], null, 2));
+    console.log('DEBUG - Prices count:', prices.length);
+    console.log('DEBUG - First price record:', JSON.stringify(prices[0], null, 2));
+    console.log('=== Debug Info End ===\n');
+
+    const data = await stockService.getStockData(symbol.toUpperCase());
+    console.log('Data returned from stockService:', data?.length || 0, 'records');
+    
+    if (!data || data.length === 0) {
+      console.log('No data returned from stockService');
+      return res.status(404).json({ error: 'No data found for this symbol' });
+    }
+
+    // Make sure all required fields exist and are numbers
+    const formattedData = data
+      .filter(item => 
+        typeof item.preEarningsOpen === 'number' &&
+        typeof item.preEarningsClose === 'number' &&
+        typeof item.postEarningsOpen === 'number'
+      )
+      .map(item => ({
+        date: item.date,
+        preEarningsOpen: Number(item.preEarningsOpen).toFixed(2),
+        preEarningsClose: Number(item.preEarningsClose).toFixed(2),
+        postEarningsOpen: Number(item.postEarningsOpen).toFixed(2),
+        preEarningsChange: ((item.preEarningsClose - item.preEarningsOpen) / item.preEarningsOpen * 100).toFixed(2),
+        earningsEffect: ((item.postEarningsOpen - item.preEarningsClose) / item.preEarningsClose * 100).toFixed(2)
+      }));
+
+    console.log('Formatted data length:', formattedData.length);
+    if (formattedData.length > 0) {
+      console.log('Sample formatted record:', formattedData[0]);
+    }
+
+    res.json(formattedData);
+  } catch (error) {
+    console.error('Error processing request:', error);
+    res.status(500).json({ error: 'Failed to fetch stock data' });
+  }
 });
 
+// Price data endpoint
 app.get('/api/prices/:symbol', async (req, res) => {
-    try {
-        const { symbol } = req.params;
-        const { from, to } = req.query;
+  try {
+    const { symbol } = req.params;
+    const { date } = req.query;
 
-        if (!from || !to) {
-            return res.status(400).json({ error: 'Both from and to dates are required' });
-        }
-
-        console.log(`Processing price request for ${symbol} from ${from} to ${to}`);
-        const data = await getPriceData(symbol.toUpperCase(), from, to);
-        
-        console.log(`Successfully retrieved price data for ${symbol}`);
-        res.json(data);
-    } catch (error) {
-        console.error('Error fetching price data:', error);
-        res.status(500).json({ 
-            error: error.message || 'Failed to fetch price data'
-        });
+    if (!symbol || !/^[A-Za-z]{1,5}$/.test(symbol)) {
+      return res.status(400).json({ error: 'Invalid symbol format' });
     }
+
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return res.status(400).json({ error: 'Invalid date format. Use YYYY-MM-DD' });
+    }
+
+    console.log(`Processing price request for ${symbol} on ${date}`);
+    
+    const prices = await stockService.getPriceData(symbol.toUpperCase(), new Date(date));
+    if (!prices) {
+      return res.status(404).json({ error: 'No price data available for this date' });
+    }
+
+    res.json(prices);
+  } catch (error) {
+    console.error('Error fetching price data:', error);
+    res.status(500).json({ error: 'Failed to fetch price data' });
+  }
 });
 
-app.get('/api/status', (req, res) => {
+// Status endpoint
+app.get('/api/status', async (req, res) => {
+  try {
+    // Add company count to status
+    const [companyCount, earningsCount, priceCount] = await Promise.all([
+      Company.countDocuments(),
+      Earnings.countDocuments(),
+      PriceHistory.countDocuments()
+    ]);
+
     res.json({
-        status: 'ok',
-        cachedSymbols: Object.keys(earningsCache),
-        lastUpdated: metadataCache
+      status: 'operational',
+      timestamp: new Date().toISOString(),
+      lastApiCall: lastApiCall ? new Date(lastApiCall).toISOString() : null,
+      stats: {
+        companies: companyCount,
+        earnings: earningsCount,
+        prices: priceCount
+      }
     });
+  } catch (error) {
+    res.status(500).json({ 
+      status: 'error',
+      error: error.message 
+    });
+  }
 });
 
+// Catch-all route for React app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-// Initialize and start server
-(async () => {
-    try {
-        await initializeStorage();
-        console.log('Storage initialized, starting pre-fetch...');
-        
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-            // Start pre-fetching popular symbols
-            prefetchPopularData();
-        });
-    } catch (error) {
-        console.error('Failed to start server:', error);
-        process.exit(1);
-    }
-})();
+// Initialize server
+const startServer = async () => {
+  try {
+    // Connect to MongoDB
+    await connectDB();
+    
+    // Start Express server
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log('MongoDB connected and ready');
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+// Start the server
+startServer();
+
+// Handle process errors
+process.on('unhandledRejection', (error) => {
+  console.error('Unhandled promise rejection:', error);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught exception:', error);
+  process.exit(1);
+});
+
+module.exports = app;

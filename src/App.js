@@ -10,12 +10,13 @@ const App = () => {
   const [showAllData, setShowAllData] = useState(false);
   const INITIAL_DISPLAY_COUNT = 10;
   
-  // New state for filters
+  // Filters state
   const [selectedTimeRange, setSelectedTimeRange] = useState('all');
   const [selectedMovementType, setSelectedMovementType] = useState('after');
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedEventType, setSelectedEventType] = useState('earnings');
+  const [customDate, setCustomDate] = useState('');
 
-  // Time range options
   const timeRangeOptions = [
     { value: 'all', label: 'All History' },
     { value: '1', label: '1 Year' },
@@ -30,10 +31,18 @@ const App = () => {
     { value: '10', label: '10 Years' }
   ];
 
-  // Movement type options
+  const eventOptions = [
+    { value: 'earnings', label: 'Earnings Reports' },
+    { value: 'trump', label: 'Trump Elected (Nov 8, 2016)' },
+    { value: 'covid', label: 'Covid Started (Mar 11, 2020)' },
+    { value: 'iphone', label: 'First iPhone Launch (Jan 9, 2007)' },
+    { value: 'custom', label: 'Enter Custom Date' }
+  ];
+
   const movementTypeOptions = [
-    { value: 'after', label: 'Movement After Earnings' },
-    { value: 'during', label: 'Movement During Day of Earnings' }
+    { value: 'after', label: 'Day After' },
+    { value: 'during', label: 'Day Of' },
+    { value: 'since', label: 'Since Event' }
   ];
 
   // Load AAPL data by default
@@ -41,8 +50,7 @@ const App = () => {
     const loadDefaultData = async () => {
       setSymbol('AAPL');
       setSearch('AAPL');
-      const event = { preventDefault: () => {} };
-      await fetchStockData(event);
+      await fetchStockData();
     };
     loadDefaultData();
   }, []);
@@ -67,6 +75,7 @@ const App = () => {
     setSymbol(selectedSymbol);
     setSearch(selectedSymbol);
     setSuggestions([]);
+    fetchStockData();
   };
 
   const handleSearchFocus = () => {
@@ -76,8 +85,7 @@ const App = () => {
     }
   };
 
-  const fetchStockData = async (e) => {
-    e.preventDefault();
+  const fetchStockData = async () => {
     if (!symbol && !search.trim()) {
       setError('Please enter a company name or stock symbol');
       return;
@@ -89,53 +97,28 @@ const App = () => {
     setStockData(null);
     
     try {
-      const earningsResponse = await fetch(`/api/stock/${searchSymbol}`);
-      const earningsData = await earningsResponse.json();
+      const response = await fetch(`/api/stock/${searchSymbol}`);
+      const data = await response.json();
       
-      if (!earningsResponse.ok) throw new Error(earningsData.error || 'Failed to fetch data');
-      if (!earningsData || earningsData.length === 0) throw new Error('No data found for this symbol');
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch data');
+      }
+      
+      if (!data || data.length === 0) {
+        throw new Error('No data found for this symbol');
+      }
 
-      const processedData = await Promise.all(
-        earningsData.map(async (earning) => {
-          const earningsDate = new Date(earning.date);
-          const priorDay = new Date(earningsDate);
-          const nextDay = new Date(earningsDate);
-          priorDay.setDate(earningsDate.getDate());
-          nextDay.setDate(earningsDate.getDate() + 1);
-
-          const priceResponse = await fetch(
-            `/api/prices/${searchSymbol}?from=${priorDay.toISOString().split('T')[0]}&to=${nextDay.toISOString().split('T')[0]}`
-          );
-          
-          if (!priceResponse.ok) {
-            throw new Error('Failed to fetch price data');
-          }
-          
-          const priceData = await priceResponse.json();
-
-          const nextDayPrices = priceData[0] || {};
-          const earningsDayPrices = priceData[1] || {};
-
-          const preEarningsChange = earningsDayPrices.open && earningsDayPrices.close
-            ? ((earningsDayPrices.close - earningsDayPrices.open) / earningsDayPrices.open) * 100
-            : null;
-
-          const earningsEffect = earningsDayPrices.close && nextDayPrices.open
-            ? ((nextDayPrices.open - earningsDayPrices.close) / earningsDayPrices.close) * 100
-            : null;
-
-          return {
-            date: earning.date,
-            preEarningsOpen: earningsDayPrices.open?.toFixed(2) || 'N/A',
-            preEarningsClose: earningsDayPrices.close?.toFixed(2) || 'N/A',
-            postEarningsOpen: nextDayPrices.open?.toFixed(2) || 'N/A',
-            preEarningsChange: preEarningsChange?.toFixed(2) || 'N/A',
-            earningsEffect: earningsEffect?.toFixed(2) || 'N/A'
-          };
+      // Format dates for display
+      const formattedData = data.map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
         })
-      );
+      }));
 
-      setStockData(processedData);
+      setStockData(formattedData);
     } catch (err) {
       console.error('Error fetching stock data:', err);
       setError(err.message);
@@ -234,78 +217,70 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Earnings Stock Movement History</h1>
-      {symbol && <h2 className="subtitle">Viewing {symbol}</h2>}
+      <h1>Stock Movement Analysis</h1>
+      <h2 className="subtitle">See how stocks moved after important events</h2>
       
-      <form onSubmit={fetchStockData} className="search-form">
-        <div className="search-container">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value.toUpperCase())}
-            onFocus={handleSearchFocus}
-            placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
-            className="search-input"
-          />
-          {suggestions.length > 0 && (
-            <div className="suggestions-dropdown">
-              {suggestions.map((company, index) => (
-                <div
-                  key={index}
-                  className="suggestion-item"
-                  onClick={() => selectCompany(company.symbol)}
-                >
-                  <span className="company-name">{company.name}</span>
-                  <span className="company-symbol">{company.symbol}</span>
-                </div>
-              ))}
-            </div>
+      <div className="search-form">
+        <div className="search-container flex items-center space-x-4">
+          <div className="search-box relative">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+              onFocus={handleSearchFocus}
+              placeholder="Enter stock symbol"
+              className="search-input h-10 px-3 py-2"
+            />
+            {suggestions.length > 0 && (
+              <div className="suggestions-dropdown">
+                {suggestions.map((company, index) => (
+                  <div
+                    key={index}
+                    className="suggestion-item"
+                    onClick={() => selectCompany(company.symbol)}
+                  >
+                    <span className="company-name">{company.name}</span>
+                    <span className="company-symbol">{company.symbol}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <select
+            value={selectedMovementType}
+            onChange={(e) => setSelectedMovementType(e.target.value)}
+            className="movement-select h-10 px-3 py-2"
+          >
+            {movementTypeOptions.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={selectedEventType}
+            onChange={(e) => setSelectedEventType(e.target.value)}
+            className="event-select h-10 px-3 py-2"
+          >
+            {eventOptions.map((event) => (
+              <option key={event.value} value={event.value}>
+                {event.label}
+              </option>
+            ))}
+          </select>
+
+          {selectedEventType === 'custom' && (
+            <input
+              type="date"
+              value={customDate}
+              onChange={(e) => setCustomDate(e.target.value)}
+              className="date-input h-10 px-3 py-2"
+            />
           )}
         </div>
-        <div className="button-group">
-          <button type="submit" disabled={loading} className="search-button">
-            {loading ? 'Loading...' : 'Search'}
-          </button>
-          <button 
-            type="button" 
-            className="filter-button"
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            Filter
-          </button>
-        </div>
-      </form>
-
-      {showFilters && (
-        <div className="filters-container">
-          <div className="filter-group">
-            <label>Movement Type:</label>
-            <select 
-              value={selectedMovementType}
-              onChange={(e) => setSelectedMovementType(e.target.value)}
-            >
-              {movementTypeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="filter-group">
-            <label>Time Range:</label>
-            <select 
-              value={selectedTimeRange}
-              onChange={(e) => setSelectedTimeRange(e.target.value)}
-            >
-              {timeRangeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      )}
+      </div>
 
       {error && <div className="error">{error}</div>}
       {loading && <div className="loading">Loading data...</div>}
@@ -381,7 +356,7 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {displayData.map((earning, index) => (
+                {displayData?.map((earning, index) => (
                   <tr key={index}>
                     <td>{earning.date}</td>
                     {selectedMovementType === 'during' ? (
@@ -389,6 +364,7 @@ const App = () => {
                         <td>${earning.preEarningsOpen}</td>
                         <td>${earning.preEarningsClose}</td>
                         <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
+                          {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
                           {earning.preEarningsChange}%
                         </td>

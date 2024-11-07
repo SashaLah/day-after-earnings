@@ -1,24 +1,28 @@
+// server/db/mongodb.js
+
 const mongoose = require('mongoose');
+const { DB_CONFIG } = require('../config');
 require('dotenv').config();
 
 const connectDB = async () => {
-  try {
-    console.log('Attempting to connect to MongoDB Atlas...');
-    const conn = await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`MongoDB Atlas Connected: ${conn.connection.host}`);
-    
-    // Test the connection by creating indexes
-    await Promise.all([
-      Earnings.createIndexes(),
-      PriceHistory.createIndexes()
-    ]);
-    console.log('MongoDB indexes created successfully');
-    return conn;
-  } catch (error) {
-    console.error('MongoDB Atlas connection error:', error);
-    throw error;
-  }
-};
+    try {
+      console.log('Attempting to connect to MongoDB Atlas...');
+      const conn = await mongoose.connect(process.env.MONGODB_URI);
+      console.log(`MongoDB Atlas Connected: ${conn.connection.host}`);
+      
+      // Test the connection by creating indexes
+      await Promise.all([
+        Earnings.createIndexes(),
+        PriceHistory.createIndexes()
+      ]);
+      console.log('MongoDB indexes created successfully');
+      return conn;
+    } catch (error) {
+      console.error('MongoDB Atlas connection error:', error.message);
+      console.error('Full error:', error);
+      process.exit(1);
+    }
+  };
 
 // Company Schema
 const companySchema = new mongoose.Schema({
@@ -32,11 +36,18 @@ const companySchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
-  lastUpdated: {
+  lastEarningsDate: {
+    type: Date,
+    default: null
+  },
+  lastChecked: {
     type: Date,
     default: Date.now
   }
-}, { timestamps: true });
+}, { 
+  timestamps: true,
+  collection: 'companies'
+});
 
 // Earnings Schema
 const earningsSchema = new mongoose.Schema({
@@ -50,12 +61,14 @@ const earningsSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  lastUpdated: {
-    type: Date,
-    default: Date.now
+  reportTime: {
+    type: String,
+    enum: ['BMO', 'AMC', 'TNS'], // Before Market Open, After Market Close, Time Not Specified
+    default: 'TNS'
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  collection: 'earnings'
 });
 
 // Create compound index for unique earnings dates per symbol
@@ -73,26 +86,62 @@ const priceHistorySchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  open: {
-    type: Number,
-    required: true
-  },
-  close: {
-    type: Number,
-    required: true
-  },
-  lastUpdated: {
+  earningsDate: {
     type: Date,
-    default: Date.now
+    required: true,
+    index: true
+  },
+  preEarningsOpen: {
+    type: Number,
+    required: true
+  },
+  preEarningsClose: {
+    type: Number,
+    required: true
+  },
+  postEarningsOpen: {
+    type: Number,
+    required: true
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  collection: 'pricehistory'
 });
 
-// Create compound index for unique price dates per symbol
+// Create compound indexes for price history
 priceHistorySchema.index({ symbol: 1, date: 1 }, { unique: true });
+priceHistorySchema.index({ symbol: 1, earningsDate: 1 }, { unique: true });
 
-// Add methods to schemas
+// Static methods for Earnings
+earningsSchema.static('getLatestBySymbol', function(symbol) {
+  return this.findOne({ symbol: symbol.toUpperCase() })
+    .sort({ date: -1 })
+    .lean();
+});
+
+earningsSchema.static('getBySymbol', function(symbol) {
+  return this.find({ symbol: symbol.toUpperCase() })
+    .sort({ date: -1 })
+    .lean();
+});
+
+// Static methods for PriceHistory
+priceHistorySchema.static('getBySymbolAndEarningsDate', function(symbol, earningsDate) {
+  return this.findOne({
+    symbol: symbol.toUpperCase(),
+    earningsDate: earningsDate
+  }).lean();
+});
+
+priceHistorySchema.static('getBySymbol', function(symbol) {
+  return this.find({
+    symbol: symbol.toUpperCase()
+  })
+  .sort({ date: -1 })
+  .lean();
+});
+
+// Instance methods
 earningsSchema.methods.toJSON = function() {
   const obj = this.toObject();
   obj.id = obj._id;
@@ -109,29 +158,38 @@ priceHistorySchema.methods.toJSON = function() {
   return obj;
 };
 
+// Middleware
+earningsSchema.pre('save', function(next) {
+  this.symbol = this.symbol.toUpperCase();
+  next();
+});
+
+priceHistorySchema.pre('save', function(next) {
+  this.symbol = this.symbol.toUpperCase();
+  next();
+});
+
 // Create models
 const Company = mongoose.model('Company', companySchema);
 const Earnings = mongoose.model('Earnings', earningsSchema);
 const PriceHistory = mongoose.model('PriceHistory', priceHistorySchema);
 
-// Add model methods for common operations
-Earnings.getBySymbol = async function(symbol) {
-  return this.find({ symbol: symbol.toUpperCase() })
-    .sort({ date: -1 })
-    .lean();
-};
+// Debug logging for MongoDB operations
+if (process.env.NODE_ENV !== 'production') {
+  mongoose.set('debug', true);
+}
 
-PriceHistory.getBySymbolAndDateRange = async function(symbol, fromDate, toDate) {
-  return this.find({
-    symbol: symbol.toUpperCase(),
-    date: {
-      $gte: new Date(fromDate),
-      $lte: new Date(toDate)
-    }
-  })
-  .sort({ date: 1 })
-  .lean();
-};
+// Close MongoDB connection properly on app termination
+process.on('SIGINT', async () => {
+  try {
+    await mongoose.connection.close();
+    console.log('MongoDB connection closed through app termination');
+    process.exit(0);
+  } catch (err) {
+    console.error('Error closing MongoDB connection:', err);
+    process.exit(1);
+  }
+});
 
 module.exports = {
   connectDB,

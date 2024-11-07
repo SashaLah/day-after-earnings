@@ -1,210 +1,228 @@
+// server/db/stockService.js
+
+const axios = require('axios');
 const { Company, Earnings, PriceHistory } = require('./mongodb');
+const { API_CONFIG, isMarketHours } = require('../config');
+
+// API rate limiting
+let lastApiCall = 0;
+const API_DELAY = 12000; // 12 seconds between calls
+const MAX_RETRIES = 3;
+
+const waitForApiDelay = async () => {
+  const now = Date.now();
+  const timeSinceLastCall = now - lastApiCall;
+  const waitTime = Math.max(0, API_DELAY - timeSinceLastCall);
+  
+  if (waitTime > 0) {
+    console.log(`API rate limit: waiting ${waitTime}ms...`);
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+  
+  lastApiCall = Date.now();
+};
 
 const stockService = {
-  // Cache configuration
-  _cache: {
-    earnings: new Map(),
-    prices: new Map()
-  },
-  _cacheTimeout: 5 * 60 * 1000, // 5 minutes
-
-  _getCacheKey(symbol, fromDate, toDate) {
-    return `${symbol}_${fromDate || ''}_${toDate || ''}`;
-  },
-
-  async upsertCompany(symbol, name) {
-    try {
-      console.log(`MongoDB: Upserting company data for ${symbol}`);
-      return await Company.findOneAndUpdate(
-        { symbol: symbol.toUpperCase() },
-        { name },
-        { upsert: true, new: true }
-      );
-    } catch (error) {
-      console.error('MongoDB Error upserting company:', error);
-      throw error;
-    }
-  },
-
-  async getEarningsData(symbol) {
-    try {
-      const cacheKey = this._getCacheKey(symbol);
-      
-      // Check cache first
-      if (this._cache.earnings.has(cacheKey)) {
-        console.log(`MongoDB: Using cached earnings data for ${symbol}`);
-        return this._cache.earnings.get(cacheKey);
-      }
-
-      console.log(`MongoDB: Fetching earnings data for ${symbol}`);
-      const twoYearsAgo = new Date();
-      twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
-      
-      const data = await Earnings.find({ 
-        symbol: symbol.toUpperCase()
-      })
-        .select('symbol date lastUpdated -_id')
-        .sort({ date: -1 })
-        .lean();
-
-      // Store in cache
-      this._cache.earnings.set(cacheKey, data);
-      
-      // Clear cache after timeout
-      setTimeout(() => {
-        this._cache.earnings.delete(cacheKey);
-      }, this._cacheTimeout);
-
-      console.log(`MongoDB: Found ${data.length} earnings records for ${symbol}`);
-      return data;
-    } catch (error) {
-      console.error('MongoDB Error getting earnings data:', error);
-      throw error;
-    }
-  },
-
-  async upsertEarnings(symbol, earningsData) {
-    try {
-      console.log(`MongoDB: Upserting ${earningsData.length} earnings records for ${symbol}`);
-      const operations = earningsData.map(earning => ({
-        updateOne: {
-          filter: { 
-            symbol: symbol.toUpperCase(), 
-            date: new Date(earning.date)
-          },
-          update: { 
-            $set: { 
-              symbol: symbol.toUpperCase(),
-              date: new Date(earning.date),
-              lastUpdated: new Date()
+    async fetchWithRetry(url, operation, retries = 0) {
+        try {
+            await waitForApiDelay();
+            const response = await axios.get(url);
+            
+            if (response.data.Note) {
+                console.log('API Rate limit hit, waiting 60 seconds...');
+                await new Promise(resolve => setTimeout(resolve, 60000));
+                throw new Error('Rate limit hit, retrying...');
             }
-          },
-          upsert: true
-        }
-      }));
 
-      const result = await Earnings.bulkWrite(operations);
-      
-      // Clear the cache for this symbol after update
-      const cacheKey = this._getCacheKey(symbol);
-      this._cache.earnings.delete(cacheKey);
-      
-      console.log(`MongoDB: Successfully upserted earnings for ${symbol}`);
-      return result;
-    } catch (error) {
-      console.error('MongoDB Error upserting earnings:', error);
-      throw error;
-    }
-  },
-
-  async getPriceData(symbol, fromDate, toDate) {
-    try {
-      const cacheKey = this._getCacheKey(symbol, fromDate, toDate);
-      
-      // Check cache first
-      if (this._cache.prices.has(cacheKey)) {
-        console.log(`MongoDB: Using cached price data for ${symbol}`);
-        return this._cache.prices.get(cacheKey);
-      }
-
-      console.log(`MongoDB: Fetching price data for ${symbol} from ${fromDate} to ${toDate}`);
-      const data = await PriceHistory.find({
-        symbol: symbol.toUpperCase(),
-        date: {
-          $gte: new Date(fromDate),
-          $lte: new Date(toDate)
-        }
-      })
-      .select('symbol date open close lastUpdated -_id')
-      .sort({ date: 1 })
-      .lean();
-
-      // Store in cache
-      this._cache.prices.set(cacheKey, data);
-      
-      // Clear cache after timeout
-      setTimeout(() => {
-        this._cache.prices.delete(cacheKey);
-      }, this._cacheTimeout);
-
-      console.log(`MongoDB: Found ${data.length} price records for ${symbol}`);
-      return data;
-    } catch (error) {
-      console.error('MongoDB Error getting price data:', error);
-      throw error;
-    }
-  },
-
-  async upsertPrices(symbol, priceData) {
-    try {
-      if (!Array.isArray(priceData)) {
-        console.error('Invalid price data format');
-        return;
-      }
-
-      console.log(`MongoDB: Upserting ${priceData.length} price records for ${symbol}`);
-      
-      const operations = priceData.map(price => ({
-        updateOne: {
-          filter: { 
-            symbol: symbol.toUpperCase(), 
-            date: new Date(price.date)
-          },
-          update: { 
-            $set: { 
-              symbol: symbol.toUpperCase(),
-              date: new Date(price.date),
-              open: parseFloat(price.open),
-              close: parseFloat(price.close),
-              lastUpdated: new Date()
+            return response.data;
+        } catch (error) {
+            if (retries < MAX_RETRIES) {
+                console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${operation}...`);
+                return this.fetchWithRetry(url, operation, retries + 1);
             }
-          },
-          upsert: true
+            throw error;
         }
-      }));
+    },
 
-      const result = await PriceHistory.bulkWrite(operations);
-      
-      // Clear any cached price data for this symbol
-      for (const [key, value] of this._cache.prices.entries()) {
-        if (key.startsWith(symbol)) {
-          this._cache.prices.delete(key);
+    async fetchEarningsData(symbol) {
+        try {
+            const url = `${API_CONFIG.BASE_URL}?function=${API_CONFIG.FUNCTIONS.EARNINGS}&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
+            console.log(`Fetching earnings data for ${symbol}...`);
+            
+            const data = await this.fetchWithRetry(url, 'earnings');
+            return data.quarterlyEarnings || [];
+        } catch (error) {
+            console.error(`Error fetching earnings for ${symbol}:`, error.message);
+            throw error;
         }
-      }
+    },
 
-      console.log(`MongoDB: Successfully upserted ${result.nUpserted + result.nModified} price records for ${symbol}`);
-      return result;
-    } catch (error) {
-      console.error('MongoDB Error upserting prices:', error);
-      console.error('Sample price data:', priceData[0]);
-      throw error;
+    async fetchPriceData(symbol, date) {
+        try {
+            const url = `${API_CONFIG.BASE_URL}?function=${API_CONFIG.FUNCTIONS.DAILY_PRICES}&symbol=${symbol}&outputsize=full&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
+            console.log(`Fetching price data for ${symbol}...`);
+            
+            const data = await this.fetchWithRetry(url, 'prices');
+            return data['Time Series (Daily)'] || {};
+        } catch (error) {
+            console.error(`Error fetching prices for ${symbol}:`, error.message);
+            throw error;
+        }
+    },
+
+    async checkForNewEarnings(symbol, lastKnownEarningsDate) {
+        try {
+            console.log(`Checking for new earnings for ${symbol}...`);
+            const latestEarnings = await this.fetchEarningsData(symbol);
+            
+            if (!latestEarnings.length) return false;
+            
+            const newEarningsDate = new Date(latestEarnings[0].reportedDate);
+            const lastKnown = new Date(lastKnownEarningsDate);
+            
+            return newEarningsDate > lastKnown;
+        } catch (error) {
+            console.error(`Error checking new earnings for ${symbol}:`, error.message);
+            return false;
+        }
+    },
+
+    async storeEarningsAndPrices(symbol, earningsData, priceData) {
+        try {
+            // Store earnings dates
+            const earningsOps = earningsData.map(earning => ({
+                updateOne: {
+                    filter: { 
+                        symbol, 
+                        date: new Date(earning.reportedDate)
+                    },
+                    update: {
+                        $set: {
+                            symbol,
+                            date: new Date(earning.reportedDate),
+                            reportTime: earning.reportedTime || 'TNS'
+                        }
+                    },
+                    upsert: true
+                }
+            }));
+
+            await Earnings.bulkWrite(earningsOps);
+
+            // Store price data
+            const priceOps = [];
+            for (const earning of earningsData) {
+                const earningDate = new Date(earning.reportedDate);
+                const nextDay = new Date(earningDate);
+                nextDay.setDate(nextDay.getDate() + 1);
+
+                const dateStr = earningDate.toISOString().split('T')[0];
+                const nextDateStr = nextDay.toISOString().split('T')[0];
+
+                if (priceData[dateStr] && priceData[nextDateStr]) {
+                    priceOps.push({
+                        updateOne: {
+                            filter: {
+                                symbol,
+                                earningsDate: earningDate
+                            },
+                            update: {
+                                $set: {
+                                    symbol,
+                                    date: earningDate,
+                                    earningsDate: earningDate,
+                                    preEarningsOpen: parseFloat(priceData[dateStr]['1. open']),
+                                    preEarningsClose: parseFloat(priceData[dateStr]['4. close']),
+                                    postEarningsOpen: parseFloat(priceData[nextDateStr]['1. open'])
+                                }
+                            },
+                            upsert: true
+                        }
+                    });
+                }
+            }
+
+            if (priceOps.length > 0) {
+                await PriceHistory.bulkWrite(priceOps);
+            }
+
+            return {
+                earningsCount: earningsData.length,
+                priceCount: priceOps.length
+            };
+        } catch (error) {
+            console.error(`Error storing data for ${symbol}:`, error.message);
+            throw error;
+        }
+    },
+
+    async populateHistoricalData(symbol) {
+        try {
+            console.log(`Populating historical data for ${symbol}...`);
+            
+            const earningsData = await this.fetchEarningsData(symbol);
+            if (!earningsData.length) {
+                throw new Error('No earnings data available');
+            }
+
+            const priceData = await this.fetchPriceData(symbol);
+            if (!Object.keys(priceData).length) {
+                throw new Error('No price data available');
+            }
+
+            const result = await this.storeEarningsAndPrices(symbol, earningsData, priceData);
+            console.log(`Stored ${result.earningsCount} earnings dates and ${result.priceCount} price records for ${symbol}`);
+            
+            return result;
+        } catch (error) {
+            console.error(`Error populating data for ${symbol}:`, error.message);
+            throw error;
+        }
+    },
+
+    async getStockData(symbol) {
+        try {
+            console.log(`Getting stock data for ${symbol}...`);
+            
+            // Check if we have any data
+            const existingData = await PriceHistory.find({ symbol }).lean();
+            
+            // If no data exists, fetch and store everything
+            if (existingData.length === 0) {
+                console.log(`No existing data found for ${symbol}, fetching historical data...`);
+                await this.populateHistoricalData(symbol);
+                return await PriceHistory.find({ symbol }).lean();
+            }
+
+            // If we have data and it's market hours, check for updates
+            if (isMarketHours()) {
+                const latestEarnings = await Earnings.findOne({ symbol })
+                    .sort({ date: -1 })
+                    .lean();
+                
+                const hasNewEarnings = await this.checkForNewEarnings(
+                    symbol, 
+                    latestEarnings.date
+                );
+
+                if (hasNewEarnings) {
+                    console.log(`New earnings found for ${symbol}, updating data...`);
+                    await this.populateHistoricalData(symbol);
+                }
+            }
+
+            // Return all price history
+            const priceHistory = await PriceHistory.find({ symbol })
+                .sort({ date: -1 })
+                .lean();
+
+            console.log(`Returning ${priceHistory.length} records for ${symbol}`);
+            return priceHistory;
+        } catch (error) {
+            console.error(`Error in getStockData for ${symbol}:`, error.message);
+            throw error;
+        }
     }
-  },
-
-  async saveNewStockData(symbol, fileData) {
-    try {
-      const { earnings, prices } = fileData;
-      await this.upsertEarnings(symbol, earnings);
-      await this.upsertPrices(symbol, prices);
-      
-      // Clear all caches for this symbol
-      for (const [key, value] of this._cache.earnings.entries()) {
-        if (key.startsWith(symbol)) {
-          this._cache.earnings.delete(key);
-        }
-      }
-      for (const [key, value] of this._cache.prices.entries()) {
-        if (key.startsWith(symbol)) {
-          this._cache.prices.delete(key);
-        }
-      }
-
-      console.log(`MongoDB: Successfully saved all data for ${symbol}`);
-    } catch (error) {
-      console.error('Error saving new stock data:', error);
-      throw error;
-    }
-  }
 };
 
 module.exports = stockService;
