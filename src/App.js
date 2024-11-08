@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState, useCallback, useEffect } from 'react';
 
 const App = () => {
@@ -10,6 +8,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showAllData, setShowAllData] = useState(false);
+  const [nextEarningsInfo, setNextEarningsInfo] = useState(null);
   const INITIAL_DISPLAY_COUNT = 10;
   
   // Filters state
@@ -36,14 +35,83 @@ const App = () => {
     { value: 'during', label: 'Movement During Day of Earnings' }
   ];
 
+  const calculateNextEarnings = (lastEarningsDate) => {
+    if (!lastEarningsDate) return null;
+
+    const lastDate = new Date(lastEarningsDate);
+    const today = new Date();
+    
+    // Calculate approximate next earnings (90 days from last earnings)
+    const approximateNext = new Date(lastDate);
+    approximateNext.setDate(approximateNext.getDate() + 90);
+    
+    // Calculate days until next earnings
+    const daysUntil = Math.ceil((approximateNext - today) / (1000 * 60 * 60 * 24));
+    
+    // If within 14 days, fetch actual date from API
+    if (daysUntil <= 14) {
+      // TODO: Add API call to get confirmed earnings date
+      // For now, use approximate date
+      return {
+        date: approximateNext,
+        daysUntil: daysUntil,
+        isConfirmed: false
+      };
+    }
+
+    return {
+      date: approximateNext,
+      daysUntil: daysUntil,
+      isConfirmed: false
+    };
+  };
+
   // Load AAPL data by default
   useEffect(() => {
     const loadDefaultData = async () => {
-      setSymbol('AAPL');
-      setSearch('AAPL');
-      const event = { preventDefault: () => {} };
-      await fetchStockData(event);
+      try {
+        setSymbol('AAPL');
+        setSearch('AAPL');
+        setLoading(true);
+        setError(null);
+        
+        const response = await fetch('/api/stock/AAPL');
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch data');
+        }
+        
+        if (!data || data.length === 0) {
+          throw new Error('No data found for AAPL');
+        }
+
+        // Format dates for display
+        const formattedData = data.map(item => ({
+          ...item,
+          date: new Date(item.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          })
+        }));
+
+        setStockData(formattedData);
+        
+        // Calculate next earnings based on most recent earnings date
+        if (formattedData.length > 0) {
+          const lastEarningsDate = new Date(formattedData[0].date);
+          const nextEarnings = calculateNextEarnings(lastEarningsDate);
+          setNextEarningsInfo(nextEarnings);
+        }
+      } catch (error) {
+        console.error('Error loading default AAPL data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
+
     loadDefaultData();
   }, []);
 
@@ -111,6 +179,13 @@ const App = () => {
       }));
 
       setStockData(formattedData);
+      
+      // Calculate next earnings based on most recent earnings date
+      if (formattedData.length > 0) {
+        const lastEarningsDate = new Date(formattedData[0].date);
+        const nextEarnings = calculateNextEarnings(lastEarningsDate);
+        setNextEarningsInfo(nextEarnings);
+      }
     } catch (err) {
       console.error('Error fetching stock data:', err);
       setError(err.message);
@@ -210,7 +285,6 @@ const App = () => {
   return (
     <div className="container">
       <h1>Earnings Stock Movement History</h1>
-      {symbol && <h2 className="subtitle">Viewing {symbol}</h2>}
       
       <form onSubmit={fetchStockData} className="search-form">
         <div className="search-container">
@@ -278,6 +352,22 @@ const App = () => {
                 </option>
               ))}
             </select>
+          </div>
+        </div>
+      )}
+
+{symbol && nextEarningsInfo && (
+        <div className="stock-info-banner">
+          <h2>Viewing {symbol}</h2>
+          <div className="earnings-countdown">
+            {nextEarningsInfo.isConfirmed ? (
+              <p>Next earnings: {nextEarningsInfo.date.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric'
+              })} ({nextEarningsInfo.daysUntil}d)</p>
+            ) : (
+              <p>Est. next earnings: ~{nextEarningsInfo.daysUntil}d</p>
+            )}
           </div>
         </div>
       )}

@@ -1,3 +1,17 @@
+/* Base Resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 /* Base Container and Search Styles */
 .container {
     max-width: 1200px;
@@ -6,9 +20,9 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #f8f9fa;
     min-height: 100vh;
-    overflow-x: hidden;
     width: 100%;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -115,6 +129,44 @@ h1 {
     background-color: #2c3e50;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Stock Info Banner */
+.stock-info-banner {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stock-info-banner h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 15px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.earnings-countdown {
+    color: #7f8c8d;
+    font-size: 13px;
+    margin: 0;
+    flex: 1;
+    text-align: right;
+    min-width: 200px;
+}
+
+.earnings-countdown p {
+    margin: 0;
+    line-height: 1.4;
 }
 
 /* Filters Section */
@@ -234,6 +286,9 @@ h1 {
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Stats Grid */
@@ -441,6 +496,7 @@ h1 {
 @media (max-width: 768px) {
     .container {
         padding: 10px;
+        overflow-x: hidden;
     }
     
     h1 {
@@ -456,8 +512,8 @@ h1 {
     }
     
     .search-form {
-        padding: 0 10px;
-        margin-bottom: 20px;
+        padding: 0;
+        margin-bottom: 15px;
     }
 
     .search-container {
@@ -482,7 +538,7 @@ h1 {
 
     .filters-container {
         padding: 15px;
-        margin: 0 10px 20px;
+        margin: 0 0 15px;
     }
 
     .filter-group {
@@ -490,15 +546,35 @@ h1 {
         min-width: 0;
     }
 
+    .stock-info-banner {
+        margin: 0 0 15px;
+        padding: 8px 15px;
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .stock-info-banner h2 {
+        font-size: 14px;
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .earnings-countdown {
+        font-size: 12px;
+        text-align: right;
+    }
+
     .stat-row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-        margin-bottom: 8px;
+        margin: 0 0 8px;
     }
     
     .stat-item {
         padding: 12px 8px;
+        min-width: 0;
+        width: 100%;
     }
     
     .stat-item h3 {
@@ -518,25 +594,26 @@ h1 {
     
     .results {
         padding: 12px;
-        margin: 0 -5px;
+        margin: 0;
+        border-radius: 8px;
     }
     
     .table-container {
-        margin: 10px -8px 0;
+        margin: 10px 0 0;
         border-radius: 8px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        max-width: 100%;
     }
 
     .earnings-table th,
     .earnings-table td {
-        padding: 8px 12px;
+        padding: 8px;
         font-size: 12px;
     }
 
     .table-header {
         font-size: 11px;
-        padding: 8px 12px !important;
+        padding: 8px !important;
     }
 
     .earnings-date {
