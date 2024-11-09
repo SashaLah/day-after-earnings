@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
 const App = () => {
+  // Original state variables
   const [search, setSearch] = useState('');
   const [symbol, setSymbol] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -9,12 +10,20 @@ const App = () => {
   const [error, setError] = useState(null);
   const [showAllData, setShowAllData] = useState(false);
   const [nextEarningsInfo, setNextEarningsInfo] = useState(null);
-  const INITIAL_DISPLAY_COUNT = 10;
+  
+  // Event search state
+  const [eventSearch, setEventSearch] = useState('');
+  const [eventResults, setEventResults] = useState(null);
+  const [eventLoading, setEventLoading] = useState(false);
+  const [eventError, setEventError] = useState(null);
+  const [activeMenu, setActiveMenu] = useState('search');
   
   // Filters state
   const [selectedTimeRange, setSelectedTimeRange] = useState('all');
   const [selectedMovementType, setSelectedMovementType] = useState('after');
   const [showFilters, setShowFilters] = useState(false);
+
+  const INITIAL_DISPLAY_COUNT = 10;
 
   const timeRangeOptions = [
     { value: 'all', label: 'All History' },
@@ -34,38 +43,6 @@ const App = () => {
     { value: 'after', label: 'Movement After Earnings' },
     { value: 'during', label: 'Movement During Day of Earnings' }
   ];
-
-  const calculateNextEarnings = (lastEarningsDate) => {
-    if (!lastEarningsDate) return null;
-
-    const lastDate = new Date(lastEarningsDate);
-    const today = new Date();
-    
-    // Calculate approximate next earnings (90 days from last earnings)
-    const approximateNext = new Date(lastDate);
-    approximateNext.setDate(approximateNext.getDate() + 90);
-    
-    // Calculate days until next earnings
-    const daysUntil = Math.ceil((approximateNext - today) / (1000 * 60 * 60 * 24));
-    
-    // If within 14 days, fetch actual date from API
-    if (daysUntil <= 14) {
-      // TODO: Add API call to get confirmed earnings date
-      // For now, use approximate date
-      return {
-        date: approximateNext,
-        daysUntil: daysUntil,
-        isConfirmed: false
-      };
-    }
-
-    return {
-      date: approximateNext,
-      daysUntil: daysUntil,
-      isConfirmed: false
-    };
-  };
-
   // Load AAPL data by default
   useEffect(() => {
     const loadDefaultData = async () => {
@@ -86,7 +63,6 @@ const App = () => {
           throw new Error('No data found for AAPL');
         }
 
-        // Format dates for display
         const formattedData = data.map(item => ({
           ...item,
           date: new Date(item.date).toLocaleDateString('en-US', {
@@ -97,13 +73,6 @@ const App = () => {
         }));
 
         setStockData(formattedData);
-        
-        // Calculate next earnings based on most recent earnings date
-        if (formattedData.length > 0) {
-          const lastEarningsDate = new Date(formattedData[0].date);
-          const nextEarnings = calculateNextEarnings(lastEarningsDate);
-          setNextEarningsInfo(nextEarnings);
-        }
       } catch (error) {
         console.error('Error loading default AAPL data:', error);
         setError(error.message);
@@ -131,33 +100,44 @@ const App = () => {
     }
   };
 
-  const selectCompany = (selectedSymbol) => {
+  const handleEventSearch = async (searchText) => {
+    if (searchText.length < 3) {
+      setEventError('Please enter at least 3 characters');
+      return;
+    }
+    
+    setEventLoading(true);
+    setEventError(null);
+    setEventResults(null);  // Clear previous results
+    
+    try {
+      const response = await fetch(`/api/events/analyze?query=${encodeURIComponent(searchText)}`);
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to analyze event');
+      }
+      
+      setEventResults(data);
+    } catch (error) {
+      console.error('Event search error:', error);
+      setEventError(error.message);
+    } finally {
+      setEventLoading(false);
+    }
+  };
+
+  const selectCompany = async (selectedSymbol) => {
     setSymbol(selectedSymbol);
     setSearch(selectedSymbol);
     setSuggestions([]);
-  };
-
-  const handleSearchFocus = () => {
-    const searchInput = document.querySelector('.search-input');
-    if (searchInput) {
-      searchInput.select();
-    }
-  };
-
-  const fetchStockData = async (e) => {
-    e.preventDefault();
-    if (!symbol && !search.trim()) {
-      setError('Please enter a company name or stock symbol');
-      return;
-    }
-
-    const searchSymbol = symbol || search.toUpperCase();
-    setLoading(true);
-    setError(null);
-    setStockData(null);
-    
+    // Automatically fetch data when company is selected
     try {
-      const response = await fetch(`/api/stock/${searchSymbol}`);
+      setLoading(true);
+      setError(null);
+      setStockData(null);
+      
+      const response = await fetch(`/api/stock/${selectedSymbol}`);
       const data = await response.json();
       
       if (!response.ok) {
@@ -168,7 +148,6 @@ const App = () => {
         throw new Error('No data found for this symbol');
       }
 
-      // Format dates for display
       const formattedData = data.map(item => ({
         ...item,
         date: new Date(item.date).toLocaleDateString('en-US', {
@@ -179,13 +158,6 @@ const App = () => {
       }));
 
       setStockData(formattedData);
-      
-      // Calculate next earnings based on most recent earnings date
-      if (formattedData.length > 0) {
-        const lastEarningsDate = new Date(formattedData[0].date);
-        const nextEarnings = calculateNextEarnings(lastEarningsDate);
-        setNextEarningsInfo(nextEarnings);
-      }
     } catch (err) {
       console.error('Error fetching stock data:', err);
       setError(err.message);
@@ -195,6 +167,9 @@ const App = () => {
     }
   };
 
+  const handleSearchFocus = () => {
+    setSearch('');
+  };
   const calculateStats = useCallback((data) => {
     if (!data || !data.length) return null;
     
@@ -279,42 +254,123 @@ const App = () => {
     );
   };
 
-  const stats = stockData ? calculateStats(stockData) : null;
-  const displayData = showAllData ? stockData : stockData?.slice(0, INITIAL_DISPLAY_COUNT);
+  const renderEventSearch = () => {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (eventSearch.length > 0) {
+        handleEventSearch(eventSearch);
+      }
+    };
 
-  return (
-    <div className="container">
-      <h1>Earnings Stock Movement History</h1>
-      
-      <form onSubmit={fetchStockData} className="search-form">
-        <div className="search-container">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value.toUpperCase())}
-            onFocus={handleSearchFocus}
-            placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
-            className="search-input"
-          />
-          {suggestions.length > 0 && (
-            <div className="suggestions-dropdown">
-              {suggestions.map((company, index) => (
-                <div
-                  key={index}
-                  className="suggestion-item"
-                  onClick={() => selectCompany(company.symbol)}
-                >
-                  <span className="company-name">{company.name}</span>
-                  <span className="company-symbol">{company.symbol}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="button-group">
-          <button type="submit" disabled={loading} className="search-button">
-            {loading ? 'Loading...' : 'Search'}
+    return (
+      <div className="event-search-section">
+        <form onSubmit={handleSubmit} className="search-section">
+          <div className="search-container">
+            <input
+              type="text"
+              value={eventSearch}
+              onChange={(e) => setEventSearch(e.target.value)}
+              placeholder="Try 'since iPhone release' or 'since Vision Pro announcement'"
+              className="search-input"
+            />
+          </div>
+          <button type="submit" className="search-button">
+            Search
           </button>
+        </form>
+
+        {eventLoading && <div className="loading">Analyzing market data...</div>}
+        {eventError && <div className="error">{eventError}</div>}
+
+        {eventResults && eventResults.event && (
+          <div className="results">
+            <div className="event-header">
+              <h3>{eventResults.event.name || 'Event Analysis'}</h3>
+              <p>{eventResults.event.description || ''}</p>
+              <p>Date: {new Date(eventResults.event.date).toLocaleDateString()}</p>
+            </div>
+
+            {eventResults.market && (
+              <div className="stats-grid">
+                <div className="stat-box earnings-summary">
+                  <div className="stat-row">
+                    <div className="stat-item">
+                      <h3>Market Impact (S&P 500)</h3>
+                      <p className={eventResults.market.percentChange >= 0 ? "green" : "red"}>
+                        {eventResults.market.percentChange >= 0 ? '+' : ''}{eventResults.market.percentChange}%
+                      </p>
+                      <p className="price-change">
+                        ${eventResults.market.startPrice.toFixed(2)} → ${eventResults.market.currentPrice.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {eventResults.comparisons && eventResults.comparisons.length > 0 && (
+              <div className="table-container">
+                <table className="earnings-table">
+                  <thead>
+                    <tr>
+                      <th>Company</th>
+                      <th>Start Price</th>
+                      <th>Current Price</th>
+                      <th>Change</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {eventResults.comparisons.map((stock, index) => (
+                      <tr key={index}>
+                        <td>{stock.symbol}</td>
+                        <td>${stock.startPrice.toFixed(2)}</td>
+                        <td>${stock.currentPrice.toFixed(2)}</td>
+                        <td className={stock.percentChange >= 0 ? 'positive-effect' : 'negative-effect'}>
+                          {stock.percentChange >= 0 ? '+' : ''}{stock.percentChange}%
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const renderEarningsSearch = () => {
+    const stats = stockData ? calculateStats(stockData) : null;
+    const displayData = showAllData ? stockData : stockData?.slice(0, INITIAL_DISPLAY_COUNT);
+
+    return (
+      <>
+        <div className="search-section">
+          <div className="search-container">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+              onFocus={handleSearchFocus}
+              placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
+              className="search-input"
+            />
+            {suggestions.length > 0 && (
+              <div className="suggestions-dropdown">
+                {suggestions.map((company, index) => (
+                  <div
+                    key={index}
+                    className="suggestion-item"
+                    onClick={() => selectCompany(company.symbol)}
+                  >
+                    <span className="company-name">{company.name}</span>
+                    <span className="company-symbol">{company.symbol}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <button 
             type="button" 
             className="filter-button"
@@ -323,168 +379,193 @@ const App = () => {
             Filter
           </button>
         </div>
-      </form>
 
-      {showFilters && (
-        <div className="filters-container">
-          <div className="filter-group">
-            <label>Movement Type:</label>
-            <select 
-              value={selectedMovementType}
-              onChange={(e) => setSelectedMovementType(e.target.value)}
-            >
-              {movementTypeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+        {showFilters && (
+          <div className="filters-container">
+            <div className="filter-group">
+              <label>Movement Type:</label>
+              <select 
+                value={selectedMovementType}
+                onChange={(e) => setSelectedMovementType(e.target.value)}
+              >
+                {movementTypeOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="filter-group">
+              <label>Time Range:</label>
+              <select 
+                value={selectedTimeRange}
+                onChange={(e) => setSelectedTimeRange(e.target.value)}
+              >
+                {timeRangeOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="filter-group">
-            <label>Time Range:</label>
-            <select 
-              value={selectedTimeRange}
-              onChange={(e) => setSelectedTimeRange(e.target.value)}
-            >
-              {timeRangeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      )}
+        )}
 
-{symbol && nextEarningsInfo && (
-        <div className="stock-info-banner">
-          <h2>Viewing {symbol}</h2>
-          <div className="earnings-countdown">
-            {nextEarningsInfo.isConfirmed ? (
-              <p>Next earnings: {nextEarningsInfo.date.toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric'
-              })} ({nextEarningsInfo.daysUntil}d)</p>
-            ) : (
-              <p>Est. next earnings: ~{nextEarningsInfo.daysUntil}d</p>
-            )}
-          </div>
-        </div>
-      )}
-
-      {error && <div className="error">{error}</div>}
-      {loading && <div className="loading">Loading data...</div>}
-      
-      {stockData && stats && (
-        <div className="results">
-          <div className="stats-grid">
-            <div className="stat-box earnings-summary">
-              <div className="stat-row">
-                <div className="stat-item positive">
-                  <h3>Moves Higher</h3>
-                  <p className="green">{stats.upMoves} Times ({stats.winRate}%)</p>
-                  <p className="avg-move">Avg: +{stats.averageUpMove.toFixed(2)}%</p>
-                  <p className="streak">Longest Streak: {stats.longestPositiveStreak}</p>
+        {error && <div className="error">{error}</div>}
+        {loading && <div className="loading">Loading data...</div>}
+        
+        {stockData && stats && (
+          <div className="results">
+            <div className="stats-grid">
+              <div className="stat-box earnings-summary">
+                <div className="stat-row">
+                  <div className="stat-item positive">
+                    <h3>Moves Higher</h3>
+                    <p className="green">{stats.upMoves} Times ({stats.winRate}%)</p>
+                    <p className="avg-move">Avg: +{stats.averageUpMove.toFixed(2)}%</p>
+                    <p className="streak">Longest Streak: {stats.longestPositiveStreak}</p>
+                  </div>
+                  <div className="stat-item negative">
+                    <h3>Moves Lower</h3>
+                    <p className="red">{stats.downMoves} Times</p>
+                    <p className="avg-move">Avg: {stats.averageDownMove.toFixed(2)}%</p>
+                    <p className="streak">Longest Streak: {stats.longestNegativeStreak}</p>
+                  </div>
                 </div>
-                <div className="stat-item negative">
-                  <h3>Moves Lower</h3>
-                  <p className="red">{stats.downMoves} Times</p>
-                  <p className="avg-move">Avg: {stats.averageDownMove.toFixed(2)}%</p>
-                  <p className="streak">Longest Streak: {stats.longestNegativeStreak}</p>
-                </div>
-              </div>
-              <div className="stat-row">
-                <div className="stat-item recent" title="Statistics from the most recent 10 earnings reports">
-                  <h3>Last 10 Earnings</h3>
-                  <p className={stats.recentAverage >= 0 ? "green" : "red"}>
-                    {stats.recentAverage >= 0 ? '+' : ''}{stats.recentAverage.toFixed(2)}%
-                  </p>
-                  <p className="avg-move">{stats.recentUpMoves} Up, {stats.recentTotal - stats.recentUpMoves} Down</p>
-                  <p className="streak">Win Rate: {stats.recentWinRate}%</p>
-                </div>
-                <div className="stat-item">
-                  <h3>Best/Worst Move</h3>
-                  <p className="green">+{stats.maxGain.toFixed(2)}%</p>
-                  <p className="red">{stats.maxLoss.toFixed(2)}%</p>
+                <div className="stat-row">
+                  <div className="stat-item recent" title="Statistics from the most recent 10 earnings reports">
+                    <h3>Last 10 Earnings</h3>
+                    <p className={stats.recentAverage >= 0 ? "green" : "red"}>
+                      {stats.recentAverage >= 0 ? '+' : ''}{stats.recentAverage.toFixed(2)}%
+                    </p>
+                    <p className="avg-move">{stats.recentUpMoves} Up, {stats.recentTotal - stats.recentUpMoves} Down</p>
+                    <p className="streak">Win Rate: {stats.recentWinRate}%</p>
+                  </div>
+                  <div className="stat-item">
+                    <h3>Best/Worst Move</h3>
+                    <p className="green">+{stats.maxGain.toFixed(2)}%</p>
+                    <p className="red">{stats.maxLoss.toFixed(2)}%</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="table-container">
-            <table className="earnings-table">
-              <thead>
-                <tr>
-                  <th className="table-header" title="The date when earnings were reported">
-                    Date
-                  </th>
-                  {selectedMovementType === 'during' ? (
-                    <>
-                      <th className="table-header" title="The opening price of the stock on the day of earnings">
-                        Pre Open
-                      </th>
-                      <th className="table-header" title="The closing price of the stock on the day of earnings">
-                        Pre Close
-                      </th>
-                      <th className="table-header" title="The price change during earnings day trading">
-                        Day Change
-                      </th>
-                    </>
-                  ) : (
-                    <>
-                      <th className="table-header" title="The closing price of the stock on the day of earnings">
-                        Pre Close
-                      </th>
-                      <th className="table-header" title="The opening price of the stock on the day after earnings">
-                        Post Open
-                      </th>
-                      <th className="table-header" title="Percentage change from earnings day close to next day open">
-                        Effect
-                      </th>
-                    </>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {displayData?.map((earning, index) => (
-                  <tr key={index}>
-                    <td>{earning.date}</td>
+            <div className="table-container">
+              <table className="earnings-table">
+                <thead>
+                  <tr>
+                    <th className="table-header" title="The date when earnings were reported">
+                      Date
+                    </th>
                     {selectedMovementType === 'during' ? (
                       <>
-                        <td>${earning.preEarningsOpen}</td>
-                        <td>${earning.preEarningsClose}</td>
-                        <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
-                          {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
-                          {earning.preEarningsChange}%
-                        </td>
+                        <th className="table-header" title="The opening price of the stock on the day of earnings">
+                          Pre Open
+                        </th>
+                        <th className="table-header" title="The closing price of the stock on the day of earnings">
+                          Pre Close
+                        </th>
+                        <th className="table-header" title="The price change during earnings day trading">
+                          Day Change
+                        </th>
                       </>
                     ) : (
                       <>
-                        <td>${earning.preEarningsClose}</td>
-                        <td>${earning.postEarningsOpen}</td>
-                        <td className="effect-cell">
-                          {renderEarningsEffect(earning.earningsEffect)}
-                        </td>
+                        <th className="table-header" title="The closing price of the stock on the day of earnings">
+                          Pre Close
+                        </th>
+                        <th className="table-header" title="The opening price of the stock on the day after earnings">
+                          Post Open
+                        </th>
+                        <th className="table-header" title="Percentage change from earnings day close to next day open">
+                          Effect
+                        </th>
                       </>
                     )}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {stockData.length > INITIAL_DISPLAY_COUNT && (
-            <div className="show-more-container">
-              <button 
-                className="show-more-button"
-                onClick={() => setShowAllData(!showAllData)}
-              >
-                {showAllData ? 'Show Less' : `Show ${stockData.length - INITIAL_DISPLAY_COUNT} More`}
-              </button>
+                </thead>
+                <tbody>
+                  {displayData?.map((earning, index) => (
+                    <tr key={index}>
+                      <td>{earning.date}</td>
+                      {selectedMovementType === 'during' ? (
+                        <>
+                          <td>${earning.preEarningsOpen}</td>
+                          <td>${earning.preEarningsClose}</td>
+                          <td className={parseFloat(earning.preEarningsChange) >= 0 ? 'green' : 'red'}>
+                            {earning.preEarningsChange !== 'N/A' && (earning.preEarningsChange > 0 ? '+' : '')}
+                            {earning.preEarningsChange}%
+                          </td>
+                        </>
+                      ) : (
+                        <>
+                          <td>${earning.preEarningsClose}</td>
+                          <td>${earning.postEarningsOpen}</td>
+                          <td className="effect-cell">
+                            {renderEarningsEffect(earning.earningsEffect)}
+                          </td>
+                        </>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
-      )}
+
+            {stockData.length > INITIAL_DISPLAY_COUNT && (
+              <div className="show-more-container">
+                <button 
+                  className="show-more-button"
+                  onClick={() => setShowAllData(!showAllData)}
+                >
+                  {showAllData ? 'Show Less' : `Show ${stockData.length - INITIAL_DISPLAY_COUNT} More`}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </>
+    );
+  };
+
+  const renderContent = () => {
+    switch (activeMenu) {
+      case 'events':
+        return renderEventSearch();
+      default:
+        return renderEarningsSearch();
+    }
+  };
+
+  return (
+    <div className="container">
+      <h1>Earnings Stock Movement History</h1>
+      
+      <div className="menu-container">
+        <button
+          className={`menu-item ${activeMenu !== 'events' ? 'active' : ''}`}
+          onClick={() => setActiveMenu('search')}
+        >
+          <span className="menu-label">Search Earnings</span>
+          <span className="menu-sublabel">Price Movement After Earnings</span>
+        </button>
+        <button
+          className={`menu-item ${activeMenu === 'events' ? 'active' : ''}`}
+          onClick={() => {
+            setActiveMenu('events');
+            setEventSearch('');
+            setEventResults(null);
+          }}
+        >
+          <span className="menu-label">Search by Events</span>
+          <span className="menu-sublabel">eg Price of Apple since Vision Pro release</span>
+        </button>
+        <button className="menu-item">
+          <span className="menu-label">Trends & Records</span>
+        </button>
+      </div>
+
+      {renderContent()}
     </div>
   );
 };

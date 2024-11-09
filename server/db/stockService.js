@@ -89,7 +89,7 @@ const stockService = {
 
     async storeEarningsAndPrices(symbol, earningsData, priceData) {
         try {
-            // Store earnings dates
+            // Store earnings dates with reportTime
             const earningsOps = earningsData.map(earning => ({
                 updateOne: {
                     filter: { 
@@ -108,42 +108,88 @@ const stockService = {
             }));
 
             await Earnings.bulkWrite(earningsOps);
+            console.log(`Stored ${earningsOps.length} earnings records for ${symbol}`);
 
             // Store price data
             const priceOps = [];
             for (const earning of earningsData) {
-                const earningDate = new Date(earning.reportedDate);
-                const nextDay = new Date(earningDate);
-                nextDay.setDate(nextDay.getDate() + 1);
+                const isBMO = earning.reportedTime === 'BMO';
+                const reportDate = new Date(earning.reportedDate);
+                
+                // FIXED BMO LOGIC HERE
+                if (isBMO) {
+                    // For BMO announcements:
+                    // preEarningsClose should be from the day before the announcement (reportDate - 1)
+                    // postEarningsOpen should be from the announcement day itself (reportDate)
+                    const preDate = new Date(reportDate);
+                    preDate.setDate(preDate.getDate() - 1);
+                    const postDate = reportDate;
 
-                const dateStr = earningDate.toISOString().split('T')[0];
-                const nextDateStr = nextDay.toISOString().split('T')[0];
+                    const preDateStr = preDate.toISOString().split('T')[0];
+                    const postDateStr = postDate.toISOString().split('T')[0];
 
-                if (priceData[dateStr] && priceData[nextDateStr]) {
-                    priceOps.push({
-                        updateOne: {
-                            filter: {
-                                symbol,
-                                earningsDate: earningDate
-                            },
-                            update: {
-                                $set: {
+                    console.log(`Processing ${symbol} BMO earnings:
+                        Report Date: ${earning.reportedDate}
+                        Pre Close Date: ${preDateStr}
+                        Post Open Date: ${postDateStr}`);
+
+                    if (priceData[preDateStr] && priceData[postDateStr]) {
+                        priceOps.push({
+                            updateOne: {
+                                filter: {
                                     symbol,
-                                    date: earningDate,
-                                    earningsDate: earningDate,
-                                    preEarningsOpen: parseFloat(priceData[dateStr]['1. open']),
-                                    preEarningsClose: parseFloat(priceData[dateStr]['4. close']),
-                                    postEarningsOpen: parseFloat(priceData[nextDateStr]['1. open'])
-                                }
-                            },
-                            upsert: true
-                        }
-                    });
+                                    earningsDate: reportDate
+                                },
+                                update: {
+                                    $set: {
+                                        symbol,
+                                        date: reportDate,
+                                        earningsDate: reportDate,
+                                        preEarningsOpen: parseFloat(priceData[preDateStr]['1. open']),
+                                        preEarningsClose: parseFloat(priceData[preDateStr]['4. close']),
+                                        postEarningsOpen: parseFloat(priceData[postDateStr]['1. open'])
+                                    }
+                                },
+                                upsert: true
+                            }
+                        });
+                    }
+                } else {
+                    // For AMC/TNS announcements:
+                    // Use same day close and next day open
+                    const nextDay = new Date(reportDate);
+                    nextDay.setDate(nextDay.getDate() + 1);
+
+                    const reportDateStr = reportDate.toISOString().split('T')[0];
+                    const nextDayStr = nextDay.toISOString().split('T')[0];
+
+                    if (priceData[reportDateStr] && priceData[nextDayStr]) {
+                        priceOps.push({
+                            updateOne: {
+                                filter: {
+                                    symbol,
+                                    earningsDate: reportDate
+                                },
+                                update: {
+                                    $set: {
+                                        symbol,
+                                        date: reportDate,
+                                        earningsDate: reportDate,
+                                        preEarningsOpen: parseFloat(priceData[reportDateStr]['1. open']),
+                                        preEarningsClose: parseFloat(priceData[reportDateStr]['4. close']),
+                                        postEarningsOpen: parseFloat(priceData[nextDayStr]['1. open'])
+                                    }
+                                },
+                                upsert: true
+                            }
+                        });
+                    }
                 }
             }
 
             if (priceOps.length > 0) {
                 await PriceHistory.bulkWrite(priceOps);
+                console.log(`Stored ${priceOps.length} price records for ${symbol}`);
             }
 
             return {

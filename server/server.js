@@ -4,7 +4,8 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const stockService = require('./db/stockService');
-const { connectDB, Company, Earnings, PriceHistory } = require('./db/mongodb'); // Added Company
+const { connectDB, Company, Earnings, PriceHistory } = require('./db/mongodb');
+const eventRoutes = require('./routes/eventRoutes');  // Add this line
 require('dotenv').config();
 
 const app = express();
@@ -28,6 +29,9 @@ const waitForApiDelay = async () => {
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
+
+// Mount event routes
+app.use('/api/events', eventRoutes);  // Add this line
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -151,7 +155,6 @@ app.get('/api/prices/:symbol', async (req, res) => {
 // Status endpoint
 app.get('/api/status', async (req, res) => {
   try {
-    // Add company count to status
     const [companyCount, earningsCount, priceCount] = await Promise.all([
       Company.countDocuments(),
       Earnings.countDocuments(),
