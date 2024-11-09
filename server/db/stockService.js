@@ -3,6 +3,7 @@
 const axios = require('axios');
 const { Company, Earnings, PriceHistory } = require('./mongodb');
 const { API_CONFIG, isMarketHours } = require('../config');
+const BMO_STOCKS = new Set(['MA', 'TGT']); // Add more BMO stocks as needed
 
 // API rate limiting
 let lastApiCall = 0;
@@ -50,7 +51,16 @@ const stockService = {
             console.log(`Fetching earnings data for ${symbol}...`);
             
             const data = await this.fetchWithRetry(url, 'earnings');
-            return data.quarterlyEarnings || [];
+            const earnings = data.quarterlyEarnings || [];
+    
+            // If this is a known BMO stock, set reportTime to BMO
+            if (BMO_STOCKS.has(symbol)) {
+                earnings.forEach(earning => {
+                    earning.reportedTime = 'BMO';
+                });
+            }
+    
+            return earnings;
         } catch (error) {
             console.error(`Error fetching earnings for ${symbol}:`, error.message);
             throw error;
