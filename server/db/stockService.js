@@ -3,7 +3,6 @@
 const axios = require('axios');
 const { Company, Earnings, PriceHistory } = require('./mongodb');
 const { API_CONFIG, isMarketHours } = require('../config');
-const BMO_STOCKS = new Set(['MA', 'TGT']); // Add more BMO stocks as needed
 
 // API rate limiting
 let lastApiCall = 0;
@@ -29,16 +28,22 @@ const stockService = {
             await waitForApiDelay();
             const response = await axios.get(url);
             
-            if (response.data.Note) {
-                console.log('API Rate limit hit, waiting 60 seconds...');
-                await new Promise(resolve => setTimeout(resolve, 60000));
-                throw new Error('Rate limit hit, retrying...');
+            // Check for API limit messages
+            if (response.data.Note || response.data.Information) {
+                console.log('API Message:', response.data.Note || response.data.Information);
+                if (retries < MAX_RETRIES) {
+                    console.log('Waiting 60 seconds before retry...');
+                    await new Promise(resolve => setTimeout(resolve, 60000));
+                    return this.fetchWithRetry(url, operation, retries + 1);
+                }
+                throw new Error('API limit reached');
             }
 
             return response.data;
         } catch (error) {
             if (retries < MAX_RETRIES) {
                 console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${operation}...`);
+                await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds before retry
                 return this.fetchWithRetry(url, operation, retries + 1);
             }
             throw error;
@@ -47,35 +52,81 @@ const stockService = {
 
     async fetchEarningsData(symbol) {
         try {
+            // First check if we have recent data in the database
+            const existingEarnings = await Earnings.find({ symbol })
+                .sort({ date: -1 })
+                .lean();
+
+            if (existingEarnings.length > 0) {
+                console.log(`Using existing earnings data for ${symbol}`);
+                return existingEarnings;
+            }
+
             const url = `${API_CONFIG.BASE_URL}?function=${API_CONFIG.FUNCTIONS.EARNINGS}&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
             console.log(`Fetching earnings data for ${symbol}...`);
             
             const data = await this.fetchWithRetry(url, 'earnings');
-            const earnings = data.quarterlyEarnings || [];
-    
-            // If this is a known BMO stock, set reportTime to BMO
-            if (BMO_STOCKS.has(symbol)) {
-                earnings.forEach(earning => {
-                    earning.reportedTime = 'BMO';
-                });
+            console.log('API Response:', data ? 'Received data' : 'No data received');
+
+            if (!data || !data.quarterlyEarnings || data.quarterlyEarnings.length === 0) {
+                if (existingEarnings.length > 0) {
+                    console.log(`Using existing earnings data for ${symbol}`);
+                    return existingEarnings;
+                }
+                throw new Error('No earnings data available');
             }
-    
+
+            const earnings = data.quarterlyEarnings;
+            earnings.forEach(earning => {
+                earning.reportedTime = 'BMO';
+                earning.reportedDate = earning.fiscalDateEnding;
+            });
+
             return earnings;
         } catch (error) {
             console.error(`Error fetching earnings for ${symbol}:`, error.message);
+            // Try to use existing data
+            const existingEarnings = await Earnings.find({ symbol }).lean();
+            if (existingEarnings.length > 0) {
+                console.log('Using existing earnings data from database');
+                return existingEarnings;
+            }
             throw error;
         }
     },
 
-    async fetchPriceData(symbol, date) {
+    async fetchPriceData(symbol) {
         try {
+            // First check if we have recent data in the database
+            const existingPrices = await PriceHistory.find({ symbol })
+                .sort({ date: -1 })
+                .lean();
+
+            if (existingPrices.length > 0 && !isMarketHours()) {
+                console.log(`Using existing price data for ${symbol}`);
+                return existingPrices;
+            }
+
             const url = `${API_CONFIG.BASE_URL}?function=${API_CONFIG.FUNCTIONS.DAILY_PRICES}&symbol=${symbol}&outputsize=full&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
             console.log(`Fetching price data for ${symbol}...`);
             
             const data = await this.fetchWithRetry(url, 'prices');
-            return data['Time Series (Daily)'] || {};
+            if (!data || !data['Time Series (Daily)']) {
+                if (existingPrices.length > 0) {
+                    console.log('Using existing price data from database');
+                    return existingPrices;
+                }
+                throw new Error('No price data available');
+            }
+            return data['Time Series (Daily)'];
         } catch (error) {
             console.error(`Error fetching prices for ${symbol}:`, error.message);
+            // Try to use existing data
+            const existingPrices = await PriceHistory.find({ symbol }).lean();
+            if (existingPrices.length > 0) {
+                console.log('Using existing price data from database');
+                return existingPrices;
+            }
             throw error;
         }
     },
@@ -99,7 +150,7 @@ const stockService = {
 
     async storeEarningsAndPrices(symbol, earningsData, priceData) {
         try {
-            // Store earnings dates with reportTime
+            // Store earnings dates
             const earningsOps = earningsData.map(earning => ({
                 updateOne: {
                     filter: { 
@@ -110,7 +161,7 @@ const stockService = {
                         $set: {
                             symbol,
                             date: new Date(earning.reportedDate),
-                            reportTime: earning.reportedTime || 'TNS'
+                            reportTime: earning.reportedTime || 'BMO'
                         }
                     },
                     upsert: true
@@ -120,80 +171,48 @@ const stockService = {
             await Earnings.bulkWrite(earningsOps);
             console.log(`Stored ${earningsOps.length} earnings records for ${symbol}`);
 
-            // Store price data
+            // Store price data with proper date handling
             const priceOps = [];
             for (const earning of earningsData) {
-                const isBMO = earning.reportedTime === 'BMO';
                 const reportDate = new Date(earning.reportedDate);
                 
-                // FIXED BMO LOGIC HERE
-                if (isBMO) {
-                    // For BMO announcements:
-                    // preEarningsClose should be from the day before the announcement (reportDate - 1)
-                    // postEarningsOpen should be from the announcement day itself (reportDate)
-                    const preDate = new Date(reportDate);
-                    preDate.setDate(preDate.getDate() - 1);
-                    const postDate = reportDate;
+                // Get the day before the report date for pre-earnings prices
+                const priceDate = new Date(reportDate);
+                priceDate.setDate(priceDate.getDate() - 1);
 
-                    const preDateStr = preDate.toISOString().split('T')[0];
-                    const postDateStr = postDate.toISOString().split('T')[0];
+                const priceDateStr = priceDate.toISOString().split('T')[0];
+                const reportDateStr = reportDate.toISOString().split('T')[0];
 
-                    console.log(`Processing ${symbol} BMO earnings:
-                        Report Date: ${earning.reportedDate}
-                        Pre Close Date: ${preDateStr}
-                        Post Open Date: ${postDateStr}`);
+                console.log(`Processing ${symbol} earnings:
+                    Report Date: ${reportDateStr}
+                    Pre-earnings Date: ${priceDateStr}`);
 
-                    if (priceData[preDateStr] && priceData[postDateStr]) {
-                        priceOps.push({
-                            updateOne: {
-                                filter: {
+                if (priceData[priceDateStr] && priceData[reportDateStr]) {
+                    priceOps.push({
+                        updateOne: {
+                            filter: {
+                                symbol,
+                                earningsDate: reportDate
+                            },
+                            update: {
+                                $set: {
                                     symbol,
-                                    earningsDate: reportDate
-                                },
-                                update: {
-                                    $set: {
-                                        symbol,
-                                        date: reportDate,
-                                        earningsDate: reportDate,
-                                        preEarningsOpen: parseFloat(priceData[preDateStr]['1. open']),
-                                        preEarningsClose: parseFloat(priceData[preDateStr]['4. close']),
-                                        postEarningsOpen: parseFloat(priceData[postDateStr]['1. open'])
-                                    }
-                                },
-                                upsert: true
-                            }
-                        });
-                    }
+                                    date: reportDate,
+                                    earningsDate: reportDate,
+                                    preEarningsOpen: parseFloat(priceData[priceDateStr]['1. open']),
+                                    preEarningsClose: parseFloat(priceData[priceDateStr]['4. close']),
+                                    postEarningsOpen: parseFloat(priceData[reportDateStr]['1. open'])
+                                }
+                            },
+                            upsert: true
+                        }
+                    });
+
+                    console.log(`Price data found:
+                        Pre-earnings Close (${priceDateStr}): ${priceData[priceDateStr]['4. close']}
+                        Post-earnings Open (${reportDateStr}): ${priceData[reportDateStr]['1. open']}`);
                 } else {
-                    // For AMC/TNS announcements:
-                    // Use same day close and next day open
-                    const nextDay = new Date(reportDate);
-                    nextDay.setDate(nextDay.getDate() + 1);
-
-                    const reportDateStr = reportDate.toISOString().split('T')[0];
-                    const nextDayStr = nextDay.toISOString().split('T')[0];
-
-                    if (priceData[reportDateStr] && priceData[nextDayStr]) {
-                        priceOps.push({
-                            updateOne: {
-                                filter: {
-                                    symbol,
-                                    earningsDate: reportDate
-                                },
-                                update: {
-                                    $set: {
-                                        symbol,
-                                        date: reportDate,
-                                        earningsDate: reportDate,
-                                        preEarningsOpen: parseFloat(priceData[reportDateStr]['1. open']),
-                                        preEarningsClose: parseFloat(priceData[reportDateStr]['4. close']),
-                                        postEarningsOpen: parseFloat(priceData[nextDayStr]['1. open'])
-                                    }
-                                },
-                                upsert: true
-                            }
-                        });
-                    }
+                    console.log(`Missing price data for dates: ${priceDateStr} or ${reportDateStr}`);
                 }
             }
 
@@ -217,12 +236,23 @@ const stockService = {
             console.log(`Populating historical data for ${symbol}...`);
             
             const earningsData = await this.fetchEarningsData(symbol);
-            if (!earningsData.length) {
+            if (!earningsData || earningsData.length === 0) {
+                // Try to use existing data
+                const existingData = await PriceHistory.find({ symbol })
+                    .sort({ date: -1 })
+                    .lean();
+                if (existingData.length > 0) {
+                    console.log(`Using existing data for ${symbol}`);
+                    return {
+                        earningsCount: existingData.length,
+                        priceCount: existingData.length
+                    };
+                }
                 throw new Error('No earnings data available');
             }
 
             const priceData = await this.fetchPriceData(symbol);
-            if (!Object.keys(priceData).length) {
+            if (!priceData || Object.keys(priceData).length === 0) {
                 throw new Error('No price data available');
             }
 
@@ -240,40 +270,34 @@ const stockService = {
         try {
             console.log(`Getting stock data for ${symbol}...`);
             
-            // Check if we have any data
-            const existingData = await PriceHistory.find({ symbol }).lean();
-            
-            // If no data exists, fetch and store everything
-            if (existingData.length === 0) {
-                console.log(`No existing data found for ${symbol}, fetching historical data...`);
-                await this.populateHistoricalData(symbol);
-                return await PriceHistory.find({ symbol }).lean();
-            }
-
-            // If we have data and it's market hours, check for updates
-            if (isMarketHours()) {
-                const latestEarnings = await Earnings.findOne({ symbol })
-                    .sort({ date: -1 })
-                    .lean();
-                
-                const hasNewEarnings = await this.checkForNewEarnings(
-                    symbol, 
-                    latestEarnings.date
-                );
-
-                if (hasNewEarnings) {
-                    console.log(`New earnings found for ${symbol}, updating data...`);
-                    await this.populateHistoricalData(symbol);
-                }
-            }
-
-            // Return all price history
-            const priceHistory = await PriceHistory.find({ symbol })
+            // Check for existing data first
+            const existingData = await PriceHistory.find({ symbol })
                 .sort({ date: -1 })
                 .lean();
 
-            console.log(`Returning ${priceHistory.length} records for ${symbol}`);
-            return priceHistory;
+            if (existingData.length > 0) {
+                console.log(`Found existing data for ${symbol}`);
+                if (!isMarketHours()) {
+                    console.log('Outside market hours, using existing data');
+                    return existingData;
+                }
+            }
+
+            try {
+                const result = await this.populateHistoricalData(symbol);
+                if (result) {
+                    return await PriceHistory.find({ symbol })
+                        .sort({ date: -1 })
+                        .lean();
+                }
+            } catch (error) {
+                console.error('Error fetching new data:', error.message);
+                if (existingData.length > 0) {
+                    console.log('Returning existing data due to API error');
+                    return existingData;
+                }
+                throw error;
+            }
         } catch (error) {
             console.error(`Error in getStockData for ${symbol}:`, error.message);
             throw error;

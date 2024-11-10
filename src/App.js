@@ -40,8 +40,8 @@ const App = () => {
   ];
 
   const movementTypeOptions = [
-    { value: 'after', label: 'Movement After Earnings' },
-    { value: 'during', label: 'Movement During Day of Earnings' }
+    { value: 'after', label: 'Movement After Earnings Report' },
+    { value: 'during', label: 'Movement 1 Day Prior to Announcement' }
   ];
   // Load AAPL data by default
   useEffect(() => {
