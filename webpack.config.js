@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
     publicPath: '/'
   },
@@ -16,18 +16,32 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            compact: true
+          }
         }
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(ico|png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html')
+      template: path.join(__dirname, 'src', 'index.html'),
+      favicon: path.join(__dirname, 'public', 'favicon.ico'), // Adjust path if needed
+      inject: true,
+      meta: {
+        viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+        'theme-color': '#3498db'
+      }
     })
   ],
   devServer: {
@@ -45,5 +59,28 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    moduleIds: 'deterministic',
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    }
+  },
+  performance: {
+    hints: false
+  },
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename]
+    }
   }
 };
