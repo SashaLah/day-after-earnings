@@ -1,0 +1,6836 @@
+[
+  {
+    "_id": "6731291960810aef32a7b8c4",
+    "date": "2024-10-31T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:44.718Z",
+    "lastUpdated": "2024-11-10T22:23:44.717Z",
+    "postEarningsClose": 222.91,
+    "preEarningsClose": 225.91
+  },
+  {
+    "_id": "6731291960810aef32a7b8c5",
+    "date": "2024-08-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:44.779Z",
+    "lastUpdated": "2024-11-10T22:23:44.778Z",
+    "postEarningsClose": 219.86,
+    "preEarningsClose": 218.36
+  },
+  {
+    "_id": "6731291960810aef32a7b8c6",
+    "date": "2024-05-02T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:44.836Z",
+    "lastUpdated": "2024-11-10T22:23:44.835Z",
+    "postEarningsClose": 183.38,
+    "preEarningsClose": 173.03
+  },
+  {
+    "_id": "6731291960810aef32a7b8c8",
+    "date": "2024-02-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:44.893Z",
+    "lastUpdated": "2024-11-10T22:23:44.893Z",
+    "postEarningsClose": 185.85,
+    "preEarningsClose": 186.86
+  },
+  {
+    "_id": "6731291960810aef32a7b8ca",
+    "date": "2023-11-02T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:44.950Z",
+    "lastUpdated": "2024-11-10T22:23:44.950Z",
+    "postEarningsClose": 176.65,
+    "preEarningsClose": 177.57
+  },
+  {
+    "_id": "6731291960810aef32a7b8cc",
+    "date": "2023-08-03T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.007Z",
+    "lastUpdated": "2024-11-10T22:23:45.007Z",
+    "postEarningsClose": 181.99,
+    "preEarningsClose": 191.17
+  },
+  {
+    "_id": "6731291960810aef32a7b8ce",
+    "date": "2023-05-04T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.068Z",
+    "lastUpdated": "2024-11-10T22:23:45.068Z",
+    "postEarningsClose": 173.57,
+    "preEarningsClose": 165.79
+  },
+  {
+    "_id": "6731291960810aef32a7b8d0",
+    "date": "2023-02-02T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.129Z",
+    "lastUpdated": "2024-11-10T22:23:45.129Z",
+    "postEarningsClose": 154.5,
+    "preEarningsClose": 150.82
+  },
+  {
+    "_id": "6731291960810aef32a7b8d2",
+    "date": "2022-10-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.196Z",
+    "lastUpdated": "2024-11-10T22:23:45.196Z",
+    "postEarningsClose": 155.74,
+    "preEarningsClose": 144.8
+  },
+  {
+    "_id": "6731291960810aef32a7b8d7",
+    "date": "2022-07-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.258Z",
+    "lastUpdated": "2024-11-10T22:23:45.258Z",
+    "postEarningsClose": 162.51,
+    "preEarningsClose": 157.35
+  },
+  {
+    "_id": "6731291960810aef32a7b8db",
+    "date": "2022-04-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.316Z",
+    "lastUpdated": "2024-11-10T22:23:45.315Z",
+    "postEarningsClose": 157.65,
+    "preEarningsClose": 163.64
+  },
+  {
+    "_id": "6731291960810aef32a7b8de",
+    "date": "2022-01-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.387Z",
+    "lastUpdated": "2024-11-10T22:23:45.387Z",
+    "postEarningsClose": 170.33,
+    "preEarningsClose": 159.22
+  },
+  {
+    "_id": "6731291960810aef32a7b8e2",
+    "date": "2021-10-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.446Z",
+    "lastUpdated": "2024-11-10T22:23:45.446Z",
+    "postEarningsClose": 149.8,
+    "preEarningsClose": 152.57
+  },
+  {
+    "_id": "6731291960810aef32a7b8e7",
+    "date": "2021-07-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.506Z",
+    "lastUpdated": "2024-11-10T22:23:45.505Z",
+    "postEarningsClose": 144.98,
+    "preEarningsClose": 146.77
+  },
+  {
+    "_id": "6731291960810aef32a7b8f4",
+    "date": "2021-04-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.566Z",
+    "lastUpdated": "2024-11-10T22:23:45.566Z",
+    "postEarningsClose": 133.48,
+    "preEarningsClose": 133.58
+  },
+  {
+    "_id": "6731291960810aef32a7b8fa",
+    "date": "2021-01-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.628Z",
+    "lastUpdated": "2024-11-10T22:23:45.627Z",
+    "postEarningsClose": 137.09,
+    "preEarningsClose": 142.06
+  },
+  {
+    "_id": "6731291960810aef32a7b8fe",
+    "date": "2020-10-29T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.689Z",
+    "lastUpdated": "2024-11-10T22:23:45.689Z",
+    "postEarningsClose": 108.86,
+    "preEarningsClose": 115.32
+  },
+  {
+    "_id": "6731291960810aef32a7b904",
+    "date": "2020-07-30T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.755Z",
+    "lastUpdated": "2024-11-10T22:23:45.755Z",
+    "postEarningsClose": 425.04,
+    "preEarningsClose": 384.76
+  },
+  {
+    "_id": "6731291960810aef32a7b909",
+    "date": "2020-04-30T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.816Z",
+    "lastUpdated": "2024-11-10T22:23:45.815Z",
+    "postEarningsClose": 289.07,
+    "preEarningsClose": 293.8
+  },
+  {
+    "_id": "6731291960810aef32a7b914",
+    "date": "2020-01-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.880Z",
+    "lastUpdated": "2024-11-10T22:23:45.880Z",
+    "postEarningsClose": 324.34,
+    "preEarningsClose": 317.69
+  },
+  {
+    "_id": "6731291960810aef32a7b91e",
+    "date": "2019-10-30T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:45.940Z",
+    "lastUpdated": "2024-11-10T22:23:45.940Z",
+    "postEarningsClose": 248.76,
+    "preEarningsClose": 243.26
+  },
+  {
+    "_id": "6731291960810aef32a7b926",
+    "date": "2019-07-30T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.002Z",
+    "lastUpdated": "2024-11-10T22:23:46.002Z",
+    "postEarningsClose": 213.04,
+    "preEarningsClose": 208.78
+  },
+  {
+    "_id": "6731291960810aef32a7b92e",
+    "date": "2019-04-30T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.064Z",
+    "lastUpdated": "2024-11-10T22:23:46.064Z",
+    "postEarningsClose": 210.52,
+    "preEarningsClose": 200.67
+  },
+  {
+    "_id": "6731291960810aef32a7b93a",
+    "date": "2019-01-29T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.142Z",
+    "lastUpdated": "2024-11-10T22:23:46.142Z",
+    "postEarningsClose": 165.25,
+    "preEarningsClose": 154.68
+  },
+  {
+    "_id": "6731291960810aef32a7b940",
+    "date": "2018-11-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.207Z",
+    "lastUpdated": "2024-11-10T22:23:46.207Z",
+    "postEarningsClose": 207.48,
+    "preEarningsClose": 222.22
+  },
+  {
+    "_id": "6731291960810aef32a7b947",
+    "date": "2018-07-31T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.267Z",
+    "lastUpdated": "2024-11-10T22:23:46.267Z",
+    "postEarningsClose": 201.5,
+    "preEarningsClose": 190.29
+  },
+  {
+    "_id": "6731291960810aef32a7b94c",
+    "date": "2018-05-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.329Z",
+    "lastUpdated": "2024-11-10T22:23:46.328Z",
+    "postEarningsClose": 176.57,
+    "preEarningsClose": 169.1
+  },
+  {
+    "_id": "6731291960810aef32a7b950",
+    "date": "2018-02-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.450Z",
+    "lastUpdated": "2024-11-10T22:23:46.450Z",
+    "postEarningsClose": 160.5,
+    "preEarningsClose": 167.78
+  },
+  {
+    "_id": "6731291960810aef32a7b957",
+    "date": "2017-11-02T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.510Z",
+    "lastUpdated": "2024-11-10T22:23:46.509Z",
+    "postEarningsClose": 172.5,
+    "preEarningsClose": 168.11
+  },
+  {
+    "_id": "6731291960810aef32a7b964",
+    "date": "2017-08-01T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.573Z",
+    "lastUpdated": "2024-11-10T22:23:46.573Z",
+    "postEarningsClose": 157.14,
+    "preEarningsClose": 150.05
+  },
+  {
+    "_id": "6731291960810aef32a7b96c",
+    "date": "2017-05-02T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.642Z",
+    "lastUpdated": "2024-11-10T22:23:46.641Z",
+    "postEarningsClose": 147.06,
+    "preEarningsClose": 147.51
+  },
+  {
+    "_id": "6731291960810aef32a7b971",
+    "date": "2017-01-31T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.704Z",
+    "lastUpdated": "2024-11-10T22:23:46.704Z",
+    "postEarningsClose": 128.75,
+    "preEarningsClose": 121.35
+  },
+  {
+    "_id": "6731291960810aef32a7b97c",
+    "date": "2016-10-25T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.766Z",
+    "lastUpdated": "2024-11-10T22:23:46.765Z",
+    "postEarningsClose": 115.59,
+    "preEarningsClose": 118.25
+  },
+  {
+    "_id": "6731291960810aef32a7b980",
+    "date": "2016-07-26T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.834Z",
+    "lastUpdated": "2024-11-10T22:23:46.834Z",
+    "postEarningsClose": 102.95,
+    "preEarningsClose": 96.67
+  },
+  {
+    "_id": "6731291960810aef32a7b986",
+    "date": "2016-04-26T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.891Z",
+    "lastUpdated": "2024-11-10T22:23:46.891Z",
+    "postEarningsClose": 97.82,
+    "preEarningsClose": 104.35
+  },
+  {
+    "_id": "6731291960810aef32a7b994",
+    "date": "2016-01-26T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:46.949Z",
+    "lastUpdated": "2024-11-10T22:23:46.949Z",
+    "postEarningsClose": 93.42,
+    "preEarningsClose": 99.99
+  },
+  {
+    "_id": "6731291960810aef32a7b999",
+    "date": "2015-10-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.007Z",
+    "lastUpdated": "2024-11-10T22:23:47.007Z",
+    "postEarningsClose": 119.27,
+    "preEarningsClose": 114.55
+  },
+  {
+    "_id": "6731291960810aef32a7b9a4",
+    "date": "2015-07-21T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.067Z",
+    "lastUpdated": "2024-11-10T22:23:47.067Z",
+    "postEarningsClose": 125.22,
+    "preEarningsClose": 130.75
+  },
+  {
+    "_id": "6731291960810aef32a7b9a9",
+    "date": "2015-04-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.125Z",
+    "lastUpdated": "2024-11-10T22:23:47.125Z",
+    "postEarningsClose": 130.56,
+    "preEarningsClose": 132.65
+  },
+  {
+    "_id": "6731291960810aef32a7b9b0",
+    "date": "2015-01-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.183Z",
+    "lastUpdated": "2024-11-10T22:23:47.183Z",
+    "postEarningsClose": 115.31,
+    "preEarningsClose": 109.14
+  },
+  {
+    "_id": "6731291960810aef32a7b9b9",
+    "date": "2014-10-20T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.248Z",
+    "lastUpdated": "2024-11-10T22:23:47.248Z",
+    "postEarningsClose": 102.47,
+    "preEarningsClose": 99.76
+  },
+  {
+    "_id": "6731291960810aef32a7b9bf",
+    "date": "2014-07-22T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.307Z",
+    "lastUpdated": "2024-11-10T22:23:47.307Z",
+    "postEarningsClose": 97.19,
+    "preEarningsClose": 94.72
+  },
+  {
+    "_id": "6731291960810aef32a7b9c4",
+    "date": "2014-04-23T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.367Z",
+    "lastUpdated": "2024-11-10T22:23:47.366Z",
+    "postEarningsClose": 567.77,
+    "preEarningsClose": 524.75
+  },
+  {
+    "_id": "6731291960810aef32a7b9cf",
+    "date": "2014-01-27T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.434Z",
+    "lastUpdated": "2024-11-10T22:23:47.434Z",
+    "postEarningsClose": 506.5,
+    "preEarningsClose": 550.5
+  },
+  {
+    "_id": "6731291960810aef32a7b9d7",
+    "date": "2013-10-28T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.492Z",
+    "lastUpdated": "2024-11-10T22:23:47.491Z",
+    "postEarningsClose": 516.678,
+    "preEarningsClose": 529.876
+  },
+  {
+    "_id": "6731291960810aef32a7b9e1",
+    "date": "2013-07-23T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.549Z",
+    "lastUpdated": "2024-11-10T22:23:47.548Z",
+    "postEarningsClose": 440.51,
+    "preEarningsClose": 418.99
+  },
+  {
+    "_id": "6731291960810aef32a7b9e4",
+    "date": "2013-04-23T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.607Z",
+    "lastUpdated": "2024-11-10T22:23:47.606Z",
+    "postEarningsClose": 405.462,
+    "preEarningsClose": 406.13
+  },
+  {
+    "_id": "6731291960810aef32a7b9ef",
+    "date": "2013-01-23T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.668Z",
+    "lastUpdated": "2024-11-10T22:23:47.668Z",
+    "postEarningsClose": 450.5,
+    "preEarningsClose": 514.005
+  },
+  {
+    "_id": "6731291960810aef32a7b9f7",
+    "date": "2012-10-25T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.729Z",
+    "lastUpdated": "2024-11-10T22:23:47.729Z",
+    "postEarningsClose": 604,
+    "preEarningsClose": 609.538
+  },
+  {
+    "_id": "6731291960810aef32a7b9fb",
+    "date": "2012-07-24T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.791Z",
+    "lastUpdated": "2024-11-10T22:23:47.791Z",
+    "postEarningsClose": 574.97,
+    "preEarningsClose": 600.92
+  },
+  {
+    "_id": "6731291960810aef32a7ba06",
+    "date": "2012-04-24T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.852Z",
+    "lastUpdated": "2024-11-10T22:23:47.852Z",
+    "postEarningsClose": 610,
+    "preEarningsClose": 560.28
+  },
+  {
+    "_id": "6731291960810aef32a7ba0d",
+    "date": "2012-01-24T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.915Z",
+    "lastUpdated": "2024-11-10T22:23:47.914Z",
+    "postEarningsClose": 446.66,
+    "preEarningsClose": 420.41
+  },
+  {
+    "_id": "6731291960810aef32a7ba10",
+    "date": "2011-10-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:47.976Z",
+    "lastUpdated": "2024-11-10T22:23:47.976Z",
+    "postEarningsClose": 398.62,
+    "preEarningsClose": 422.24
+  },
+  {
+    "_id": "6731291960810aef32a7ba16",
+    "date": "2011-07-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.082Z",
+    "lastUpdated": "2024-11-10T22:23:48.082Z",
+    "postEarningsClose": 386.9,
+    "preEarningsClose": 376.85
+  },
+  {
+    "_id": "6731291960810aef32a7ba1c",
+    "date": "2011-04-20T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.139Z",
+    "lastUpdated": "2024-11-10T22:23:48.139Z",
+    "postEarningsClose": 350.696,
+    "preEarningsClose": 342.41
+  },
+  {
+    "_id": "6731291960810aef32a7ba26",
+    "date": "2011-01-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.200Z",
+    "lastUpdated": "2024-11-10T22:23:48.199Z",
+    "postEarningsClose": 338.84,
+    "preEarningsClose": 340.65
+  },
+  {
+    "_id": "6731291960810aef32a7ba32",
+    "date": "2010-10-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.258Z",
+    "lastUpdated": "2024-11-10T22:23:48.258Z",
+    "postEarningsClose": 309.49,
+    "preEarningsClose": 318
+  },
+  {
+    "_id": "6731291960810aef32a7ba36",
+    "date": "2010-07-20T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.317Z",
+    "lastUpdated": "2024-11-10T22:23:48.317Z",
+    "postEarningsClose": 254.24,
+    "preEarningsClose": 251.89
+  },
+  {
+    "_id": "6731291960810aef32a7ba3f",
+    "date": "2010-04-20T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.377Z",
+    "lastUpdated": "2024-11-10T22:23:48.377Z",
+    "postEarningsClose": 259.22,
+    "preEarningsClose": 244.59
+  },
+  {
+    "_id": "6731291960810aef32a7ba41",
+    "date": "2010-01-25T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.438Z",
+    "lastUpdated": "2024-11-10T22:23:48.438Z",
+    "postEarningsClose": 205.94,
+    "preEarningsClose": 203.075
+  },
+  {
+    "_id": "6731291960810aef32a7ba50",
+    "date": "2009-10-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.499Z",
+    "lastUpdated": "2024-11-10T22:23:48.499Z",
+    "postEarningsClose": 198.76,
+    "preEarningsClose": 189.86
+  },
+  {
+    "_id": "6731291960810aef32a7ba58",
+    "date": "2009-07-21T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.560Z",
+    "lastUpdated": "2024-11-10T22:23:48.560Z",
+    "postEarningsClose": 156.74,
+    "preEarningsClose": 151.51
+  },
+  {
+    "_id": "6731291960810aef32a7ba60",
+    "date": "2009-04-22T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.619Z",
+    "lastUpdated": "2024-11-10T22:23:48.619Z",
+    "postEarningsClose": 125.4,
+    "preEarningsClose": 121.51
+  },
+  {
+    "_id": "6731291960810aef32a7ba69",
+    "date": "2009-01-21T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.678Z",
+    "lastUpdated": "2024-11-10T22:23:48.678Z",
+    "postEarningsClose": 88.36,
+    "preEarningsClose": 82.83
+  },
+  {
+    "_id": "6731291960810aef32a7ba6e",
+    "date": "2008-10-21T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.737Z",
+    "lastUpdated": "2024-11-10T22:23:48.737Z",
+    "postEarningsClose": 96.87,
+    "preEarningsClose": 91.49
+  },
+  {
+    "_id": "6731291960810aef32a7ba75",
+    "date": "2008-07-21T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.798Z",
+    "lastUpdated": "2024-11-10T22:23:48.797Z",
+    "postEarningsClose": 162.02,
+    "preEarningsClose": 166.29
+  },
+  {
+    "_id": "6731291960810aef32a7ba79",
+    "date": "2008-04-23T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.858Z",
+    "lastUpdated": "2024-11-10T22:23:48.857Z",
+    "postEarningsClose": 168.94,
+    "preEarningsClose": 162.89
+  },
+  {
+    "_id": "6731291960810aef32a7ba84",
+    "date": "2008-01-22T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.918Z",
+    "lastUpdated": "2024-11-10T22:23:48.918Z",
+    "postEarningsClose": 139.072,
+    "preEarningsClose": 155.64
+  },
+  {
+    "_id": "6731291960810aef32a7ba8c",
+    "date": "2007-10-22T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:48.990Z",
+    "lastUpdated": "2024-11-10T22:23:48.990Z",
+    "postEarningsClose": 186.16,
+    "preEarningsClose": 174.36
+  },
+  {
+    "_id": "6731291960810aef32a7ba98",
+    "date": "2007-07-25T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.049Z",
+    "lastUpdated": "2024-11-10T22:23:49.048Z",
+    "postEarningsClose": 146,
+    "preEarningsClose": 137.26
+  },
+  {
+    "_id": "6731291960810aef32a7ba9d",
+    "date": "2007-04-25T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.142Z",
+    "lastUpdated": "2024-11-10T22:23:49.141Z",
+    "postEarningsClose": 98.84,
+    "preEarningsClose": 95.348
+  },
+  {
+    "_id": "6731291960810aef32a7baa6",
+    "date": "2007-01-17T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.202Z",
+    "lastUpdated": "2024-11-10T22:23:49.202Z",
+    "postEarningsClose": 89.07,
+    "preEarningsClose": 94.95
+  },
+  {
+    "_id": "6731291960810aef32a7baaa",
+    "date": "2006-10-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.275Z",
+    "lastUpdated": "2024-11-10T22:23:49.274Z",
+    "postEarningsClose": 78.99,
+    "preEarningsClose": 74.53
+  },
+  {
+    "_id": "6731291960810aef32a7bab1",
+    "date": "2006-07-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.331Z",
+    "lastUpdated": "2024-11-10T22:23:49.330Z",
+    "postEarningsClose": 60.5,
+    "preEarningsClose": 54.1
+  },
+  {
+    "_id": "6731291960810aef32a7babc",
+    "date": "2006-04-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.388Z",
+    "lastUpdated": "2024-11-10T22:23:49.388Z",
+    "postEarningsClose": 67.63,
+    "preEarningsClose": 65.65
+  },
+  {
+    "_id": "6731291960810aef32a7bac1",
+    "date": "2006-01-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.449Z",
+    "lastUpdated": "2024-11-10T22:23:49.449Z",
+    "postEarningsClose": 79.035,
+    "preEarningsClose": 82.4901
+  },
+  {
+    "_id": "6731291960810aef32a7bac9",
+    "date": "2005-10-11T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.510Z",
+    "lastUpdated": "2024-11-10T22:23:49.510Z",
+    "postEarningsClose": 49.25,
+    "preEarningsClose": 51.59
+  },
+  {
+    "_id": "6731291960810aef32a7bacf",
+    "date": "2005-07-13T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.575Z",
+    "lastUpdated": "2024-11-10T22:23:49.574Z",
+    "postEarningsClose": 40.75,
+    "preEarningsClose": 38.35
+  },
+  {
+    "_id": "6731291960810aef32a7badc",
+    "date": "2005-04-13T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.639Z",
+    "lastUpdated": "2024-11-10T22:23:49.639Z",
+    "postEarningsClose": 37.26,
+    "preEarningsClose": 41.04
+  },
+  {
+    "_id": "6731291960810aef32a7bae0",
+    "date": "2005-01-12T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.699Z",
+    "lastUpdated": "2024-11-10T22:23:49.699Z",
+    "postEarningsClose": 69.8,
+    "preEarningsClose": 65.46
+  },
+  {
+    "_id": "6731291960810aef32a7bae8",
+    "date": "2004-10-13T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.761Z",
+    "lastUpdated": "2024-11-10T22:23:49.761Z",
+    "postEarningsClose": 44.98,
+    "preEarningsClose": 39.75
+  },
+  {
+    "_id": "6731291960810aef32a7baf0",
+    "date": "2004-07-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.821Z",
+    "lastUpdated": "2024-11-10T22:23:49.821Z",
+    "postEarningsClose": 32.93,
+    "preEarningsClose": 29.58
+  },
+  {
+    "_id": "6731291960810aef32a7bafa",
+    "date": "2004-04-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.883Z",
+    "lastUpdated": "2024-11-10T22:23:49.883Z",
+    "postEarningsClose": 29.3,
+    "preEarningsClose": 26.64
+  },
+  {
+    "_id": "6731291960810aef32a7bb03",
+    "date": "2004-01-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:49.941Z",
+    "lastUpdated": "2024-11-10T22:23:49.941Z",
+    "postEarningsClose": 22.85,
+    "preEarningsClose": 24.2
+  },
+  {
+    "_id": "6731291960810aef32a7bb09",
+    "date": "2003-10-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.000Z",
+    "lastUpdated": "2024-11-10T22:23:50.000Z",
+    "postEarningsClose": 23.25,
+    "preEarningsClose": 24.82
+  },
+  {
+    "_id": "6731291960810aef32a7bb0c",
+    "date": "2003-07-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.057Z",
+    "lastUpdated": "2024-11-10T22:23:50.057Z",
+    "postEarningsClose": 20.9,
+    "preEarningsClose": 19.87
+  },
+  {
+    "_id": "6731291960810aef32a7bb13",
+    "date": "2003-04-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.114Z",
+    "lastUpdated": "2024-11-10T22:23:50.114Z",
+    "postEarningsClose": 13.12,
+    "preEarningsClose": 13.24
+  },
+  {
+    "_id": "6731291960810aef32a7bb1b",
+    "date": "2003-01-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.184Z",
+    "lastUpdated": "2024-11-10T22:23:50.184Z",
+    "postEarningsClose": 14.62,
+    "preEarningsClose": 14.43
+  },
+  {
+    "_id": "6731291960810aef32a7bb20",
+    "date": "2002-10-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.242Z",
+    "lastUpdated": "2024-11-10T22:23:50.242Z",
+    "postEarningsClose": 14.11,
+    "preEarningsClose": 14.56
+  },
+  {
+    "_id": "6731291960810aef32a7bb28",
+    "date": "2002-07-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.301Z",
+    "lastUpdated": "2024-11-10T22:23:50.301Z",
+    "postEarningsClose": 15.63,
+    "preEarningsClose": 17.86
+  },
+  {
+    "_id": "6731291960810aef32a7bb2a",
+    "date": "2002-04-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.360Z",
+    "lastUpdated": "2024-11-10T22:23:50.360Z",
+    "postEarningsClose": 24.98,
+    "preEarningsClose": 25.41
+  },
+  {
+    "_id": "6731291960810aef32a7bb2e",
+    "date": "2002-01-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.441Z",
+    "lastUpdated": "2024-11-10T22:23:50.441Z",
+    "postEarningsClose": 22.48,
+    "preEarningsClose": 20.78
+  },
+  {
+    "_id": "6731291960810aef32a7bb30",
+    "date": "2001-10-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.500Z",
+    "lastUpdated": "2024-11-10T22:23:50.500Z",
+    "postEarningsClose": 18.3,
+    "preEarningsClose": 18
+  },
+  {
+    "_id": "6731291960810aef32a7bb36",
+    "date": "2001-07-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.559Z",
+    "lastUpdated": "2024-11-10T22:23:50.559Z",
+    "postEarningsClose": 19.96,
+    "preEarningsClose": 20.79
+  },
+  {
+    "_id": "6731291960810aef32a7bb42",
+    "date": "2001-04-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.616Z",
+    "lastUpdated": "2024-11-10T22:23:50.616Z",
+    "postEarningsClose": 25.72,
+    "preEarningsClose": 22.79
+  },
+  {
+    "_id": "6731291960810aef32a7bb49",
+    "date": "2000-12-31T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.675Z",
+    "lastUpdated": "2024-11-10T22:23:50.675Z",
+    "postEarningsClose": 14.88,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb50",
+    "date": "2000-10-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.733Z",
+    "lastUpdated": "2024-11-10T22:23:50.732Z",
+    "postEarningsClose": 18.94,
+    "preEarningsClose": 20.12
+  },
+  {
+    "_id": "6731291960810aef32a7bb57",
+    "date": "2000-07-18T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.805Z",
+    "lastUpdated": "2024-11-10T22:23:50.805Z",
+    "postEarningsClose": 52.69,
+    "preEarningsClose": 57.25
+  },
+  {
+    "_id": "6731291960810aef32a7bb5d",
+    "date": "2000-04-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.862Z",
+    "lastUpdated": "2024-11-10T22:23:50.862Z",
+    "postEarningsClose": 118.87,
+    "preEarningsClose": 121.12
+  },
+  {
+    "_id": "6731291960810aef32a7bb64",
+    "date": "2000-01-19T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.921Z",
+    "lastUpdated": "2024-11-10T22:23:50.920Z",
+    "postEarningsClose": 113.5,
+    "preEarningsClose": 106.56
+  },
+  {
+    "_id": "6731291960810aef32a7bb6d",
+    "date": "1999-10-13T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:50.980Z",
+    "lastUpdated": "2024-11-10T22:23:50.980Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb74",
+    "date": "1999-07-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.038Z",
+    "lastUpdated": "2024-11-10T22:23:51.038Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb7a",
+    "date": "1999-04-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.094Z",
+    "lastUpdated": "2024-11-10T22:23:51.093Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb8a",
+    "date": "1999-01-13T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.151Z",
+    "lastUpdated": "2024-11-10T22:23:51.151Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb8e",
+    "date": "1998-10-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.209Z",
+    "lastUpdated": "2024-11-10T22:23:51.209Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb91",
+    "date": "1998-07-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.267Z",
+    "lastUpdated": "2024-11-10T22:23:51.267Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb95",
+    "date": "1998-04-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.325Z",
+    "lastUpdated": "2024-11-10T22:23:51.325Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bb9a",
+    "date": "1998-01-14T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.383Z",
+    "lastUpdated": "2024-11-10T22:23:51.383Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bba3",
+    "date": "1997-10-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.442Z",
+    "lastUpdated": "2024-11-10T22:23:51.442Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbac",
+    "date": "1997-07-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.501Z",
+    "lastUpdated": "2024-11-10T22:23:51.501Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbb4",
+    "date": "1997-04-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.564Z",
+    "lastUpdated": "2024-11-10T22:23:51.564Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbb8",
+    "date": "1997-01-15T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.621Z",
+    "lastUpdated": "2024-11-10T22:23:51.621Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbc1",
+    "date": "1996-10-16T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.682Z",
+    "lastUpdated": "2024-11-10T22:23:51.682Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbc5",
+    "date": "1996-07-17T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.741Z",
+    "lastUpdated": "2024-11-10T22:23:51.740Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731291960810aef32a7bbc9",
+    "date": "1996-04-17T00:00:00.000Z",
+    "symbol": "AAPL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:43:52.917Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:23:51.799Z",
+    "lastUpdated": "2024-11-10T22:23:51.799Z",
+    "postEarningsClose": null,
+    "preEarningsClose": null
+  },
+  {
+    "_id": "6731293160810aef32a7c463",
+    "date": "2024-10-29T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.007Z",
+    "lastUpdated": "2024-11-10T22:11:14.006Z",
+    "postEarningsClose": 174.46,
+    "preEarningsClose": 169.68
+  },
+  {
+    "_id": "6731293160810aef32a7c464",
+    "date": "2024-07-23T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.068Z",
+    "lastUpdated": "2024-11-10T22:11:14.068Z",
+    "postEarningsClose": 172.63,
+    "preEarningsClose": 181.79
+  },
+  {
+    "_id": "6731293160810aef32a7c465",
+    "date": "2024-04-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.127Z",
+    "lastUpdated": "2024-11-10T22:11:14.127Z",
+    "postEarningsClose": 171.95,
+    "preEarningsClose": 156
+  },
+  {
+    "_id": "6731293160810aef32a7c466",
+    "date": "2024-01-30T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.184Z",
+    "lastUpdated": "2024-11-10T22:11:14.184Z",
+    "postEarningsClose": 140.1,
+    "preEarningsClose": 151.46
+  },
+  {
+    "_id": "6731293160810aef32a7c467",
+    "date": "2023-10-24T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.241Z",
+    "lastUpdated": "2024-11-10T22:11:14.241Z",
+    "postEarningsClose": 125.61,
+    "preEarningsClose": 138.81
+  },
+  {
+    "_id": "6731293160810aef32a7c468",
+    "date": "2023-07-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.299Z",
+    "lastUpdated": "2024-11-10T22:11:14.299Z",
+    "postEarningsClose": 129.27,
+    "preEarningsClose": 122.21
+  },
+  {
+    "_id": "6731293160810aef32a7c469",
+    "date": "2023-04-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.365Z",
+    "lastUpdated": "2024-11-10T22:11:14.365Z",
+    "postEarningsClose": 103.71,
+    "preEarningsClose": 103.85
+  },
+  {
+    "_id": "6731293160810aef32a7c46a",
+    "date": "2023-02-02T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.427Z",
+    "lastUpdated": "2024-11-10T22:11:14.427Z",
+    "postEarningsClose": 104.78,
+    "preEarningsClose": 107.74
+  },
+  {
+    "_id": "6731293160810aef32a7c46b",
+    "date": "2022-10-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.484Z",
+    "lastUpdated": "2024-11-10T22:11:14.484Z",
+    "postEarningsClose": 94.93,
+    "preEarningsClose": 104.48
+  },
+  {
+    "_id": "6731293160810aef32a7c46c",
+    "date": "2022-07-26T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.540Z",
+    "lastUpdated": "2024-11-10T22:11:14.540Z",
+    "postEarningsClose": 113.06,
+    "preEarningsClose": 105.02
+  },
+  {
+    "_id": "6731293160810aef32a7c46d",
+    "date": "2022-04-26T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.599Z",
+    "lastUpdated": "2024-11-10T22:11:14.599Z",
+    "postEarningsClose": 2285.89,
+    "preEarningsClose": 2373
+  },
+  {
+    "_id": "6731293160810aef32a7c46e",
+    "date": "2022-02-01T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.657Z",
+    "lastUpdated": "2024-11-10T22:11:14.656Z",
+    "postEarningsClose": 2960,
+    "preEarningsClose": 2752.88
+  },
+  {
+    "_id": "6731293160810aef32a7c46f",
+    "date": "2021-10-26T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.714Z",
+    "lastUpdated": "2024-11-10T22:11:14.714Z",
+    "postEarningsClose": 2924.35,
+    "preEarningsClose": 2786.17
+  },
+  {
+    "_id": "6731293160810aef32a7c470",
+    "date": "2021-07-27T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.772Z",
+    "lastUpdated": "2024-11-10T22:11:14.771Z",
+    "postEarningsClose": 2721.88,
+    "preEarningsClose": 2638
+  },
+  {
+    "_id": "6731293160810aef32a7c471",
+    "date": "2021-04-27T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.829Z",
+    "lastUpdated": "2024-11-10T22:11:14.829Z",
+    "postEarningsClose": 2359.04,
+    "preEarningsClose": 2290.98
+  },
+  {
+    "_id": "6731293160810aef32a7c472",
+    "date": "2021-02-02T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.886Z",
+    "lastUpdated": "2024-11-10T22:11:14.886Z",
+    "postEarningsClose": 2058.88,
+    "preEarningsClose": 1919.12
+  },
+  {
+    "_id": "6731293160810aef32a7c473",
+    "date": "2020-10-29T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:14.946Z",
+    "lastUpdated": "2024-11-10T22:11:14.946Z",
+    "postEarningsClose": 1616.11,
+    "preEarningsClose": 1556.88
+  },
+  {
+    "_id": "6731293160810aef32a7c474",
+    "date": "2020-07-30T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.011Z",
+    "lastUpdated": "2024-11-10T22:11:15.011Z",
+    "postEarningsClose": 1487.95,
+    "preEarningsClose": 1538.37
+  },
+  {
+    "_id": "6731293160810aef32a7c479",
+    "date": "2020-04-28T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.128Z",
+    "lastUpdated": "2024-11-10T22:11:15.128Z",
+    "postEarningsClose": 1342.18,
+    "preEarningsClose": 1232.59
+  },
+  {
+    "_id": "6731293160810aef32a7c47c",
+    "date": "2020-02-03T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.185Z",
+    "lastUpdated": "2024-11-10T22:11:15.184Z",
+    "postEarningsClose": 1445.41,
+    "preEarningsClose": 1482.6
+  },
+  {
+    "_id": "6731293160810aef32a7c47f",
+    "date": "2019-10-28T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.242Z",
+    "lastUpdated": "2024-11-10T22:11:15.242Z",
+    "postEarningsClose": 1260.66,
+    "preEarningsClose": 1288.98
+  },
+  {
+    "_id": "6731293160810aef32a7c484",
+    "date": "2019-07-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.298Z",
+    "lastUpdated": "2024-11-10T22:11:15.298Z",
+    "postEarningsClose": 1245.22,
+    "preEarningsClose": 1135.94
+  },
+  {
+    "_id": "6731293160810aef32a7c488",
+    "date": "2019-04-29T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.423Z",
+    "lastUpdated": "2024-11-10T22:11:15.423Z",
+    "postEarningsClose": 1198.96,
+    "preEarningsClose": 1296.2
+  },
+  {
+    "_id": "6731293160810aef32a7c496",
+    "date": "2019-02-04T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.480Z",
+    "lastUpdated": "2024-11-10T22:11:15.480Z",
+    "postEarningsClose": 1151.87,
+    "preEarningsClose": 1141.42
+  },
+  {
+    "_id": "6731293160810aef32a7c497",
+    "date": "2018-10-25T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.538Z",
+    "lastUpdated": "2024-11-10T22:11:15.538Z",
+    "postEarningsClose": 1083.75,
+    "preEarningsClose": 1103.59
+  },
+  {
+    "_id": "6731293160810aef32a7c49a",
+    "date": "2018-07-23T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.595Z",
+    "lastUpdated": "2024-11-10T22:11:15.595Z",
+    "postEarningsClose": 1258.15,
+    "preEarningsClose": 1211
+  },
+  {
+    "_id": "6731293160810aef32a7c4a1",
+    "date": "2018-04-23T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.652Z",
+    "lastUpdated": "2024-11-10T22:11:15.652Z",
+    "postEarningsClose": 1022.64,
+    "preEarningsClose": 1073.81
+  },
+  {
+    "_id": "6731293160810aef32a7c4a3",
+    "date": "2018-02-01T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.709Z",
+    "lastUpdated": "2024-11-10T22:11:15.709Z",
+    "postEarningsClose": 1119.2,
+    "preEarningsClose": 1181.59
+  },
+  {
+    "_id": "6731293160810aef32a7c4ab",
+    "date": "2017-10-26T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.766Z",
+    "lastUpdated": "2024-11-10T22:11:15.766Z",
+    "postEarningsClose": 1033.67,
+    "preEarningsClose": 991.42
+  },
+  {
+    "_id": "6731293160810aef32a7c4b0",
+    "date": "2017-07-24T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.824Z",
+    "lastUpdated": "2024-11-10T22:11:15.824Z",
+    "postEarningsClose": 969.03,
+    "preEarningsClose": 998.31
+  },
+  {
+    "_id": "6731293160810aef32a7c4b4",
+    "date": "2017-04-27T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.882Z",
+    "lastUpdated": "2024-11-10T22:11:15.881Z",
+    "postEarningsClose": 924.52,
+    "preEarningsClose": 891.44
+  },
+  {
+    "_id": "6731293160810aef32a7c4b6",
+    "date": "2017-01-26T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.938Z",
+    "lastUpdated": "2024-11-10T22:11:15.938Z",
+    "postEarningsClose": 845.03,
+    "preEarningsClose": 856.98
+  },
+  {
+    "_id": "6731293160810aef32a7c4b7",
+    "date": "2016-10-27T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:15.999Z",
+    "lastUpdated": "2024-11-10T22:11:15.999Z",
+    "postEarningsClose": 819.56,
+    "preEarningsClose": 817.35
+  },
+  {
+    "_id": "6731293160810aef32a7c4be",
+    "date": "2016-07-28T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.062Z",
+    "lastUpdated": "2024-11-10T22:11:16.062Z",
+    "postEarningsClose": 791.34,
+    "preEarningsClose": 765.84
+  },
+  {
+    "_id": "6731293160810aef32a7c4c4",
+    "date": "2016-04-21T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.120Z",
+    "lastUpdated": "2024-11-10T22:11:16.120Z",
+    "postEarningsClose": 737.77,
+    "preEarningsClose": 780
+  },
+  {
+    "_id": "6731293160810aef32a7c4ca",
+    "date": "2016-02-01T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.176Z",
+    "lastUpdated": "2024-11-10T22:11:16.176Z",
+    "postEarningsClose": 780.91,
+    "preEarningsClose": 770.77
+  },
+  {
+    "_id": "6731293160810aef32a7c4cd",
+    "date": "2015-10-22T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.235Z",
+    "lastUpdated": "2024-11-10T22:11:16.234Z",
+    "postEarningsClose": 719.33,
+    "preEarningsClose": 681.14
+  },
+  {
+    "_id": "6731293160810aef32a7c4d4",
+    "date": "2015-07-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.290Z",
+    "lastUpdated": "2024-11-10T22:11:16.290Z",
+    "postEarningsClose": 699.62,
+    "preEarningsClose": 601.78
+  },
+  {
+    "_id": "6731293160810aef32a7c4d7",
+    "date": "2015-04-23T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.347Z",
+    "lastUpdated": "2024-11-10T22:11:16.347Z",
+    "postEarningsClose": 573.66,
+    "preEarningsClose": 557.46
+  },
+  {
+    "_id": "6731293160810aef32a7c4da",
+    "date": "2015-01-29T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.404Z",
+    "lastUpdated": "2024-11-10T22:11:16.404Z",
+    "postEarningsClose": 537.55,
+    "preEarningsClose": 513.23
+  },
+  {
+    "_id": "6731293160810aef32a7c4dd",
+    "date": "2014-10-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.474Z",
+    "lastUpdated": "2024-11-10T22:11:16.473Z",
+    "postEarningsClose": 522.97,
+    "preEarningsClose": 536.92
+  },
+  {
+    "_id": "6731293160810aef32a7c4e2",
+    "date": "2014-07-17T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.531Z",
+    "lastUpdated": "2024-11-10T22:11:16.531Z",
+    "postEarningsClose": 605.11,
+    "preEarningsClose": 580.82
+  },
+  {
+    "_id": "6731293160810aef32a7c4e9",
+    "date": "2014-04-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.590Z",
+    "lastUpdated": "2024-11-10T22:11:16.590Z",
+    "postEarningsClose": 543.34,
+    "preEarningsClose": 563.9
+  },
+  {
+    "_id": "6731293160810aef32a7c4ec",
+    "date": "2014-01-30T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.646Z",
+    "lastUpdated": "2024-11-10T22:11:16.646Z",
+    "postEarningsClose": 1180.97,
+    "preEarningsClose": 1135.39
+  },
+  {
+    "_id": "6731293160810aef32a7c4ee",
+    "date": "2013-10-17T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.704Z",
+    "lastUpdated": "2024-11-10T22:11:16.704Z",
+    "postEarningsClose": 1011.41,
+    "preEarningsClose": 888.794
+  },
+  {
+    "_id": "6731293160810aef32a7c4f4",
+    "date": "2013-07-18T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.761Z",
+    "lastUpdated": "2024-11-10T22:11:16.760Z",
+    "postEarningsClose": 896.598,
+    "preEarningsClose": 910.68
+  },
+  {
+    "_id": "6731293160810aef32a7c4f7",
+    "date": "2013-04-18T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.818Z",
+    "lastUpdated": "2024-11-10T22:11:16.818Z",
+    "postEarningsClose": 799.87,
+    "preEarningsClose": 765.914
+  },
+  {
+    "_id": "6731293160810aef32a7c4fa",
+    "date": "2013-01-22T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.878Z",
+    "lastUpdated": "2024-11-10T22:11:16.878Z",
+    "postEarningsClose": 741.5,
+    "preEarningsClose": 702.87
+  },
+  {
+    "_id": "6731293160810aef32a7c501",
+    "date": "2012-10-18T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.938Z",
+    "lastUpdated": "2024-11-10T22:11:16.938Z",
+    "postEarningsClose": 681.79,
+    "preEarningsClose": 695
+  },
+  {
+    "_id": "6731293160810aef32a7c504",
+    "date": "2012-07-19T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:16.997Z",
+    "lastUpdated": "2024-11-10T22:11:16.997Z",
+    "postEarningsClose": 610.82,
+    "preEarningsClose": 593.06
+  },
+  {
+    "_id": "6731293160810aef32a7c50c",
+    "date": "2012-04-12T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.122Z",
+    "lastUpdated": "2024-11-10T22:11:17.121Z",
+    "postEarningsClose": 624.6,
+    "preEarningsClose": 651.01
+  },
+  {
+    "_id": "6731293160810aef32a7c50e",
+    "date": "2012-01-19T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.193Z",
+    "lastUpdated": "2024-11-10T22:11:17.193Z",
+    "postEarningsClose": 585.99,
+    "preEarningsClose": 639.57
+  },
+  {
+    "_id": "6731293160810aef32a7c510",
+    "date": "2011-10-13T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.251Z",
+    "lastUpdated": "2024-11-10T22:11:17.251Z",
+    "postEarningsClose": 591.68,
+    "preEarningsClose": 558.99
+  },
+  {
+    "_id": "6731293160810aef32a7c512",
+    "date": "2011-07-14T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.309Z",
+    "lastUpdated": "2024-11-10T22:11:17.308Z",
+    "postEarningsClose": 597.62,
+    "preEarningsClose": 528.94
+  },
+  {
+    "_id": "6731293160810aef32a7c516",
+    "date": "2011-04-14T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.365Z",
+    "lastUpdated": "2024-11-10T22:11:17.365Z",
+    "postEarningsClose": 530.7,
+    "preEarningsClose": 578.51
+  },
+  {
+    "_id": "6731293160810aef32a7c518",
+    "date": "2011-01-20T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.424Z",
+    "lastUpdated": "2024-11-10T22:11:17.423Z",
+    "postEarningsClose": 611.83,
+    "preEarningsClose": 626.77
+  },
+  {
+    "_id": "6731293160810aef32a7c51b",
+    "date": "2010-10-14T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.483Z",
+    "lastUpdated": "2024-11-10T22:11:17.482Z",
+    "postEarningsClose": 601.45,
+    "preEarningsClose": 540.93
+  },
+  {
+    "_id": "6731293160810aef32a7c51e",
+    "date": "2010-07-15T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.543Z",
+    "lastUpdated": "2024-11-10T22:11:17.543Z",
+    "postEarningsClose": 459.605,
+    "preEarningsClose": 494.02
+  },
+  {
+    "_id": "6731293160810aef32a7c520",
+    "date": "2010-04-15T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.603Z",
+    "lastUpdated": "2024-11-10T22:11:17.603Z",
+    "postEarningsClose": 550.145,
+    "preEarningsClose": 595.3
+  },
+  {
+    "_id": "6731293160810aef32a7c527",
+    "date": "2010-01-21T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.663Z",
+    "lastUpdated": "2024-11-10T22:11:17.662Z",
+    "postEarningsClose": 550.01,
+    "preEarningsClose": 582.98
+  },
+  {
+    "_id": "6731293160810aef32a7c52d",
+    "date": "2009-10-15T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.722Z",
+    "lastUpdated": "2024-11-10T22:11:17.722Z",
+    "postEarningsClose": 549.85,
+    "preEarningsClose": 529.91
+  },
+  {
+    "_id": "6731293160810aef32a7c530",
+    "date": "2009-07-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.783Z",
+    "lastUpdated": "2024-11-10T22:11:17.782Z",
+    "postEarningsClose": 430.25,
+    "preEarningsClose": 442.6
+  },
+  {
+    "_id": "6731293160810aef32a7c536",
+    "date": "2009-04-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.842Z",
+    "lastUpdated": "2024-11-10T22:11:17.842Z",
+    "postEarningsClose": 392.24,
+    "preEarningsClose": 388.74
+  },
+  {
+    "_id": "6731293160810aef32a7c538",
+    "date": "2009-01-22T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.902Z",
+    "lastUpdated": "2024-11-10T22:11:17.902Z",
+    "postEarningsClose": 324.7,
+    "preEarningsClose": 306.5
+  },
+  {
+    "_id": "6731293160810aef32a7c539",
+    "date": "2008-10-16T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:17.962Z",
+    "lastUpdated": "2024-11-10T22:11:17.962Z",
+    "postEarningsClose": 372.54,
+    "preEarningsClose": 353.02
+  },
+  {
+    "_id": "6731293160810aef32a7c53e",
+    "date": "2008-07-17T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.035Z",
+    "lastUpdated": "2024-11-10T22:11:18.034Z",
+    "postEarningsClose": 481.32,
+    "preEarningsClose": 533.44
+  },
+  {
+    "_id": "6731293160810aef32a7c546",
+    "date": "2008-04-17T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.124Z",
+    "lastUpdated": "2024-11-10T22:11:18.124Z",
+    "postEarningsClose": 539.41,
+    "preEarningsClose": 449.54
+  },
+  {
+    "_id": "6731293160810aef32a7c548",
+    "date": "2008-01-31T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.184Z",
+    "lastUpdated": "2024-11-10T22:11:18.184Z",
+    "postEarningsClose": 515.9,
+    "preEarningsClose": 564.3
+  },
+  {
+    "_id": "6731293160810aef32a7c54e",
+    "date": "2007-10-18T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.242Z",
+    "lastUpdated": "2024-11-10T22:11:18.241Z",
+    "postEarningsClose": 644.71,
+    "preEarningsClose": 639.62
+  },
+  {
+    "_id": "6731293160810aef32a7c551",
+    "date": "2007-07-19T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.302Z",
+    "lastUpdated": "2024-11-10T22:11:18.302Z",
+    "postEarningsClose": 520.12,
+    "preEarningsClose": 548.59
+  },
+  {
+    "_id": "6731293160810aef32a7c552",
+    "date": "2007-04-19T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.374Z",
+    "lastUpdated": "2024-11-10T22:11:18.374Z",
+    "postEarningsClose": 482.48,
+    "preEarningsClose": 471.65
+  },
+  {
+    "_id": "6731293160810aef32a7c553",
+    "date": "2007-01-31T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.433Z",
+    "lastUpdated": "2024-11-10T22:11:18.433Z",
+    "postEarningsClose": 481.75,
+    "preEarningsClose": 501.5
+  },
+  {
+    "_id": "6731293160810aef32a7c557",
+    "date": "2006-10-19T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.491Z",
+    "lastUpdated": "2024-11-10T22:11:18.491Z",
+    "postEarningsClose": 459.67,
+    "preEarningsClose": 426.06
+  },
+  {
+    "_id": "6731293160810aef32a7c559",
+    "date": "2006-07-20T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.549Z",
+    "lastUpdated": "2024-11-10T22:11:18.549Z",
+    "postEarningsClose": 390.108,
+    "preEarningsClose": 387.12
+  },
+  {
+    "_id": "6731293160810aef32a7c55a",
+    "date": "2006-04-20T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.609Z",
+    "lastUpdated": "2024-11-10T22:11:18.609Z",
+    "postEarningsClose": 437.1,
+    "preEarningsClose": 415
+  },
+  {
+    "_id": "6731293160810aef32a7c55b",
+    "date": "2006-01-31T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.667Z",
+    "lastUpdated": "2024-11-10T22:11:18.667Z",
+    "postEarningsClose": 401.78,
+    "preEarningsClose": 432.6601
+  },
+  {
+    "_id": "6731293160810aef32a7c55d",
+    "date": "2005-10-20T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.741Z",
+    "lastUpdated": "2024-11-10T22:11:18.740Z",
+    "postEarningsClose": 339.9,
+    "preEarningsClose": 303.2
+  },
+  {
+    "_id": "6731293160810aef32a7c560",
+    "date": "2005-07-21T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.814Z",
+    "lastUpdated": "2024-11-10T22:11:18.814Z",
+    "postEarningsClose": 302.4,
+    "preEarningsClose": 313.94
+  },
+  {
+    "_id": "6731293160810aef32a7c562",
+    "date": "2005-04-21T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.871Z",
+    "lastUpdated": "2024-11-10T22:11:18.871Z",
+    "postEarningsClose": 215.81,
+    "preEarningsClose": 204.75
+  },
+  {
+    "_id": "6731293160810aef32a7c566",
+    "date": "2005-02-01T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.929Z",
+    "lastUpdated": "2024-11-10T22:11:18.929Z",
+    "postEarningsClose": 205.96,
+    "preEarningsClose": 191.9
+  },
+  {
+    "_id": "6731293160810aef32a7c568",
+    "date": "2004-10-21T00:00:00.000Z",
+    "symbol": "GOOGL",
+    "__v": 0,
+    "createdAt": "2024-11-10T21:44:17.758Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:11:18.985Z",
+    "lastUpdated": "2024-11-10T22:11:18.985Z",
+    "postEarningsClose": 172.43,
+    "preEarningsClose": 149.38
+  },
+  {
+    "_id": "67312fb760810aef32a9ba53",
+    "date": "2024-10-29T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba54",
+    "date": "2024-07-23T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba56",
+    "date": "2024-04-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba58",
+    "date": "2024-01-30T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba5a",
+    "date": "2023-10-23T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba5d",
+    "date": "2023-07-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba5f",
+    "date": "2023-04-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba61",
+    "date": "2023-02-02T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba64",
+    "date": "2022-10-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba66",
+    "date": "2022-07-26T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba68",
+    "date": "2022-04-26T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba6a",
+    "date": "2022-02-01T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba6b",
+    "date": "2021-10-26T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba6e",
+    "date": "2021-07-27T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba74",
+    "date": "2021-04-27T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba7a",
+    "date": "2021-02-02T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba7e",
+    "date": "2020-10-29T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba85",
+    "date": "2020-07-30T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba89",
+    "date": "2020-04-28T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba8f",
+    "date": "2020-02-03T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba98",
+    "date": "2019-10-28T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9ba9c",
+    "date": "2019-07-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9baa1",
+    "date": "2019-04-29T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9baa3",
+    "date": "2019-02-04T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9baad",
+    "date": "2018-10-25T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9baaf",
+    "date": "2018-07-23T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bab1",
+    "date": "2018-04-23T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bab5",
+    "date": "2018-02-01T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bab7",
+    "date": "2017-10-26T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bab9",
+    "date": "2017-07-24T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9babb",
+    "date": "2017-04-27T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bac0",
+    "date": "2017-01-26T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bac1",
+    "date": "2016-10-27T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bac3",
+    "date": "2016-07-28T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bac8",
+    "date": "2016-04-21T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9baca",
+    "date": "2016-02-01T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bacc",
+    "date": "2015-10-22T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bacf",
+    "date": "2015-07-16T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bad2",
+    "date": "2015-04-23T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bad4",
+    "date": "2015-01-29T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bad5",
+    "date": "2014-10-16T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9bad8",
+    "date": "2014-07-17T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "67312fb760810aef32a9badb",
+    "date": "2014-04-16T00:00:00.000Z",
+    "symbol": "GOOG",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:12:07.698Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:12:07.698Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd1b",
+    "date": "2024-10-30T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd1c",
+    "date": "2024-07-30T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd1f",
+    "date": "2024-04-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd21",
+    "date": "2024-01-30T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd24",
+    "date": "2023-10-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd26",
+    "date": "2023-07-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd2e",
+    "date": "2023-04-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd2f",
+    "date": "2023-01-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd34",
+    "date": "2022-10-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd3b",
+    "date": "2022-07-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd4c",
+    "date": "2022-04-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd4f",
+    "date": "2022-01-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd53",
+    "date": "2021-10-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd58",
+    "date": "2021-07-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd67",
+    "date": "2021-04-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd74",
+    "date": "2021-01-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd77",
+    "date": "2020-10-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd81",
+    "date": "2020-07-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd89",
+    "date": "2020-04-29T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd8d",
+    "date": "2020-01-29T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd96",
+    "date": "2019-10-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dd9a",
+    "date": "2019-07-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddae",
+    "date": "2019-04-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddb1",
+    "date": "2019-01-30T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddb8",
+    "date": "2018-10-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddb9",
+    "date": "2018-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddc3",
+    "date": "2018-04-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddc7",
+    "date": "2018-01-31T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddd1",
+    "date": "2017-10-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddd5",
+    "date": "2017-07-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddd9",
+    "date": "2017-04-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dddd",
+    "date": "2017-01-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dde3",
+    "date": "2016-10-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dde8",
+    "date": "2016-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ddfa",
+    "date": "2016-04-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de0b",
+    "date": "2016-01-28T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de12",
+    "date": "2015-10-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de18",
+    "date": "2015-07-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de28",
+    "date": "2015-04-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de2b",
+    "date": "2015-01-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de2e",
+    "date": "2014-10-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de32",
+    "date": "2014-07-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de40",
+    "date": "2014-04-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de43",
+    "date": "2014-01-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de4a",
+    "date": "2013-10-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de4f",
+    "date": "2013-07-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de5c",
+    "date": "2013-04-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de62",
+    "date": "2013-01-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de65",
+    "date": "2012-10-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de6e",
+    "date": "2012-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de70",
+    "date": "2012-04-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de74",
+    "date": "2012-01-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de79",
+    "date": "2011-10-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de7d",
+    "date": "2011-07-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de81",
+    "date": "2011-04-28T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de88",
+    "date": "2011-01-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de95",
+    "date": "2010-10-28T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9de9e",
+    "date": "2010-07-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dea3",
+    "date": "2010-04-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dea6",
+    "date": "2010-01-28T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dea8",
+    "date": "2009-10-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dea9",
+    "date": "2009-07-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9deac",
+    "date": "2009-04-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dead",
+    "date": "2009-01-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9deb4",
+    "date": "2008-10-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9deca",
+    "date": "2008-07-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9decd",
+    "date": "2008-04-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ded0",
+    "date": "2008-01-24T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ded4",
+    "date": "2007-10-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9ded9",
+    "date": "2007-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dedd",
+    "date": "2007-04-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dee2",
+    "date": "2007-01-25T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9def3",
+    "date": "2006-10-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9defb",
+    "date": "2006-07-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df00",
+    "date": "2006-04-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df03",
+    "date": "2006-01-26T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df09",
+    "date": "2005-10-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df0c",
+    "date": "2005-07-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df10",
+    "date": "2005-04-28T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df15",
+    "date": "2005-01-27T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df1a",
+    "date": "2004-10-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df28",
+    "date": "2004-07-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df2c",
+    "date": "2004-04-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df34",
+    "date": "2004-01-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df40",
+    "date": "2003-10-23T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df44",
+    "date": "2003-07-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df50",
+    "date": "2003-04-15T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df56",
+    "date": "2003-01-16T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df58",
+    "date": "2002-10-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df5d",
+    "date": "2002-07-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df66",
+    "date": "2002-04-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df6f",
+    "date": "2002-01-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df73",
+    "date": "2001-10-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df76",
+    "date": "2001-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df7f",
+    "date": "2001-04-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df82",
+    "date": "2001-01-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df85",
+    "date": "2000-10-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df8b",
+    "date": "2000-07-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df90",
+    "date": "2000-04-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df97",
+    "date": "2000-01-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9df9d",
+    "date": "1999-10-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfa9",
+    "date": "1999-07-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfac",
+    "date": "1999-04-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfb0",
+    "date": "1999-01-19T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfb5",
+    "date": "1998-10-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfba",
+    "date": "1998-07-16T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfc3",
+    "date": "1998-04-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfce",
+    "date": "1998-01-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfd5",
+    "date": "1997-10-20T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfe1",
+    "date": "1997-07-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfe3",
+    "date": "1997-04-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dfe9",
+    "date": "1997-01-17T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dff1",
+    "date": "1996-10-21T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9dff7",
+    "date": "1996-07-22T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731302860810aef32a9e000",
+    "date": "1996-04-18T00:00:00.000Z",
+    "symbol": "MSFT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:14:00.657Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:14:00.657Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa061",
+    "date": "2024-08-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa064",
+    "date": "2024-05-22T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa067",
+    "date": "2024-03-05T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa06a",
+    "date": "2023-11-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa06e",
+    "date": "2023-08-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa073",
+    "date": "2023-05-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa078",
+    "date": "2023-02-28T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa07a",
+    "date": "2022-11-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa080",
+    "date": "2022-08-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa08e",
+    "date": "2022-05-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa093",
+    "date": "2022-03-01T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa098",
+    "date": "2021-11-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0a5",
+    "date": "2021-08-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0ac",
+    "date": "2021-05-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0b0",
+    "date": "2021-03-02T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0b4",
+    "date": "2020-11-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0bc",
+    "date": "2020-08-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0c3",
+    "date": "2020-05-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0c8",
+    "date": "2020-03-03T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0cf",
+    "date": "2019-11-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0d3",
+    "date": "2019-08-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0d7",
+    "date": "2019-05-22T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0dc",
+    "date": "2019-03-05T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0e0",
+    "date": "2018-11-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0e7",
+    "date": "2018-08-22T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0ef",
+    "date": "2018-05-23T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0f6",
+    "date": "2018-03-06T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa0fd",
+    "date": "2017-11-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa104",
+    "date": "2017-08-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa10a",
+    "date": "2017-05-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa10c",
+    "date": "2017-02-28T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa114",
+    "date": "2016-11-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa115",
+    "date": "2016-08-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa116",
+    "date": "2016-05-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa11d",
+    "date": "2016-02-24T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa125",
+    "date": "2015-11-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa129",
+    "date": "2015-08-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa134",
+    "date": "2015-05-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa138",
+    "date": "2015-02-25T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa13a",
+    "date": "2014-11-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa13d",
+    "date": "2014-08-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa142",
+    "date": "2014-05-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa14b",
+    "date": "2014-02-26T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa14d",
+    "date": "2013-11-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa14e",
+    "date": "2013-08-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa150",
+    "date": "2013-05-22T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa152",
+    "date": "2013-02-27T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa153",
+    "date": "2012-11-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa155",
+    "date": "2012-08-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa156",
+    "date": "2012-05-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa15d",
+    "date": "2012-02-23T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa15e",
+    "date": "2011-11-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa161",
+    "date": "2011-08-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa165",
+    "date": "2011-05-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa168",
+    "date": "2011-02-24T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa16b",
+    "date": "2010-11-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa16f",
+    "date": "2010-08-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa172",
+    "date": "2010-05-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa174",
+    "date": "2010-02-23T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa175",
+    "date": "2009-11-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa177",
+    "date": "2009-08-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa179",
+    "date": "2009-05-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa17d",
+    "date": "2009-02-24T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa17e",
+    "date": "2008-11-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa182",
+    "date": "2008-08-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa183",
+    "date": "2008-05-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa185",
+    "date": "2008-02-26T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa18c",
+    "date": "2007-11-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa18f",
+    "date": "2007-08-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa194",
+    "date": "2007-05-23T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa196",
+    "date": "2007-02-27T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa199",
+    "date": "2006-11-14T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa19b",
+    "date": "2006-08-10T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1a1",
+    "date": "2006-05-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1a4",
+    "date": "2006-02-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1a6",
+    "date": "2005-11-10T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1a9",
+    "date": "2005-08-11T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1ae",
+    "date": "2005-05-12T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328d60810aef32aaa1b2",
+    "date": "2005-02-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1bd",
+    "date": "2004-11-11T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1be",
+    "date": "2004-08-12T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1c0",
+    "date": "2004-05-13T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1c3",
+    "date": "2004-02-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1c8",
+    "date": "2003-11-13T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1cb",
+    "date": "2003-08-14T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1cd",
+    "date": "2003-05-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1d4",
+    "date": "2003-02-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1d6",
+    "date": "2002-11-14T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1dc",
+    "date": "2002-08-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1e4",
+    "date": "2002-05-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1e6",
+    "date": "2002-02-28T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1e9",
+    "date": "2001-11-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1ea",
+    "date": "2001-08-21T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1f1",
+    "date": "2001-05-29T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1f4",
+    "date": "2001-03-06T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1f7",
+    "date": "2000-11-14T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1f8",
+    "date": "2000-08-15T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1fa",
+    "date": "2000-05-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1fd",
+    "date": "2000-02-29T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa1ff",
+    "date": "1999-11-16T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa205",
+    "date": "1999-08-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa207",
+    "date": "1999-05-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa20c",
+    "date": "1999-03-02T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa210",
+    "date": "1998-11-17T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa213",
+    "date": "1998-08-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa214",
+    "date": "1998-05-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa219",
+    "date": "1998-03-03T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa21b",
+    "date": "1997-11-18T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa221",
+    "date": "1997-08-19T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa222",
+    "date": "1997-05-20T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731328e60810aef32aaa227",
+    "date": "1997-03-04T00:00:00.000Z",
+    "symbol": "TGT",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:24:13.834Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:24:13.834Z"
+  },
+  {
+    "_id": "6731361460810aef32abacb5",
+    "symbol": "HD",
+    "date": "2024-08-13T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacb7",
+    "date": "2024-05-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacba",
+    "symbol": "HD",
+    "date": "2024-02-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacbf",
+    "date": "2023-11-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacd0",
+    "symbol": "HD",
+    "date": "2023-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacd7",
+    "date": "2023-05-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacd9",
+    "symbol": "HD",
+    "date": "2023-02-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacdd",
+    "date": "2022-11-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abace3",
+    "symbol": "HD",
+    "date": "2022-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaced",
+    "date": "2022-05-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abacf9",
+    "symbol": "HD",
+    "date": "2022-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad00",
+    "date": "2021-11-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad07",
+    "symbol": "HD",
+    "date": "2021-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad0c",
+    "date": "2021-05-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad17",
+    "symbol": "HD",
+    "date": "2021-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad1d",
+    "date": "2020-11-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad21",
+    "symbol": "HD",
+    "date": "2020-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad25",
+    "date": "2020-05-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad2e",
+    "symbol": "HD",
+    "date": "2020-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad39",
+    "date": "2019-11-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad3d",
+    "symbol": "HD",
+    "date": "2019-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad40",
+    "date": "2019-05-21T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad43",
+    "symbol": "HD",
+    "date": "2019-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad44",
+    "date": "2018-11-13T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad46",
+    "symbol": "HD",
+    "date": "2018-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad4b",
+    "date": "2018-05-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad4e",
+    "symbol": "HD",
+    "date": "2018-02-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad54",
+    "date": "2017-11-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad57",
+    "symbol": "HD",
+    "date": "2017-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad66",
+    "date": "2017-05-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad6f",
+    "symbol": "HD",
+    "date": "2017-02-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad7a",
+    "date": "2016-11-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad82",
+    "symbol": "HD",
+    "date": "2016-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad85",
+    "date": "2016-05-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad8e",
+    "symbol": "HD",
+    "date": "2016-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad92",
+    "date": "2015-11-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abad9f",
+    "symbol": "HD",
+    "date": "2015-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadaa",
+    "date": "2015-05-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadb2",
+    "symbol": "HD",
+    "date": "2015-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadb6",
+    "date": "2014-11-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadc0",
+    "symbol": "HD",
+    "date": "2014-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadc3",
+    "date": "2014-05-20T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadd2",
+    "symbol": "HD",
+    "date": "2014-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadd5",
+    "date": "2013-11-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadd6",
+    "symbol": "HD",
+    "date": "2013-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadd8",
+    "date": "2013-05-21T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abade1",
+    "symbol": "HD",
+    "date": "2013-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadeb",
+    "date": "2012-11-13T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadef",
+    "symbol": "HD",
+    "date": "2012-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadf5",
+    "date": "2012-05-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abadfa",
+    "symbol": "HD",
+    "date": "2012-02-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae01",
+    "date": "2011-11-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae02",
+    "symbol": "HD",
+    "date": "2011-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae04",
+    "date": "2011-05-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae0e",
+    "symbol": "HD",
+    "date": "2011-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae11",
+    "date": "2010-11-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae17",
+    "symbol": "HD",
+    "date": "2010-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae1d",
+    "date": "2010-05-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae23",
+    "symbol": "HD",
+    "date": "2010-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae2b",
+    "date": "2009-11-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae2f",
+    "symbol": "HD",
+    "date": "2009-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae37",
+    "date": "2009-05-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae3c",
+    "symbol": "HD",
+    "date": "2009-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae3f",
+    "date": "2008-11-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae48",
+    "symbol": "HD",
+    "date": "2008-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae49",
+    "date": "2008-05-20T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae4d",
+    "symbol": "HD",
+    "date": "2008-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae56",
+    "date": "2007-11-13T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae59",
+    "symbol": "HD",
+    "date": "2007-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae5d",
+    "date": "2007-05-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae62",
+    "symbol": "HD",
+    "date": "2007-02-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae6a",
+    "date": "2006-11-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae6f",
+    "symbol": "HD",
+    "date": "2006-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae74",
+    "date": "2006-05-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae76",
+    "symbol": "HD",
+    "date": "2006-02-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae77",
+    "date": "2005-11-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae7e",
+    "symbol": "HD",
+    "date": "2005-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae83",
+    "date": "2005-05-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae88",
+    "symbol": "HD",
+    "date": "2005-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae8d",
+    "date": "2004-11-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae95",
+    "symbol": "HD",
+    "date": "2004-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae99",
+    "date": "2004-05-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abae9e",
+    "symbol": "HD",
+    "date": "2004-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaea4",
+    "date": "2003-11-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaead",
+    "symbol": "HD",
+    "date": "2003-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaeb2",
+    "date": "2003-05-20T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaeba",
+    "symbol": "HD",
+    "date": "2003-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaebe",
+    "date": "2002-11-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaec3",
+    "symbol": "HD",
+    "date": "2002-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaec9",
+    "date": "2002-05-21T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaed0",
+    "symbol": "HD",
+    "date": "2002-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaed4",
+    "date": "2001-11-13T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaedd",
+    "symbol": "HD",
+    "date": "2001-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaee7",
+    "date": "2001-05-15T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaeeb",
+    "symbol": "HD",
+    "date": "2001-02-07T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaef0",
+    "date": "2000-11-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaef6",
+    "symbol": "HD",
+    "date": "2000-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaefe",
+    "date": "2000-05-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf00",
+    "symbol": "HD",
+    "date": "2000-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf01",
+    "date": "1999-11-16T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf03",
+    "symbol": "HD",
+    "date": "1999-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf04",
+    "date": "1999-05-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf0a",
+    "symbol": "HD",
+    "date": "1999-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf0e",
+    "date": "1998-11-17T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf11",
+    "symbol": "HD",
+    "date": "1998-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf1b",
+    "date": "1998-05-19T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf21",
+    "symbol": "HD",
+    "date": "1998-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf2a",
+    "date": "1997-11-18T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf2e",
+    "symbol": "HD",
+    "date": "1997-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf32",
+    "date": "1997-05-20T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf34",
+    "symbol": "HD",
+    "date": "1997-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf3b",
+    "date": "1996-11-12T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf3f",
+    "symbol": "HD",
+    "date": "1996-08-13T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731361460810aef32abaf43",
+    "date": "1996-05-14T00:00:00.000Z",
+    "symbol": "HD",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:39:16.273Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:39:16.273Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c8f",
+    "symbol": "LOW",
+    "date": "2024-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c90",
+    "symbol": "LOW",
+    "date": "2024-05-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c92",
+    "symbol": "LOW",
+    "date": "2024-02-27T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c94",
+    "symbol": "LOW",
+    "date": "2023-11-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c97",
+    "symbol": "LOW",
+    "date": "2023-08-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c98",
+    "symbol": "LOW",
+    "date": "2023-05-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c99",
+    "symbol": "LOW",
+    "date": "2023-03-01T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c9b",
+    "symbol": "LOW",
+    "date": "2022-11-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c9d",
+    "symbol": "LOW",
+    "date": "2022-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0c9f",
+    "symbol": "LOW",
+    "date": "2022-05-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ca2",
+    "symbol": "LOW",
+    "date": "2022-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ca5",
+    "symbol": "LOW",
+    "date": "2021-11-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ca8",
+    "symbol": "LOW",
+    "date": "2021-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ca9",
+    "symbol": "LOW",
+    "date": "2021-05-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cab",
+    "symbol": "LOW",
+    "date": "2021-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cad",
+    "symbol": "LOW",
+    "date": "2020-11-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cae",
+    "symbol": "LOW",
+    "date": "2020-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0caf",
+    "symbol": "LOW",
+    "date": "2020-05-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cb1",
+    "symbol": "LOW",
+    "date": "2020-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cb4",
+    "symbol": "LOW",
+    "date": "2019-11-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cb7",
+    "symbol": "LOW",
+    "date": "2019-08-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cb8",
+    "symbol": "LOW",
+    "date": "2019-05-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cb9",
+    "symbol": "LOW",
+    "date": "2019-02-27T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cbc",
+    "symbol": "LOW",
+    "date": "2018-11-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cbd",
+    "symbol": "LOW",
+    "date": "2018-08-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cbe",
+    "symbol": "LOW",
+    "date": "2018-05-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cc2",
+    "symbol": "LOW",
+    "date": "2018-02-28T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cc4",
+    "symbol": "LOW",
+    "date": "2017-11-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cc7",
+    "symbol": "LOW",
+    "date": "2017-08-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cc9",
+    "symbol": "LOW",
+    "date": "2017-05-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ccd",
+    "symbol": "LOW",
+    "date": "2017-03-01T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cce",
+    "symbol": "LOW",
+    "date": "2016-11-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cd0",
+    "symbol": "LOW",
+    "date": "2016-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cd3",
+    "symbol": "LOW",
+    "date": "2016-05-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cd5",
+    "symbol": "LOW",
+    "date": "2016-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cdd",
+    "symbol": "LOW",
+    "date": "2015-11-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cdf",
+    "symbol": "LOW",
+    "date": "2015-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ce2",
+    "symbol": "LOW",
+    "date": "2015-05-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ce4",
+    "symbol": "LOW",
+    "date": "2015-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ce6",
+    "symbol": "LOW",
+    "date": "2014-11-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ce9",
+    "symbol": "LOW",
+    "date": "2014-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ceb",
+    "symbol": "LOW",
+    "date": "2014-05-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cec",
+    "symbol": "LOW",
+    "date": "2014-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ced",
+    "symbol": "LOW",
+    "date": "2013-11-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cee",
+    "symbol": "LOW",
+    "date": "2013-08-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cf0",
+    "symbol": "LOW",
+    "date": "2013-05-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cf5",
+    "symbol": "LOW",
+    "date": "2013-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cfa",
+    "symbol": "LOW",
+    "date": "2012-11-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0cfd",
+    "symbol": "LOW",
+    "date": "2012-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d07",
+    "symbol": "LOW",
+    "date": "2012-05-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d09",
+    "symbol": "LOW",
+    "date": "2012-02-27T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d0b",
+    "symbol": "LOW",
+    "date": "2011-11-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d0e",
+    "symbol": "LOW",
+    "date": "2011-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d1a",
+    "symbol": "LOW",
+    "date": "2011-05-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d1f",
+    "symbol": "LOW",
+    "date": "2011-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d21",
+    "symbol": "LOW",
+    "date": "2010-11-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d24",
+    "symbol": "LOW",
+    "date": "2010-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d26",
+    "symbol": "LOW",
+    "date": "2010-05-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d2c",
+    "symbol": "LOW",
+    "date": "2010-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d2e",
+    "symbol": "LOW",
+    "date": "2009-11-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d30",
+    "symbol": "LOW",
+    "date": "2009-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d32",
+    "symbol": "LOW",
+    "date": "2009-05-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d35",
+    "symbol": "LOW",
+    "date": "2009-02-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d3c",
+    "symbol": "LOW",
+    "date": "2008-11-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d40",
+    "symbol": "LOW",
+    "date": "2008-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d43",
+    "symbol": "LOW",
+    "date": "2008-05-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d45",
+    "symbol": "LOW",
+    "date": "2008-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d50",
+    "symbol": "LOW",
+    "date": "2007-11-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d5b",
+    "symbol": "LOW",
+    "date": "2007-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d61",
+    "symbol": "LOW",
+    "date": "2007-05-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d63",
+    "symbol": "LOW",
+    "date": "2007-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d66",
+    "symbol": "LOW",
+    "date": "2006-11-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d6f",
+    "symbol": "LOW",
+    "date": "2006-08-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d71",
+    "symbol": "LOW",
+    "date": "2006-05-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d74",
+    "symbol": "LOW",
+    "date": "2006-02-27T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d75",
+    "symbol": "LOW",
+    "date": "2005-11-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d83",
+    "symbol": "LOW",
+    "date": "2005-08-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d8a",
+    "symbol": "LOW",
+    "date": "2005-05-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d8c",
+    "symbol": "LOW",
+    "date": "2005-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d96",
+    "symbol": "LOW",
+    "date": "2004-11-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0d9f",
+    "symbol": "LOW",
+    "date": "2004-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0da5",
+    "symbol": "LOW",
+    "date": "2004-05-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dac",
+    "symbol": "LOW",
+    "date": "2004-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0db1",
+    "symbol": "LOW",
+    "date": "2003-11-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0db3",
+    "symbol": "LOW",
+    "date": "2003-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0db5",
+    "symbol": "LOW",
+    "date": "2003-05-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dbb",
+    "symbol": "LOW",
+    "date": "2003-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dc1",
+    "symbol": "LOW",
+    "date": "2002-11-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dc5",
+    "symbol": "LOW",
+    "date": "2002-08-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dc9",
+    "symbol": "LOW",
+    "date": "2002-05-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dcb",
+    "symbol": "LOW",
+    "date": "2002-02-25T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dce",
+    "symbol": "LOW",
+    "date": "2001-11-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dd4",
+    "symbol": "LOW",
+    "date": "2001-08-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dd7",
+    "symbol": "LOW",
+    "date": "2001-05-21T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dd9",
+    "symbol": "LOW",
+    "date": "2001-02-26T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0ddd",
+    "symbol": "LOW",
+    "date": "2000-11-13T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0de0",
+    "symbol": "LOW",
+    "date": "2000-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0de1",
+    "symbol": "LOW",
+    "date": "2000-05-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0de6",
+    "symbol": "LOW",
+    "date": "2000-02-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0de8",
+    "symbol": "LOW",
+    "date": "1999-11-15T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0dee",
+    "symbol": "LOW",
+    "date": "1999-08-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e02",
+    "symbol": "LOW",
+    "date": "1999-05-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e03",
+    "symbol": "LOW",
+    "date": "1999-02-22T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e06",
+    "symbol": "LOW",
+    "date": "1998-11-16T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e15",
+    "symbol": "LOW",
+    "date": "1998-08-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e1d",
+    "symbol": "LOW",
+    "date": "1998-05-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e20",
+    "symbol": "LOW",
+    "date": "1998-02-23T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e28",
+    "symbol": "LOW",
+    "date": "1997-11-17T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e2c",
+    "symbol": "LOW",
+    "date": "1997-08-18T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e2f",
+    "symbol": "LOW",
+    "date": "1997-05-19T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e30",
+    "symbol": "LOW",
+    "date": "1997-02-24T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e32",
+    "symbol": "LOW",
+    "date": "1996-11-13T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e39",
+    "symbol": "LOW",
+    "date": "1996-08-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e3f",
+    "symbol": "LOW",
+    "date": "1996-05-14T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  },
+  {
+    "_id": "6731373f60810aef32ac0e48",
+    "symbol": "LOW",
+    "date": "1996-02-20T00:00:00.000Z",
+    "__v": 0,
+    "createdAt": "2024-11-10T22:44:15.186Z",
+    "reportTime": "TNS",
+    "updatedAt": "2024-11-10T22:44:15.186Z"
+  }
+]
