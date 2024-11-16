@@ -16,7 +16,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            cacheDirectory: true
+          }
         }
       },
       {
@@ -27,7 +31,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html')
+      template: path.join(__dirname, 'src', 'index.html'),
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      }
     })
   ],
   devServer: {
@@ -44,20 +52,38 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    fallback: {
+      "path": false,
+      "fs": false
+    }
   },
   optimization: {
     moduleIds: 'deterministic',
-    runtimeChunk: 'single',
+    minimize: true,
+    minimizer: [
+      '...'
+    ],
     splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
       cacheGroups: {
+        defaultVendors: false,
+        default: false,
         vendor: {
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
+          chunks: 'all',
+          enforce: true
         }
       }
-    }
+    },
+    runtimeChunk: false
   },
   performance: {
     hints: false
