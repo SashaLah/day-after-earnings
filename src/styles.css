@@ -23,6 +23,8 @@ body {
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 h1 {
@@ -114,6 +116,8 @@ h1 {
     transition: all 0.2s ease;
     background-color: white;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .search-input:focus {
@@ -133,7 +137,7 @@ h1 {
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: 500;
-    height: 48px; /* Match height with search input */
+    height: 48px;
     white-space: nowrap;
 }
 
@@ -182,6 +186,8 @@ h1 {
     font-size: 16px;
     color: #2c3e50;
     transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .investment-input:focus {
@@ -194,6 +200,7 @@ h1 {
     width: 100%;
     height: 4px;
     -webkit-appearance: none;
+    appearance: none;
     background: #e0e0e0;
     border-radius: 2px;
     margin: 10px 0;
@@ -201,6 +208,7 @@ h1 {
 
 .earnings-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 20px;
     height: 20px;
     background: #3498db;
@@ -312,6 +320,8 @@ h1 {
     background-color: white;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .filter-group select:hover {
@@ -584,10 +594,8 @@ h1 {
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-/* First including all your existing CSS unchanged */
-[Previous CSS content up to the Calculator Specific Styles]
 
-/* New Calculator Specific Styles */
+/* Calculator Container Styles */
 .calculator-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -666,6 +674,8 @@ h1 {
     color: #2c3e50;
     text-align: center;
     width: 150px;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .amount-input:focus {
@@ -686,6 +696,7 @@ h1 {
 
 .slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 6px;
     border-radius: 3px;
@@ -696,6 +707,7 @@ h1 {
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -821,40 +833,12 @@ h1 {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to { 
+        transform: rotate(360deg); 
+    }
 }
 
 /* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    .calculator-controls {
-        flex-direction: column;
-        gap: 24px;
-        padding: 16px;
-    }
-
-    .investment-input,
-    .earnings-slider {
-        width: 100%;
-    }
-
-    .calculator-table {
-        font-size: 12px;
-    }
-
-    .calculator-table th,
-    .calculator-table td {
-        padding: 12px 8px;
-    }
-
-    .calculator-table th[data-sort]::after {
-        margin-left: 4px;
-    }
-}
-
-/* Keep all your existing mobile and print styles unchanged */
-[Previous mobile and print styles remain the same]
-
-/* Mobile Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 9px;
@@ -987,6 +971,30 @@ h1 {
     .calculator-results .earnings-table td {
         padding: 12px 8px;
         font-size: 12px;
+    }
+
+    .calculator-controls {
+        flex-direction: column;
+        gap: 24px;
+        padding: 16px;
+    }
+
+    .investment-input,
+    .earnings-slider {
+        width: 100%;
+    }
+
+    .calculator-table {
+        font-size: 12px;
+    }
+
+    .calculator-table th,
+    .calculator-table td {
+        padding: 12px 8px;
+    }
+
+    .calculator-table th[data-sort]::after {
+        margin-left: 4px;
     }
 }
 
