@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    filename: 'bundle.[contenthash].js',
     clean: true,
     publicPath: '/'
   },
@@ -18,8 +18,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            cacheDirectory: true
+            presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
       },
@@ -32,10 +31,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      }
+      inject: true,
+      filename: 'index.html'
     })
   ],
   devServer: {
@@ -46,44 +43,15 @@ module.exports = {
     open: true,
     hot: true,
     historyApiFallback: true,
-    proxy: [{
-      context: ['/api'],
-      target: 'http://localhost:3001'
-    }]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    fallback: {
-      "path": false,
-      "fs": false
+    proxy: {
+      '/api': 'http://localhost:3001'
     }
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   optimization: {
-    moduleIds: 'deterministic',
-    minimize: true,
-    minimizer: [
-      '...'
-    ],
-    splitChunks: {
-      chunks: 'async',
-      minSize: 20000,
-      minRemainingSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      enforceSizeThreshold: 50000,
-      cacheGroups: {
-        defaultVendors: false,
-        default: false,
-        vendor: {
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
-    },
-    runtimeChunk: false
+    minimize: true
   },
   performance: {
     hints: false

@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const cors = require('cors');
+const compression = require('compression');
 const stockService = require('./db/stockService');
 const { connectDB, Company, Earnings } = require('./db/mongodb');
 require('dotenv').config();
@@ -24,17 +26,21 @@ const waitForApiDelay = async () => {
 };
 
 // Middleware
+app.use(compression()); // Add compression
+app.use(cors()); // Add CORS support
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../dist')));
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error('Error:', err.stack);
-    res.status(500).json({ 
-        error: 'Internal server error',
-        message: err.message 
-    });
-});
+// Serve static files before API routes
+app.use(express.static(path.join(__dirname, '../dist'), {
+    maxAge: '1h',
+    index: false,
+    setHeaders: (res, path) => {
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
 
 // Calculator endpoint
 app.get('/api/calculator', async (req, res) => {
@@ -225,10 +231,30 @@ app.get('/api/status', async (req, res) => {
     }
 });
 
-// Catch-all route for React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+// Catch-all route for React app - should be after API routes
+app.get('*', (req, res, next) => {
+    // Only handle HTML requests, let static assets go through
+    if (req.accepts('html')) {
+        res.sendFile(path.join(__dirname, '../dist/index.html'), err => {
+            if (err) {
+                next(err);
+            }
+        });
+    } else {
+        next();
+    }
 });
+
+// Error handling middleware - should be last
+const errorHandler = (err, req, res, next) => {
+    console.error('Error:', err.stack);
+    res.status(500).json({ 
+        error: 'Internal server error',
+        message: err.message 
+    });
+};
+
+app.use(errorHandler);
 
 // Initialize server
 const startServer = async () => {
@@ -240,6 +266,7 @@ const startServer = async () => {
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
             console.log('MongoDB connected and ready');
+            console.log(`Static files being served from: ${path.join(__dirname, '../dist')}`);
         });
     } catch (error) {
         console.error('Failed to start server:', error);
