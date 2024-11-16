@@ -16,10 +16,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -30,9 +27,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-      inject: true,
-      filename: 'index.html'
+      template: './src/index.html'
     })
   ],
   devServer: {
@@ -49,11 +44,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx']
-  },
-  optimization: {
-    minimize: true
-  },
-  performance: {
-    hints: false
   }
 };

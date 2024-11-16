@@ -7,8 +7,8 @@
     "dev:client": "webpack serve --mode development",
     "dev:server": "nodemon server/server.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "build": "webpack --mode production",
-    "render-build": "rm -rf node_modules package-lock.json .cache dist && npm install && webpack --mode production"
+    "build": "NODE_ENV=production webpack --mode production",
+    "render-build": "NODE_ENV=production webpack --mode production && npm install"
   },
   "keywords": [],
   "author": "",

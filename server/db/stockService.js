@@ -12,7 +12,7 @@ console.log('Loaded STOCK_EARNINGS_TIMING:', STOCK_EARNINGS_TIMING);
 
 // API rate limiting
 let lastApiCall = 0;
-const API_DELAY = 16000; // 16 seconds between calls
+const API_DELAY = 1000; // 1 seconds between calls
 const MAX_RETRIES = 3;
 const FETCH_TIMEOUT = 30000; // 30 seconds timeout for API calls
 
