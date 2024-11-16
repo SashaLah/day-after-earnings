@@ -26,22 +26,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(ico|png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
-      favicon: path.join(__dirname, 'public', 'favicon.ico'), // Adjust path if needed
-      inject: true,
-      meta: {
-        viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
-        'theme-color': '#3498db'
-      }
+      inject: true
     })
   ],
   devServer: {
@@ -65,22 +56,21 @@ module.exports = {
     moduleIds: 'deterministic',
     minimize: true,
     splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: 20,
+      minSize: 20000,
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
+          name(module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `vendor.${packageName.replace('@', '')}`;
+          }
+        }
+      }
     }
   },
   performance: {
     hints: false
-  },
-  cache: {
-    type: 'filesystem',
-    buildDependencies: {
-      config: [__filename]
-    }
   }
 };
