@@ -16,11 +16,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            compact: true
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -31,8 +27,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-      inject: true
+      template: path.join(__dirname, 'src', 'index.html')
     })
   ],
   devServer: {
@@ -52,20 +47,14 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   optimization: {
-    runtimeChunk: 'single',
     moduleIds: 'deterministic',
-    minimize: true,
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: 20,
-      minSize: 20000,
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `vendor.${packageName.replace('@', '')}`;
-          }
+          name: 'vendors',
+          chunks: 'all'
         }
       }
     }
