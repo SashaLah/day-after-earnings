@@ -301,33 +301,51 @@ const stockService = {
                 .sort({ date: -1 })
                 .lean();
 
-            // If we have data that's less than 24 hours old, use it
-            if (existingData.length > 0) {
-                const mostRecentUpdate = existingData[0].lastUpdated;
-                const timeSinceUpdate = Date.now() - new Date(mostRecentUpdate).getTime();
-                const ONE_DAY = 24 * 60 * 60 * 1000;
+            console.log(`Found ${existingData.length} existing records in database`);
 
-                if (timeSinceUpdate < ONE_DAY) {
-                    console.log('Using recent data from database');
-                    return existingData;
+            if (existingData.length > 0) {
+                // Get most recent earnings date from our database
+                const mostRecentDate = new Date(existingData[0].date);
+                
+                // Fetch latest earnings data to check for new entries
+                const latestEarnings = await this.fetchEarningsData(symbol);
+                const newEarningsData = latestEarnings.filter(earning => 
+                    new Date(earning.reportedDate) > mostRecentDate
+                );
+
+                if (newEarningsData.length > 0) {
+                    console.log(`Found ${newEarningsData.length} new earnings records to add`);
+                    // Only fetch price data if we have new earnings to add
+                    const priceData = await this.fetchPriceData(symbol);
+                    await this.storeEarningsAndPrices(symbol, newEarningsData, priceData);
+                    
+                    // Get updated data including new records
+                    const updatedData = await Earnings.find({ symbol })
+                        .sort({ date: -1 })
+                        .lean();
+                    
+                    console.log(`Returning ${updatedData.length} total records after update`);
+                    return updatedData;
                 }
+
+                // If no new earnings, return existing data
+                console.log('No new earnings found, using existing data');
+                return existingData;
             }
 
-            // Otherwise, fetch new data
-            console.log('Fetching new data...');
+            // If no existing data, fetch all historical data
+            console.log('No existing data found, fetching complete history');
             const earningsData = await this.fetchEarningsData(symbol);
             const priceData = await this.fetchPriceData(symbol);
-            
-            // Store the data
             await this.storeEarningsAndPrices(symbol, earningsData, priceData);
 
-            // Return fresh data
-            const updatedData = await Earnings.find({ symbol })
+            // Return complete data
+            const allData = await Earnings.find({ symbol })
                 .sort({ date: -1 })
                 .lean();
-
-            console.log(`Returning ${updatedData.length} earnings records`);
-            return updatedData;
+                
+            console.log(`Returning ${allData.length} total records`);
+            return allData;
         } catch (error) {
             console.error(`Error in getStockData for ${symbol}:`, error.message);
             
