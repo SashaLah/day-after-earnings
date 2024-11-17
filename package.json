@@ -8,7 +8,7 @@
     "dev:server": "nodemon server/server.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "build": "webpack --mode production",
-    "render-build": "npm ci && npm install -D webpack-cli && webpack --config webpack.config.js"
+    "render-build": "npm ci && npx webpack-cli --config webpack.config.js"
   },
   "dependencies": {
     "axios": "^1.6.2",
