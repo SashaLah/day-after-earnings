@@ -13,7 +13,7 @@ const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
 // Rate limiting setup
 let lastApiCall = 0;
-const API_DELAY = 16000; // 16 seconds between calls
+const API_DELAY = 16000;
 
 const waitForApiDelay = async () => {
     const now = Date.now();
@@ -26,16 +26,23 @@ const waitForApiDelay = async () => {
 };
 
 // Middleware
-app.use(compression()); // Add compression
-app.use(cors()); // Add CORS support
+app.use(compression({
+    level: 6,
+    threshold: 100 * 1000
+}));
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' ? process.env.ALLOWED_ORIGIN : '*'
+}));
 app.use(express.json());
 
-// Serve static files before API routes
+// Serve static files
 app.use(express.static(path.join(__dirname, '../dist'), {
-    maxAge: '1h',
+    maxAge: process.env.NODE_ENV === 'production' ? '1d' : '1h',
     index: false,
     setHeaders: (res, path) => {
         res.setHeader('X-Content-Type-Options', 'nosniff');
+        res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+        res.setHeader('X-XSS-Protection', '1; mode=block');
         if (path.endsWith('.js')) {
             res.setHeader('Content-Type', 'application/javascript');
         }
@@ -73,13 +80,13 @@ app.get('/api/calculator', async (req, res) => {
                 .limit(earningsCount)
                 .lean();
 
-            if (earningsData.length < 2) continue; // Skip if not enough earnings data
+            if (earningsData.length < 2) continue;
 
             let tradeReturn = 0;
             let holdValue = amount;
             let validTrades = 0;
 
-            // Calculate trading returns (invest fixed amount each time)
+            // Calculate trading returns
             earningsData.forEach(earning => {
                 if (earning.closePriceDayBefore && earning.closePriceOnDay) {
                     const returnPercent = ((earning.closePriceOnDay - earning.closePriceDayBefore) / earning.closePriceDayBefore) * 100;
@@ -88,7 +95,7 @@ app.get('/api/calculator', async (req, res) => {
                 }
             });
 
-            // Calculate buy & hold returns (reinvest same amount each time)
+            // Calculate buy & hold returns
             earningsData.reverse(); // Process oldest to newest
             for (const earning of earningsData) {
                 if (earning.closePriceDayBefore && earning.closePriceOnDay) {
@@ -135,7 +142,6 @@ app.get('/api/search/companies', async (req, res) => {
             return res.json([]);
         }
 
-        // Search MongoDB for companies
         const matches = await Company.find({
             $or: [
                 { symbol: { $regex: query, $options: 'i' }},
@@ -152,7 +158,7 @@ app.get('/api/search/companies', async (req, res) => {
     }
 });
 
-// Main stock data endpoint with debug logging
+// Stock data endpoint
 app.get('/api/stock/:symbol', async (req, res) => {
     try {
         const { symbol } = req.params;
@@ -171,16 +177,14 @@ app.get('/api/stock/:symbol', async (req, res) => {
             return res.status(404).json({ error: 'No data found for this symbol' });
         }
 
-        // Format the data for frontend display
         const formattedData = data
             .filter(item => 
                 typeof item.closePriceDayBefore === 'number' &&
                 typeof item.closePriceOnDay === 'number'
             )
             .map(item => {
-                // Ensure date is properly formatted
                 const earningsDate = new Date(item.date);
-                earningsDate.setDate(earningsDate.getDate() + 1); // Add one day to the display date
+                earningsDate.setDate(earningsDate.getDate() + 1);
                 return {
                     date: earningsDate.toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -231,12 +235,12 @@ app.get('/api/status', async (req, res) => {
     }
 });
 
-// Catch-all route for React app - should be after API routes
+// Catch-all route for React app
 app.get('*', (req, res, next) => {
-    // Only handle HTML requests, let static assets go through
     if (req.accepts('html')) {
         res.sendFile(path.join(__dirname, '../dist/index.html'), err => {
             if (err) {
+                console.error('Error sending index.html:', err);
                 next(err);
             }
         });
@@ -245,31 +249,39 @@ app.get('*', (req, res, next) => {
     }
 });
 
-// Error handling middleware - should be last
+// Enhanced error handling middleware
 const errorHandler = (err, req, res, next) => {
     console.error('Error:', err.stack);
+    const errorMessage = process.env.NODE_ENV === 'production' 
+        ? 'Internal server error' 
+        : err.message;
+    
     res.status(500).json({ 
-        error: 'Internal server error',
-        message: err.message 
+        error: errorMessage,
+        status: 'error'
     });
 };
 
 app.use(errorHandler);
 
-// Initialize server
+// Server initialization
 const startServer = async () => {
     try {
-        // Connect to MongoDB
         await connectDB();
         
-        // Start Express server
         app.listen(PORT, () => {
+            console.log(`Environment: ${process.env.NODE_ENV}`);
             console.log(`Server running on port ${PORT}`);
             console.log('MongoDB connected and ready');
             console.log(`Static files being served from: ${path.join(__dirname, '../dist')}`);
         });
     } catch (error) {
         console.error('Failed to start server:', error);
+        console.error('Startup Error Details:', {
+            mongoUrl: process.env.MONGODB_URI ? 'Set' : 'Not Set',
+            nodeEnv: process.env.NODE_ENV,
+            port: PORT
+        });
         process.exit(1);
     }
 };
