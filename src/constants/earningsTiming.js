@@ -1,6 +1,6 @@
-// server/constants/earningsTiming.js
+// src/constants/earningsTiming.js
 
-const STOCK_EARNINGS_TIMING = {
+export const STOCK_EARNINGS_TIMING = {
     // Technology - After Market Close (AMC)
     'AAPL': 'AMC',  // Apple - Always reports after market
     'MSFT': 'AMC',  // Microsoft - After market
@@ -56,6 +56,7 @@ const STOCK_EARNINGS_TIMING = {
     'ABBV': 'BMO',  // AbbVie - Before market
     'LLY': 'BMO',   // Eli Lilly - Before market
     'TMO': 'BMO',   // Thermo Fisher - Before market
+    'TMO': 'BMO',   // Thermo Fisher - Before market
     'ABT': 'BMO',   // Abbott - Before market
     'DHR': 'BMO',   // Danaher - Before market
 
@@ -89,11 +90,6 @@ const STOCK_EARNINGS_TIMING = {
 };
 
 // Helper function to get timing for a stock
-function getEarningsTiming(symbol) {
+export const getEarningsTiming = (symbol) => {
     return STOCK_EARNINGS_TIMING[symbol] || STOCK_EARNINGS_TIMING.DEFAULT;
-}
-
-module.exports = {
-    STOCK_EARNINGS_TIMING,
-    getEarningsTiming
 };
