@@ -14,7 +14,13 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -29,5 +35,10 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+  stats: {
+    colors: true,
+    reasons: true,
+    chunks: true
   }
 };
