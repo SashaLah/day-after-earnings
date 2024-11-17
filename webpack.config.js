@@ -7,14 +7,20 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
-    clean: true
+    clean: true,
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -29,10 +35,10 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
-    fallback: {
-      "path": false,
-      "fs": false,
-      "debug": false
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@constants': path.resolve(__dirname, 'src/constants')
     }
   },
   devServer: {
