@@ -1,15 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-
-const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: isProd ? 'production' : 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: isProd ? '[name].[contenthash].js' : '[name].js',
+    filename: '[name].[contenthash].js',
     clean: true,
     publicPath: '/'
   },
@@ -19,11 +16,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            cacheCompression: false
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -35,34 +28,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
   optimization: {
-    moduleIds: 'deterministic',
-    // Disable module concatenation in production
-    concatenateModules: false,
     splitChunks: {
-      chunks: 'all',
-      name: false,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    },
-    runtimeChunk: 'single'
+      chunks: 'all'
+    }
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/components')
-    }
+    extensions: ['.js', '.jsx']
   },
   devServer: {
     static: {
