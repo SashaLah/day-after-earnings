@@ -2,16 +2,11 @@
     "presets": [
       ["@babel/preset-env", {
         "targets": {
-          "node": "current",
-          "browsers": [">0.2%", "not dead", "not op_mini all"]
-        },
-        "modules": false,
-        "useBuiltIns": "usage",
-        "corejs": 3
+          "node": "current"
+        }
       }],
       ["@babel/preset-react", {
         "runtime": "automatic"
       }]
-    ],
-    "plugins": []
+    ]
   }

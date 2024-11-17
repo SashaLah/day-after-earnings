@@ -22,6 +22,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.json$/,
+        type: 'json'
       }
     ]
   },
@@ -33,6 +37,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
       '@server': path.resolve(__dirname, 'server')
     }
   },
@@ -57,6 +63,5 @@ module.exports = {
   },
   infrastructureLogging: {
     level: 'verbose'
-  },
-  cache: false // Temporarily disable cache for debugging
+  }
 };

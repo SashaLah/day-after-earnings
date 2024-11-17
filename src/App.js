@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './styles.css';
 import './calculatorStyles.css';
+import ProgressTracker from './components/ProgressTracker';
 
 const App = () => {
     const [search, setSearch] = useState('');
@@ -454,6 +455,7 @@ const App = () => {
 
             {activeMenu === 'calculator' && (
                 <div className="calculator-container">
+                    <ProgressTracker />  
                     <div className="calculator-controls">
                         <div className="investment-input">
                             <label>Investment Amount:</label>
