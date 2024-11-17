@@ -30,6 +30,15 @@ module.exports = {
       template: './src/index.html'
     })
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@server': path.resolve(__dirname, 'server')
+    }
+  },
+  externals: {
+    '../constants/earningsTiming': 'commonjs ../constants/earningsTiming'
+  },
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist')
@@ -42,7 +51,12 @@ module.exports = {
       '/api': 'http://localhost:3001'
     }
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  }
+  stats: {
+    errorDetails: true,
+    logging: 'verbose'
+  },
+  infrastructureLogging: {
+    level: 'verbose'
+  },
+  cache: false // Temporarily disable cache for debugging
 };
