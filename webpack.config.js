@@ -1,12 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: isProd ? 'production' : 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[contenthash].js',
+    filename: isProd ? '[name].[contenthash].js' : '[name].js',
     clean: true,
     publicPath: '/'
   },
@@ -16,34 +19,50 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false
+          }
         }
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.json$/,
-        type: 'json'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
+  optimization: {
+    moduleIds: 'deterministic',
+    // Disable module concatenation in production
+    concatenateModules: false,
+    splitChunks: {
+      chunks: 'all',
+      name: false,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
+    runtimeChunk: 'single'
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@server': path.resolve(__dirname, 'server')
+      '@components': path.resolve(__dirname, 'src/components')
     }
-  },
-  externals: {
-    '../constants/earningsTiming': 'commonjs ../constants/earningsTiming'
   },
   devServer: {
     static: {
@@ -56,12 +75,5 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:3001'
     }
-  },
-  stats: {
-    errorDetails: true,
-    logging: 'verbose'
-  },
-  infrastructureLogging: {
-    level: 'verbose'
   }
 };
