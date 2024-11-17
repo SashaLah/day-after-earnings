@@ -86,6 +86,7 @@ const App = () => {
     const fetchCalculatorResults = useCallback(async () => {
         try {
             setCalculatorLoading(true);
+            setError(null); // Reset error state
             const response = await fetch(`/api/calculator?amount=${investmentAmount}&earnings=${earningsCount}`);
             const data = await response.json();
             
@@ -96,6 +97,8 @@ const App = () => {
             setCalculatorResults(data);
         } catch (error) {
             console.error('Error fetching calculator data:', error);
+            setCalculatorResults(null);
+            setError(error.message);
         } finally {
             setCalculatorLoading(false);
         }

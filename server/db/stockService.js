@@ -293,6 +293,7 @@ const stockService = {
     },
 
     async getStockData(symbol) {
+        let existingData = null;
         try {
             console.log(`\nGetting stock data for ${symbol}...`);
             
