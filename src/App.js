@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import Calculator from './Calculator';
 import './styles.css';
 import './calculatorStyles.css';
 
@@ -16,14 +17,6 @@ const App = () => {
     // Filters state
     const [selectedTimeRange, setSelectedTimeRange] = useState('all');
     const [showFilters, setShowFilters] = useState(false);
-
-    // New state for Earnings Calculator
-    const [investmentAmount, setInvestmentAmount] = useState(10000);
-    const [earningsCount, setEarningsCount] = useState(10);
-    const [calculatorResults, setCalculatorResults] = useState(null);
-    const [calculatorLoading, setCalculatorLoading] = useState(false);
-    const [sortColumn, setSortColumn] = useState('tradeReturn');
-    const [sortDirection, setSortDirection] = useState('desc');
 
     const menuItems = [
         { 
@@ -51,95 +44,6 @@ const App = () => {
         { value: '4', label: '4 Years' },
         { value: '5', label: '5 Years' }
     ];
-
-    // Format currency
-    const formatCurrency = (value) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(value);
-    };
-
-    // Handle investment amount changes
-    const handleInvestmentChange = (value) => {
-        const numValue = parseInt(value.replace(/[^0-9]/g, ''));
-        if (!isNaN(numValue) && numValue <= 10000000) {
-            setInvestmentAmount(numValue);
-        }
-    };
-
-    const incrementInvestment = () => {
-        if (investmentAmount < 10000000) {
-            setInvestmentAmount(prev => Math.min(prev + 1000, 10000000));
-        }
-    };
-
-    const decrementInvestment = () => {
-        if (investmentAmount > 1000) {
-            setInvestmentAmount(prev => prev - 1000);
-        }
-    };
-
-    // Fetch calculator results
-    const fetchCalculatorResults = useCallback(async () => {
-        try {
-            setCalculatorLoading(true);
-            setError(null); // Reset error state
-            const response = await fetch(`/api/calculator?amount=${investmentAmount}&earnings=${earningsCount}`);
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to fetch calculator data');
-            }
-            
-            setCalculatorResults(data);
-        } catch (error) {
-            console.error('Error fetching calculator data:', error);
-            setCalculatorResults(null);
-            setError(error.message);
-        } finally {
-            setCalculatorLoading(false);
-        }
-    }, [investmentAmount, earningsCount]);
-
-    // Fetch results when calculator inputs change
-    useEffect(() => {
-        if (activeMenu === 'calculator') {
-            fetchCalculatorResults();
-        }
-    }, [investmentAmount, earningsCount, activeMenu, fetchCalculatorResults]);
-
-    // Sorting function for calculator results
-    const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortDirection('desc');
-        }
-    };
-
-    const sortedResults = calculatorResults ? [...calculatorResults].sort((a, b) => {
-        const direction = sortDirection === 'asc' ? 1 : -1;
-        switch (sortColumn) {
-            case 'symbol':
-                return direction * a.symbol.localeCompare(b.symbol);
-            case 'tradeReturn':
-                return direction * (a.tradeReturn - b.tradeReturn);
-            case 'tradeReturnPercent':
-                return direction * (a.tradeReturnPercent - b.tradeReturnPercent);
-            case 'holdValue':
-                return direction * (a.holdValue - b.holdValue);
-            case 'holdReturn':
-                return direction * (a.holdReturn - b.holdReturn);
-            case 'avgReturn':
-                return direction * (a.avgReturn - b.avgReturn);
-            default:
-                return 0;
-        }
-    }) : [];
 
     // Your existing loading functionality for AAPL
     useEffect(() => {
@@ -175,7 +79,7 @@ const App = () => {
 
     const handleSearch = async (searchText) => {
         setSearch(searchText);
-        if (searchText.length > 1) {
+        if (searchText.length > 0) {
             try {
                 const response = await fetch(`/api/search/companies?q=${encodeURIComponent(searchText)}`);
                 const data = await response.json();
@@ -452,104 +356,7 @@ const App = () => {
                 </div>
             )}
 
-            {activeMenu === 'calculator' && (
-                <div className="calculator-container">
-                    <div className="calculator-controls">
-                        <div className="investment-input">
-                            <label>Investment Amount:</label>
-                            <div className="input-group">
-                                <button 
-                                    onClick={decrementInvestment}
-                                    className="amount-button"
-                                    disabled={investmentAmount <= 1000}
-                                >
-                                    -
-                                </button>
-                                <input
-                                    type="text"
-                                    value={formatCurrency(investmentAmount)}
-                                    onChange={(e) => handleInvestmentChange(e.target.value)}
-                                    className="amount-input"
-                                />
-                                <button 
-                                    onClick={incrementInvestment}
-                                    className="amount-button"
-                                    disabled={investmentAmount >= 10000000}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="earnings-slider">
-                            <label>Last {earningsCount} Earnings</label>
-                            <input
-                                type="range"
-                                min="1"
-                                max="100"
-                                value={earningsCount}
-                                onChange={(e) => setEarningsCount(parseInt(e.target.value))}
-                                className="slider"
-                            />
-                        </div>
-                    </div>
-
-                    {calculatorLoading ? (
-                        <div className="loading">Calculating returns...</div>
-                    ) : (
-                        <div className="results-table-container">
-                            <table className="calculator-table">
-                                <thead>
-                                    <tr>
-                                        <th onClick={() => handleSort('symbol')}>
-                                            Symbol {sortColumn === 'symbol' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                        <th>Company</th>
-                                        <th onClick={() => handleSort('tradeReturn')}>
-                                            Trade Return ($) {sortColumn === 'tradeReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                        <th onClick={() => handleSort('tradeReturnPercent')}>
-                                            Trade Return (%) {sortColumn === 'tradeReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                        <th onClick={() => handleSort('holdValue')}>
-                                            Buy & Hold Value ($) {sortColumn === 'holdValue' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                        <th onClick={() => handleSort('holdReturn')}>
-                                            Buy & Hold Return (%) {sortColumn === 'holdReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                        <th onClick={() => handleSort('avgReturn')}>
-                                            Avg Return/Earnings (%) {sortColumn === 'avgReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {sortedResults.map((result, index) => (
-                                        <tr key={result.symbol}>
-                                            <td>{result.symbol}</td>
-                                            <td>{result.name}</td>
-                                            <td className={result.tradeReturn >= 0 ? 'positive' : 'negative'}>
-                                                {formatCurrency(result.tradeReturn)}
-                                            </td>
-                                            <td className={result.tradeReturnPercent >= 0 ? 'positive' : 'negative'}>
-                                                {result.tradeReturnPercent > 0 ? '+' : ''}{result.tradeReturnPercent.toFixed(2)}%
-                                            </td>
-                                            <td className={result.holdValue >= investmentAmount ? 'positive' : 'negative'}>
-                                                {formatCurrency(result.holdValue)}
-                                            </td>
-                                            <td className={result.holdReturn >= 0 ? 'positive' : 'negative'}>
-                                                {result.holdReturn > 0 ? '+' : ''}{result.holdReturn.toFixed(2)}%
-                                            </td>
-                                            <td className={result.avgReturn >= 0 ? 'positive' : 'negative'}>
-                                                {result.avgReturn > 0 ? '+' : ''}{result.avgReturn.toFixed(2)}%
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    )}
-                </div>
-            )}
+            {activeMenu === 'calculator' && <Calculator />}
         </div>
     );
 };

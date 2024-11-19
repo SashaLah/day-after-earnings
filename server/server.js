@@ -49,14 +49,35 @@ app.use(express.static(path.join(__dirname, '../dist'), {
     }
 }));
 
+// Available earnings endpoint
+app.get('/api/available-earnings', async (req, res) => {
+    try {
+        const companies = await Company.find().lean();
+        const availabilityMap = {};
+
+        for (const company of companies) {
+            const earningsCount = await Earnings.countDocuments({ symbol: company.symbol });
+            availabilityMap[company.symbol] = earningsCount;
+        }
+
+        res.json(availabilityMap);
+    } catch (error) {
+        console.error('Error fetching available earnings:', error);
+        res.status(500).json({ error: 'Failed to fetch available earnings' });
+    }
+});
+
 // Calculator endpoint
 app.get('/api/calculator', async (req, res) => {
     try {
         console.log('\n=== Calculator Request Start ===');
         const amount = parseFloat(req.query.amount);
         const earningsCount = parseInt(req.query.earnings);
+        const startIndex = parseInt(req.query.start);
+        const endIndex = parseInt(req.query.end);
 
         console.log('Investment Amount:', amount);
+        console.log('Earnings Range:', startIndex, 'to', endIndex);
         console.log('Earnings Count:', earningsCount);
 
         // Validate parameters
@@ -74,9 +95,19 @@ app.get('/api/calculator', async (req, res) => {
         const results = [];
         
         for (const company of companies) {
-            // Get earnings data for each company
+            // Get total earnings count for this company
+            const totalEarnings = await Earnings.countDocuments({ symbol: company.symbol });
+            
+            // Skip if company doesn't have enough earnings history
+            if (totalEarnings < endIndex) {
+                console.log(`Skipping ${company.symbol} - insufficient history (${totalEarnings} < ${endIndex})`);
+                continue;
+            }
+
+            // Get earnings data for the specified range
             const earningsData = await Earnings.find({ symbol: company.symbol })
                 .sort({ date: -1 })
+                .skip(startIndex)
                 .limit(earningsCount)
                 .lean();
 
@@ -96,8 +127,8 @@ app.get('/api/calculator', async (req, res) => {
             });
 
             // Calculate buy & hold returns
-            earningsData.reverse(); // Process oldest to newest
-            for (const earning of earningsData) {
+            const orderedEarnings = [...earningsData].reverse(); // Process oldest to newest
+            for (const earning of orderedEarnings) {
                 if (earning.closePriceDayBefore && earning.closePriceOnDay) {
                     const returnPercent = ((earning.closePriceOnDay - earning.closePriceDayBefore) / earning.closePriceDayBefore) * 100;
                     holdValue = holdValue * (1 + (returnPercent / 100));
