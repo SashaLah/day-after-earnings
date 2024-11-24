@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 import LeaderboardMetrics from './LeaderboardMetrics';
 import './styles.css';
 import './calculatorStyles.css';
-import './leaderboardStyles.css';
+import './LeaderboardStyles.css';
 
 const App = () => {
     const [search, setSearch] = useState('');
