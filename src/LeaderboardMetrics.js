@@ -87,9 +87,9 @@ const LeaderboardMetrics = () => {
     return (
         <div className="metrics-container">
             <div className="metrics-header">
-                <h2>Stock Recovery Metrics</h2>
+                <h2>Stock Earnings Performance</h2>
                 <p className="metrics-description">
-                    Analysis of how stocks recover after earnings drops
+                    Compare how stocks perform after earnings announcements
                 </p>
             </div>
 
@@ -138,7 +138,7 @@ const LeaderboardMetrics = () => {
             </div>
 
             {loading ? (
-                <div className="metrics-loading">Calculating recovery metrics...</div>
+                <div className="metrics-loading">Calculating performance metrics...</div>
             ) : (
                 <div className="metrics-table-container">
                     <table className="metrics-table">
@@ -148,23 +148,23 @@ const LeaderboardMetrics = () => {
                                     Symbol {sortColumn === 'symbol' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
                                 <th>Company</th>
-                                <th onClick={() => handleSort('recoveryRate')} title="Percentage of earnings drops that eventually recover">
-                                    Recovery Rate {sortColumn === 'recoveryRate' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('winRate')} title="Percentage of positive moves after earnings">
+                                    Win Rate {sortColumn === 'winRate' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('avgRecoveryPeriods')} title="Average number of earnings periods needed to recover">
-                                    Avg Recovery Periods {sortColumn === 'avgRecoveryPeriods' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('avgMove')} title="Average move after earnings">
+                                    Avg Move {sortColumn === 'avgMove' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('fastestRecovery')} title="Fastest recovery in earnings periods">
-                                    Fastest Recovery {sortColumn === 'fastestRecovery' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('bestMove')} title="Best performance after earnings">
+                                    Best Move {sortColumn === 'bestMove' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('worstRecovery')} title="Longest recovery in earnings periods">
-                                    Worst Recovery {sortColumn === 'worstRecovery' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('worstMove')} title="Worst performance after earnings">
+                                    Worst Move {sortColumn === 'worstMove' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('consistencyScore')} title="Score based on consistency of earnings reactions">
-                                    Consistency Score {sortColumn === 'consistencyScore' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('lastQuarterMove')} title="Most recent earnings move">
+                                    Last Quarter {sortColumn === 'lastQuarterMove' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th title="Number of drops analyzed vs successful recoveries">
-                                    Recovery Stats
+                                <th title="Up/Down moves after earnings">
+                                    Record
                                 </th>
                             </tr>
                         </thead>
@@ -173,23 +173,23 @@ const LeaderboardMetrics = () => {
                                 <tr key={stock.symbol}>
                                     <td>{stock.symbol}</td>
                                     <td>{stock.name}</td>
-                                    <td className={stock.recoveryRate >= 70 ? 'positive' : stock.recoveryRate <= 30 ? 'negative' : ''}>
-                                        {formatNumber(stock.recoveryRate)}%
+                                    <td className={stock.winRate >= 60 ? 'positive' : stock.winRate <= 40 ? 'negative' : ''}>
+                                        {formatNumber(stock.winRate)}%
                                     </td>
-                                    <td className={stock.avgRecoveryPeriods <= 2 ? 'positive' : stock.avgRecoveryPeriods >= 6 ? 'negative' : ''}>
-                                        {formatNumber(stock.avgRecoveryPeriods)}
+                                    <td className={stock.avgMove >= 0 ? 'positive' : 'negative'}>
+                                        {stock.avgMove >= 0 ? '+' : ''}{formatNumber(stock.avgMove)}%
                                     </td>
                                     <td className="positive">
-                                        {stock.fastestRecovery === null ? 'N/A' : `${stock.fastestRecovery}`}
+                                        +{formatNumber(stock.bestMove)}%
                                     </td>
                                     <td className="negative">
-                                        {stock.worstRecovery === null ? 'N/A' : `${stock.worstRecovery}`}
+                                        {formatNumber(stock.worstMove)}%
                                     </td>
-                                    <td className={stock.consistencyScore >= 7 ? 'positive' : stock.consistencyScore <= 3 ? 'negative' : ''}>
-                                        {formatNumber(stock.consistencyScore, 1)}
+                                    <td className={stock.lastQuarterMove >= 0 ? 'positive' : 'negative'}>
+                                        {stock.lastQuarterMove >= 0 ? '+' : ''}{formatNumber(stock.lastQuarterMove)}%
                                     </td>
                                     <td>
-                                        {stock.successfulRecoveries} / {stock.dropsAnalyzed}
+                                        {stock.upMoveCount}/{stock.downMoveCount}
                                         <div className="small-text">
                                             of {stock.totalEarnings} total
                                         </div>

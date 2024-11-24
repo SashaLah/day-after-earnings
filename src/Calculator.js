@@ -16,6 +16,33 @@ const Calculator = () => {
     const speedMultiplier = useRef(1);
     const [debouncedInvestment, setDebouncedInvestment] = useState(investmentAmount);
 
+    const formatNumber = (value, isPercent = false) => {
+        if (value === null || value === undefined) return 'N/A';
+        
+        const num = Number(value);
+        const isNegative = num < 0;
+        const absoluteNum = Math.abs(num);
+        
+        const formatter = new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        });
+
+        const formatted = formatter.format(Math.round(absoluteNum));
+
+        if (isPercent) {
+            return `${isNegative ? '▼' : '▲'} ${formatted}%`;
+        }
+        
+        return `${isNegative ? '-$' : '$'}${formatted}`;
+    };
+
+    const formatInvestmentAmount = (value) => {
+        return new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: 0
+        }).format(value);
+    };
+
     const getTotalInvestment = () => {
         return investmentAmount * (earningsRange[1] - earningsRange[0] + 1);
     };
@@ -279,24 +306,32 @@ const Calculator = () => {
                     <table className="calculator-table">
                         <thead>
                             <tr>
-                                <th onClick={() => handleSort('symbol')}>
+                                <th onClick={() => handleSort('symbol')} 
+                                    title="Stock symbol">
                                     Symbol {sortColumn === 'symbol' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th>Company</th>
-                                <th onClick={() => handleSort('tradeReturn')}>
-                                    Trade Return ($) {sortColumn === 'tradeReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th title="Company name">
+                                    Company
                                 </th>
-                                <th onClick={() => handleSort('tradeReturnPercent')}>
-                                    Trade Return (%) {sortColumn === 'tradeReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('tradeReturn')} 
+                                    title="Total dollar return if you invested the specified amount in each earnings event separately. Earnings event = buy day before and sell day after earnings. For example, if you invested $1,000 in 4 earnings events, this shows the profit/loss from $4000 total investment.">
+                                    Trade Return {sortColumn === 'tradeReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('holdReturn')}>
-                                    Buy & Hold Return ($) {sortColumn === 'holdReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('tradeReturnPercent')} 
+                                    title="Percentage return on investment from trading earnings separately. Calculated as (Total Profit or Loss / Total Investment Amount) × 100">
+                                    Trade % {sortColumn === 'tradeReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('holdReturnPercent')}>
-                                    Buy & Hold Return (%) {sortColumn === 'holdReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('holdReturn')} 
+                                    title="Total dollar return if you held through all earnings events, reinvesting the specified amount at each earnings. This simulates buying and holding while adding more investment at each earnings.">
+                                    Hold Return {sortColumn === 'holdReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('avgReturn')}>
-                                    Avg Return/Earnings (%) {sortColumn === 'avgReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                <th onClick={() => handleSort('holdReturnPercent')} 
+                                    title="Percentage return from the hold strategy. Calculated as (Final Portfolio Value - Total Invested Amount) / Total Invested Amount × 100">
+                                    Hold % {sortColumn === 'holdReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('tradesCount')} 
+                                    title="Number of earnings events analyzed in the selected date range">
+                                    # of Trades {sortColumn === 'tradesCount' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
                             </tr>
                         </thead>
@@ -306,19 +341,19 @@ const Calculator = () => {
                                     <td>{result.symbol}</td>
                                     <td>{result.name}</td>
                                     <td className={result.tradeReturn >= 0 ? 'positive' : 'negative'}>
-                                        {formatCurrency(result.tradeReturn)}
+                                        {formatNumber(result.tradeReturn)}
                                     </td>
                                     <td className={result.tradeReturnPercent >= 0 ? 'positive' : 'negative'}>
-                                        {result.tradeReturnPercent > 0 ? '+' : ''}{result.tradeReturnPercent.toFixed(2)}%
+                                        {formatNumber(result.tradeReturnPercent, true)}
                                     </td>
                                     <td className={result.holdReturn >= 0 ? 'positive' : 'negative'}>
-                                        {formatCurrency(result.holdReturn)}
+                                        {formatNumber(result.holdReturn)}
                                     </td>
                                     <td className={result.holdReturnPercent >= 0 ? 'positive' : 'negative'}>
-                                        {result.holdReturnPercent > 0 ? '+' : ''}{result.holdReturnPercent.toFixed(2)}%
+                                        {formatNumber(result.holdReturnPercent, true)}
                                     </td>
-                                    <td className={result.avgReturn >= 0 ? 'positive' : 'negative'}>
-                                        {result.avgReturn > 0 ? '+' : ''}{result.avgReturn.toFixed(2)}%
+                                    <td>
+                                        {result.tradesCount}
                                     </td>
                                 </tr>
                             ))}

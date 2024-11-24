@@ -52,126 +52,96 @@ app.use(express.static(path.join(__dirname, '../dist'), {
 // Leaderboard Metrics endpoint
 app.get('/api/metrics/leaderboard', async (req, res) => {
     try {
-        console.log('\n=== Leaderboard Metrics Request Start ===');
         const startPosition = parseInt(req.query.start) || 1;
         const endPosition = parseInt(req.query.end) || 10;
 
-        console.log('Analyzing earnings positions:', startPosition, 'to', endPosition);
+        console.log(`Fetching metrics for range: ${startPosition} to ${endPosition}`);
 
         const companies = await Company.find().lean();
+        console.log(`Found ${companies.length} companies`);
+        
         const results = [];
 
         for (const company of companies) {
-            // Get all earnings sorted by date (newest first)
             const allEarnings = await Earnings.find({ symbol: company.symbol })
                 .sort({ date: -1 })
                 .lean();
 
-            if (allEarnings.length < 4) continue;
-
-            // Get the earnings within our range
-            let rangeEarnings;
-            if (startPosition === 1) {
-                rangeEarnings = allEarnings.slice(0, Math.min(endPosition, allEarnings.length));
-            } else {
-                const startIndex = startPosition - 1;
-                if (startIndex >= allEarnings.length) continue;
-                rangeEarnings = allEarnings.slice(startIndex, Math.min(startIndex + (endPosition - startPosition) + 1, allEarnings.length));
+            if (allEarnings.length < 2) {
+                console.log(`Skipping ${company.symbol} - insufficient data (${allEarnings.length} earnings)`);
+                continue;
             }
+
+            // Get earnings within range
+            const rangeEarnings = allEarnings.slice(
+                startPosition - 1,
+                Math.min(startPosition - 1 + (endPosition - startPosition) + 1, allEarnings.length)
+            );
 
             if (rangeEarnings.length === 0) {
                 console.log(`Skipping ${company.symbol} - no earnings in range`);
                 continue;
             }
 
-            let dropCount = 0;
-            let recoveryCount = 0;
-            let totalRecoveryPeriods = 0;
-            let recoveryInstances = 0;
-            let consistentDirection = 0;
-            let prevDirection = null;
-            let worstRecoveryPeriods = 0;
-            let fastestRecoveryPeriods = null;
+            // Calculate metrics
+            let upMoves = 0;
+            let downMoves = 0;
+            let totalMovePercent = 0;
+            let bestMove = -Infinity;
+            let worstMove = Infinity;
+            let lastQuarterMove = null;
+            let validMoves = 0;
 
-            // Process each earnings report in our range
-            for (let i = 0; i < rangeEarnings.length; i++) {
-                const current = rangeEarnings[i];
-                if (!current.closePriceDayBefore || !current.closePriceOnDay) continue;
+            rangeEarnings.forEach((earning, index) => {
+                if (!earning.closePriceDayBefore || !earning.closePriceOnDay) {
+                    console.log(`${company.symbol}: Missing price data for earning`);
+                    return;
+                }
 
-                const changePercent = ((current.closePriceOnDay - current.closePriceDayBefore) / current.closePriceDayBefore) * 100;
+                const movePercent = ((earning.closePriceOnDay - earning.closePriceDayBefore) / earning.closePriceDayBefore) * 100;
                 
-                // Check consistency
-                const currentDirection = changePercent >= 0;
-                if (prevDirection !== null && currentDirection === prevDirection) {
-                    consistentDirection++;
+                if (index === 0) {
+                    lastQuarterMove = movePercent;
                 }
-                prevDirection = currentDirection;
+                
+                if (movePercent > 0) upMoves++;
+                else downMoves++;
 
-                // If stock dropped after earnings, track recovery
-                if (changePercent < 0) {
-                    dropCount++;
-                    let periodsToRecover = 0;
-                    const priceToRecover = current.closePriceDayBefore; // Price before the earnings drop
-                    let foundRecovery = false;
+                totalMovePercent += movePercent;
+                bestMove = Math.max(bestMove, movePercent);
+                worstMove = Math.min(worstMove, movePercent);
+                validMoves++;
+            });
 
-                    // Look forward through future earnings until we find recovery
-                    for (let j = i + 1; j < rangeEarnings.length; j++) {
-                        const futureEarning = rangeEarnings[j];
-                        if (!futureEarning || !futureEarning.closePriceOnDay) continue;
-                        
-                        periodsToRecover++;
-                        
-                        // Check if price recovered above pre-earnings level
-                        if (futureEarning.closePriceOnDay > priceToRecover) {
-                            foundRecovery = true;
-                            recoveryCount++;
-                            totalRecoveryPeriods += periodsToRecover;
-                            recoveryInstances++;
-                            
-                            // Update fastest/worst recovery times
-                            if (fastestRecoveryPeriods === null) {
-                                fastestRecoveryPeriods = periodsToRecover;
-                                worstRecoveryPeriods = periodsToRecover;
-                            } else {
-                                fastestRecoveryPeriods = Math.min(fastestRecoveryPeriods, periodsToRecover);
-                                worstRecoveryPeriods = Math.max(worstRecoveryPeriods, periodsToRecover);
-                            }
-                            break;
-                        }
-                    }
-                }
+            if (validMoves === 0) {
+                console.log(`Skipping ${company.symbol} - no valid moves`);
+                continue;
             }
 
-            // Calculate final metrics
-            const recoveryRate = dropCount > 0 ? (recoveryCount / dropCount) * 100 : 0;
-            const avgRecoveryPeriods = recoveryInstances > 0 ? totalRecoveryPeriods / recoveryInstances : null;
-            const consistencyScore = rangeEarnings.length > 1 ? 
-                (consistentDirection / (rangeEarnings.length - 1)) * 10 : 0;
+            const result = {
+                symbol: company.symbol,
+                name: company.name,
+                upMoveCount: upMoves,
+                downMoveCount: downMoves,
+                winRate: (upMoves / validMoves) * 100,
+                avgMove: totalMovePercent / validMoves,
+                bestMove: bestMove === -Infinity ? null : bestMove,
+                worstMove: worstMove === Infinity ? null : worstMove,
+                lastQuarterMove: lastQuarterMove,
+                totalEarnings: validMoves
+            };
 
-            // Only include companies that had drops in our range
-            if (dropCount > 0) {
-                results.push({
-                    symbol: company.symbol,
-                    name: company.name,
-                    recoveryRate: parseFloat(recoveryRate.toFixed(1)),
-                    avgRecoveryPeriods: avgRecoveryPeriods ? parseFloat(avgRecoveryPeriods.toFixed(1)) : null,
-                    fastestRecovery: fastestRecoveryPeriods,
-                    worstRecovery: worstRecoveryPeriods,
-                    consistencyScore: parseFloat(consistencyScore.toFixed(1)),
-                    dropsAnalyzed: dropCount,
-                    successfulRecoveries: recoveryCount,
-                    totalEarnings: rangeEarnings.length
-                });
-            }
+            console.log(`Processed ${company.symbol}:`, result);
+            results.push(result);
         }
 
-        // Sort by recovery rate and take top 100
-        const topResults = results
-            .sort((a, b) => b.recoveryRate - a.recoveryRate)
+        // Sort by win rate by default
+        const sortedResults = results
+            .sort((a, b) => b.winRate - a.winRate)
             .slice(0, 100);
 
-        console.log(`Returning ${topResults.length} results`);
-        res.json(topResults);
+        console.log(`Returning ${sortedResults.length} results`);
+        res.json(sortedResults);
     } catch (error) {
         console.error('Leaderboard metrics error:', error);
         res.status(500).json({ error: 'Failed to calculate metrics' });
