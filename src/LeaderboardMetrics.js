@@ -7,13 +7,24 @@ const LeaderboardMetrics = () => {
     const [sortColumn, setSortColumn] = useState('recoveryRate');
     const [sortDirection, setSortDirection] = useState('desc');
     const [earningsRange, setEarningsRange] = useState([1, 10]);
+    const [debouncedRange, setDebouncedRange] = useState(earningsRange);
     const MAX_EARNINGS = 100;
 
+    // Add debounced effect for range changes
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedRange(earningsRange);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [earningsRange]);
+
+    // Update fetch to use debouncedRange instead of earningsRange
     useEffect(() => {
         const fetchMetricsData = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`/api/metrics/leaderboard?start=${earningsRange[0]}&end=${earningsRange[1]}`);
+                const response = await fetch(`/api/metrics/leaderboard?start=${debouncedRange[0]}&end=${debouncedRange[1]}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch metrics data');
                 }
@@ -27,7 +38,7 @@ const LeaderboardMetrics = () => {
         };
 
         fetchMetricsData();
-    }, [earningsRange]);
+    }, [debouncedRange]); // Changed dependency to debouncedRange
 
     const handleSort = (column) => {
         if (sortColumn === column) {
