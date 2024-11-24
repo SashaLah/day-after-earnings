@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Calculator from './Calculator';
+import LeaderboardMetrics from './LeaderboardMetrics';
 import './styles.css';
 import './calculatorStyles.css';
+import './leaderboardStyles.css';
 
 const App = () => {
     const [search, setSearch] = useState('');
@@ -25,9 +27,9 @@ const App = () => {
             sublabel: 'Price Movement After Earnings'
         },
         { 
-            id: 'events', 
-            label: 'Search by Events',
-            sublabel: 'eg Price of Apple since Vision Pro release'
+            id: 'leaderboard', 
+            label: 'Leaderboard Metrics',
+            sublabel: 'Stock Recovery & Performance Metrics'
         },
         { 
             id: 'calculator', 
@@ -45,7 +47,6 @@ const App = () => {
         { value: '5', label: '5 Years' }
     ];
 
-    // Your existing loading functionality for AAPL
     useEffect(() => {
         const loadDefaultData = async () => {
             try {
@@ -193,8 +194,8 @@ const App = () => {
 
     return (
         <div className="container">
-            <h1>Earnings Stock Movement History</h1>
-            
+            <h1>Earnings Report Card</h1>
+            <h2 className="subtitle">Stock Prices 1 Day After Earnings</h2>
             <div className="menu-container">
                 {menuItems.map(item => (
                     <button
@@ -211,56 +212,60 @@ const App = () => {
             {activeMenu === 'search' && (
                 <>
                     <div className="search-section">
-                        <div className="search-container">
-                            <input
-                                type="text"
-                                value={search}
-                                onChange={(e) => handleSearch(e.target.value.toUpperCase())}
-                                onFocus={() => setSearch('')}
-                                placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
-                                className="search-input"
-                            />
-                            {suggestions.length > 0 && (
-                                <div className="suggestions-dropdown">
-                                    {suggestions.map((company, index) => (
-                                        <div
-                                            key={index}
-                                            className="suggestion-item"
-                                            onClick={() => selectCompany(company.symbol)}
-                                        >
-                                            <span className="company-name">{company.name}</span>
-                                            <span className="company-symbol">{company.symbol}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                        <button 
-                            type="button" 
-                            className="filter-button"
-                            onClick={() => setShowFilters(!showFilters)}
-                        >
-                            Filter
-                        </button>
-                    </div>
-
-                    {showFilters && (
-                        <div className="filters-container">
-                            <div className="filter-group">
-                                <label>Time Range:</label>
-                                <select 
-                                    value={selectedTimeRange}
-                                    onChange={(e) => setSelectedTimeRange(e.target.value)}
-                                >
-                                    {timeRangeOptions.map(option => (
-                                        <option key={option.value} value={option.value}>
-                                            {option.label}
-                                        </option>
-                                    ))}
-                                </select>
+                        <div className="search-box-container">
+                            <div className="search-container">
+                                <input
+                                    type="text"
+                                    value={search}
+                                    onChange={(e) => handleSearch(e.target.value.toUpperCase())}
+                                    onFocus={() => setSearch('')}
+                                    placeholder="Enter company name or symbol (e.g., Apple or AAPL)"
+                                    className="search-input"
+                                />
+                                {suggestions.length > 0 && (
+                                    <div className="suggestions-dropdown">
+                                        {suggestions.map((company, index) => (
+                                            <div
+                                                key={index}
+                                                className="suggestion-item"
+                                                onClick={() => selectCompany(company.symbol)}
+                                            >
+                                                <span className="company-name">{company.name}</span>
+                                                <span className="company-symbol">{company.symbol}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
+                            <button 
+                                type="button" 
+                                className="filter-button"
+                                onClick={() => setShowFilters(!showFilters)}
+                            >
+                                Filter
+                            </button>
                         </div>
-                    )}
+
+                        {showFilters && (
+                            <div className="filters-container">
+                                <div className="filter-group">
+                                    <label>Time Range:</label>
+                                    <div className="custom-select">
+                                        <select 
+                                            value={selectedTimeRange}
+                                            onChange={(e) => setSelectedTimeRange(e.target.value)}
+                                        >
+                                            {timeRangeOptions.map(option => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
 
                     {error && <div className="error">{error}</div>}
                     {loading && <div className="loading">Loading data...</div>}
@@ -305,18 +310,10 @@ const App = () => {
                                 <table className="earnings-table">
                                     <thead>
                                         <tr>
-                                            <th className="table-header" title="The date of earnings announcement">
-                                                Date
-                                            </th>
-                                            <th className="table-header" title="The closing price before earnings impact">
-                                                Close Before
-                                            </th>
-                                            <th className="table-header" title="The closing price after earnings impact">
-                                                Close After
-                                            </th>
-                                            <th className="table-header" title="Percentage price change">
-                                                Change
-                                            </th>
+                                            <th className="table-header">Date</th>
+                                            <th className="table-header close-before">Close Before</th>
+                                            <th className="table-header">Close After</th>
+                                            <th className="table-header">Change</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -325,7 +322,7 @@ const App = () => {
                                                 <td>{earning.date}</td>
                                                 <td>${earning.closePriceDayBefore}</td>
                                                 <td>${earning.closePriceOnDay}</td>
-                                                <td className={parseFloat(earning.priceChange) >= 0 ? 'positive-effect' : 'negative-effect'}>
+                                                <td className={`change-cell ${parseFloat(earning.priceChange) >= 0 ? 'positive-change' : 'negative-change'}`}>
                                                     {earning.priceChange > 0 ? '+' : ''}{earning.priceChange}%
                                                 </td>
                                             </tr>
@@ -349,12 +346,7 @@ const App = () => {
                 </>
             )}
 
-            {activeMenu === 'events' && (
-                <div className="events-container">
-                    {/* Placeholder for events feature */}
-                    <p>Events feature coming soon...</p>
-                </div>
-            )}
+            {activeMenu === 'leaderboard' && <LeaderboardMetrics />}
 
             {activeMenu === 'calculator' && <Calculator />}
         </div>

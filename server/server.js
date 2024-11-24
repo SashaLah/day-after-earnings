@@ -49,6 +49,114 @@ app.use(express.static(path.join(__dirname, '../dist'), {
     }
 }));
 
+// Leaderboard Metrics endpoint
+app.get('/api/metrics/leaderboard', async (req, res) => {
+    try {
+        console.log('\n=== Leaderboard Metrics Request Start ===');
+        const companies = await Company.find().lean();
+        const results = [];
+
+        for (const company of companies) {
+            // Get all earnings sorted by date (newest first)
+            const earnings = await Earnings.find({ symbol: company.symbol })
+                .sort({ date: -1 })
+                .lean();
+
+            if (earnings.length < 4) continue; // Skip if not enough data
+
+            let dropCount = 0;
+            let recoveryCount = 0;
+            let totalRecoveryPeriods = 0;
+            let recoveryInstances = 0;
+            let consistentDirection = 0;
+            let prevDirection = null;
+            let worstRecoveryPeriods = 0;
+            let fastestRecoveryPeriods = null;
+
+            // Process earnings data
+            for (let i = earnings.length - 1; i >= 0; i--) {
+                const current = earnings[i];
+                if (!current.closePriceDayBefore || !current.closePriceOnDay) continue;
+
+                const changePercent = ((current.closePriceOnDay - current.closePriceDayBefore) / current.closePriceDayBefore) * 100;
+                
+                // Check consistency
+                const currentDirection = changePercent >= 0;
+                if (prevDirection !== null && currentDirection === prevDirection) {
+                    consistentDirection++;
+                }
+                prevDirection = currentDirection;
+
+                // Check for drops and recoveries
+                if (changePercent < 0) {
+                    dropCount++;
+                    let periodsToRecover = 0;
+                    const dropPrice = current.closePriceDayBefore;
+                    let foundRecovery = false;
+
+                    // Look ahead until recovery or end of data
+                    for (let j = i - 1; j >= 0; j--) {
+                        const futureEarning = earnings[j];
+                        if (!futureEarning || !futureEarning.closePriceOnDay) continue;
+                        
+                        periodsToRecover++;
+                        
+                        if (futureEarning.closePriceOnDay > dropPrice) {
+                            foundRecovery = true;
+                            recoveryCount++;
+                            totalRecoveryPeriods += periodsToRecover;
+                            recoveryInstances++;
+                            
+                            // Update fastest/worst only if we found a recovery
+                            if (fastestRecoveryPeriods === null) {
+                                fastestRecoveryPeriods = periodsToRecover;
+                                worstRecoveryPeriods = periodsToRecover;
+                            } else {
+                                fastestRecoveryPeriods = Math.min(fastestRecoveryPeriods, periodsToRecover);
+                                worstRecoveryPeriods = Math.max(worstRecoveryPeriods, periodsToRecover);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Calculate final metrics
+            const recoveryRate = dropCount > 0 ? (recoveryCount / dropCount) * 100 : 0;
+            const avgRecoveryPeriods = recoveryInstances > 0 ? totalRecoveryPeriods / recoveryInstances : null;
+            const consistencyScore = earnings.length > 1 ? 
+                (consistentDirection / (earnings.length - 1)) * 10 : 0;
+
+            // Only include companies that have had drops
+            if (dropCount > 0) {
+                results.push({
+                    symbol: company.symbol,
+                    name: company.name,
+                    recoveryRate: parseFloat(recoveryRate.toFixed(1)),
+                    avgRecoveryPeriods: avgRecoveryPeriods ? parseFloat(avgRecoveryPeriods.toFixed(1)) : null,
+                    fastestRecovery: fastestRecoveryPeriods,
+                    worstRecovery: worstRecoveryPeriods,
+                    consistencyScore: parseFloat(consistencyScore.toFixed(1)),
+                    dropsAnalyzed: dropCount,
+                    successfulRecoveries: recoveryCount,
+                    totalEarnings: earnings.length
+                });
+            }
+        }
+
+        // Sort by recovery rate and take top 100
+        const topResults = results
+            .sort((a, b) => b.recoveryRate - a.recoveryRate)
+            .slice(0, 100);
+
+        console.log(`Returning ${topResults.length} results`);
+        res.json(topResults);
+    } catch (error) {
+        console.error('Leaderboard metrics error:', error);
+        res.status(500).json({ error: 'Failed to calculate metrics' });
+    }
+});
+
 // Available earnings endpoint
 app.get('/api/available-earnings', async (req, res) => {
     try {
@@ -72,53 +180,59 @@ app.get('/api/calculator', async (req, res) => {
     try {
         console.log('\n=== Calculator Request Start ===');
         const amount = parseFloat(req.query.amount);
-        const earningsCount = parseInt(req.query.earnings);
-        const startIndex = parseInt(req.query.start);
-        const endIndex = parseInt(req.query.end);
+        const startPosition = parseInt(req.query.start);
+        const endPosition = parseInt(req.query.end);
 
         console.log('Investment Amount:', amount);
-        console.log('Earnings Range:', startIndex, 'to', endIndex);
-        console.log('Earnings Count:', earningsCount);
+        console.log('Range:', startPosition, 'to', endPosition);
 
         // Validate parameters
         if (isNaN(amount) || amount <= 0 || amount > 10000000) {
             return res.status(400).json({ error: 'Invalid investment amount' });
         }
-        if (isNaN(earningsCount) || earningsCount < 1 || earningsCount > 100) {
-            return res.status(400).json({ error: 'Invalid earnings count' });
+        if (startPosition < 1 || endPosition < startPosition || endPosition > 100) {
+            return res.status(400).json({ error: 'Invalid range' });
         }
 
         // Get all companies
         const companies = await Company.find().lean();
         console.log(`Processing ${companies.length} companies`);
-
         const results = [];
-        
-        for (const company of companies) {
-            // Get total earnings count for this company
-            const totalEarnings = await Earnings.countDocuments({ symbol: company.symbol });
-            
-            // Skip if company doesn't have enough earnings history
-            if (totalEarnings < endIndex) {
-                console.log(`Skipping ${company.symbol} - insufficient history (${totalEarnings} < ${endIndex})`);
-                continue;
-            }
 
-            // Get earnings data for the specified range
-            const earningsData = await Earnings.find({ symbol: company.symbol })
+        for (const company of companies) {
+            // Get all earnings sorted by date (newest first)
+            const allEarnings = await Earnings.find({ symbol: company.symbol })
                 .sort({ date: -1 })
-                .skip(startIndex)
-                .limit(earningsCount)
                 .lean();
 
-            if (earningsData.length < 2) continue;
+            // Skip if company has no earnings
+            if (allEarnings.length === 0) continue;
+
+            // Determine valid earnings for this range
+            let validEarnings;
+            if (startPosition === 1) {
+                // If starting from 1, include all available earnings up to endPosition
+                validEarnings = allEarnings.slice(0, Math.min(endPosition, allEarnings.length));
+            } else {
+                // If starting after 1, exclude most recent earnings based on start position
+                const startIndex = startPosition - 1;
+                if (startIndex >= allEarnings.length) continue; // Skip if company doesn't exist in this range
+                validEarnings = allEarnings.slice(startIndex, Math.min(endPosition, allEarnings.length));
+            }
+
+            // Skip if no valid earnings in range
+            if (validEarnings.length === 0) {
+                console.log(`Skipping ${company.symbol} - no valid earnings in range`);
+                continue;
+            }
 
             let tradeReturn = 0;
             let holdValue = amount;
             let validTrades = 0;
+            const totalInvestment = amount * validEarnings.length;
 
             // Calculate trading returns
-            earningsData.forEach(earning => {
+            validEarnings.forEach(earning => {
                 if (earning.closePriceDayBefore && earning.closePriceOnDay) {
                     const returnPercent = ((earning.closePriceOnDay - earning.closePriceDayBefore) / earning.closePriceDayBefore) * 100;
                     tradeReturn += (amount * (returnPercent / 100));
@@ -127,14 +241,19 @@ app.get('/api/calculator', async (req, res) => {
             });
 
             // Calculate buy & hold returns
-            const orderedEarnings = [...earningsData].reverse(); // Process oldest to newest
+            const orderedEarnings = [...validEarnings].reverse(); // Process oldest to newest
             for (const earning of orderedEarnings) {
                 if (earning.closePriceDayBefore && earning.closePriceOnDay) {
                     const returnPercent = ((earning.closePriceOnDay - earning.closePriceDayBefore) / earning.closePriceDayBefore) * 100;
                     holdValue = holdValue * (1 + (returnPercent / 100));
-                    holdValue += amount; // Add new investment
+                    if (earning !== orderedEarnings[orderedEarnings.length - 1]) {
+                        holdValue += amount;
+                    }
                 }
             }
+
+            // Calculate hold return (profit/loss)
+            const holdReturn = holdValue - totalInvestment;
 
             if (validTrades > 0) {
                 results.push({
@@ -142,10 +261,11 @@ app.get('/api/calculator', async (req, res) => {
                     name: company.name,
                     tradeReturn: tradeReturn,
                     tradeReturnPercent: (tradeReturn / (amount * validTrades)) * 100,
-                    holdValue: holdValue,
-                    holdReturn: ((holdValue - (amount * validTrades)) / (amount * validTrades)) * 100,
+                    holdReturn: holdReturn,
+                    holdReturnPercent: (holdReturn / totalInvestment) * 100,
                     avgReturn: tradeReturn / (amount * validTrades) * 100,
-                    tradesCount: validTrades
+                    tradesCount: validTrades,
+                    totalInvestment: totalInvestment
                 });
             }
         }
@@ -156,7 +276,13 @@ app.get('/api/calculator', async (req, res) => {
             .slice(0, 100);
 
         console.log(`Returning top ${topResults.length} results`);
-        console.log('Sample result:', topResults[0]);
+        if (topResults.length > 0) {
+            console.log('Sample result:', {
+                symbol: topResults[0].symbol,
+                tradeReturn: topResults[0].tradeReturn,
+                tradesCount: topResults[0].tradesCount
+            });
+        }
 
         res.json(topResults);
     } catch (error) {

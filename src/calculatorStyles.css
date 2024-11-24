@@ -123,10 +123,7 @@
     height: 100%;
     background: #3498db;
     border-radius: 2px;
-    pointer-events: none;
-    /* Adjust the positioning to account for the thumb width */
-    margin-left: 20px;  /* Half the thumb width */
-    margin-right: -20px;  /* Negative half the thumb width */
+    min-width: 20px;
 }
 
 .timeline-input {
@@ -136,15 +133,13 @@
     top: 50%;
     transform: translateY(-50%);
     -webkit-appearance: none;
-    pointer-events: none;
     background: transparent;
     z-index: 2;
-    padding: 0;
+    pointer-events: none;
 }
 
 .timeline-input::-webkit-slider-thumb {
     -webkit-appearance: none;
-    pointer-events: auto;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -154,10 +149,11 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     margin-top: -8px;
+    z-index: 3;
+    pointer-events: auto;
 }
 
 .timeline-input::-moz-range-thumb {
-    pointer-events: auto;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -166,6 +162,16 @@
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.timeline-input.end::-webkit-slider-thumb {
+    z-index: 4;
+}
+
+.timeline-input.end::-moz-range-thumb {
+    z-index: 4;
 }
 
 .timeline-input::-webkit-slider-thumb:hover {
@@ -182,12 +188,14 @@
     width: 100%;
     height: 4px;
     background: transparent;
+    border-radius: 2px;
 }
 
 .timeline-input::-moz-range-track {
     width: 100%;
     height: 4px;
     background: transparent;
+    border-radius: 2px;
 }
 
 .timeline-labels {

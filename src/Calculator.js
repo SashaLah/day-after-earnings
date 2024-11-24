@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 
 const Calculator = () => {
     const [investmentAmount, setInvestmentAmount] = useState(10000);
-    const [earningsRange, setEarningsRange] = useState([0, 10]); // [start, end]
+    const [earningsRange, setEarningsRange] = useState([1, 10]);
     const [debouncedRange, setDebouncedRange] = useState(earningsRange);
     const [calculatorResults, setCalculatorResults] = useState(null);
     const [calculatorLoading, setCalculatorLoading] = useState(false);
@@ -11,7 +11,15 @@ const Calculator = () => {
     const [availableCompanies, setAvailableCompanies] = useState(null);
     const MAX_EARNINGS = 100;
 
-    // Format currency
+    const buttonPressTimer = useRef(null);
+    const buttonPressInterval = useRef(null);
+    const speedMultiplier = useRef(1);
+    const [debouncedInvestment, setDebouncedInvestment] = useState(investmentAmount);
+
+    const getTotalInvestment = () => {
+        return investmentAmount * (earningsRange[1] - earningsRange[0] + 1);
+    };
+
     const formatCurrency = (value) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -21,7 +29,48 @@ const Calculator = () => {
         }).format(value);
     };
 
-    // Fetch available earnings data for companies when component mounts
+    const handleInvestmentChange = (value) => {
+        const numValue = parseInt(value.replace(/[^0-9]/g, ''));
+        if (!isNaN(numValue)) {
+            setInvestmentAmount(Math.min(Math.max(1, numValue), 10000000));
+        }
+    };
+
+    const updateAmount = (increment) => {
+        const step = 1000 * speedMultiplier.current;
+        setInvestmentAmount(prev => {
+            const newValue = prev + (increment ? step : -step);
+            return Math.min(Math.max(1, newValue), 10000000);
+        });
+    };
+
+    const startIncrement = (increment) => {
+        speedMultiplier.current = 1;
+        updateAmount(increment);
+
+        buttonPressTimer.current = setTimeout(() => {
+            buttonPressInterval.current = setInterval(() => {
+                speedMultiplier.current = Math.min(speedMultiplier.current + 0.5, 10);
+                updateAmount(increment);
+            }, 50);
+        }, 500);
+    };
+
+    const stopIncrement = () => {
+        if (buttonPressTimer.current) clearTimeout(buttonPressTimer.current);
+        if (buttonPressInterval.current) clearInterval(buttonPressInterval.current);
+        buttonPressTimer.current = null;
+        buttonPressInterval.current = null;
+        speedMultiplier.current = 1;
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedInvestment(investmentAmount);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [investmentAmount]);
+
     useEffect(() => {
         const fetchAvailableEarnings = async () => {
             try {
@@ -35,26 +84,6 @@ const Calculator = () => {
 
         fetchAvailableEarnings();
     }, []);
-
-    // Handle investment amount changes
-    const handleInvestmentChange = (value) => {
-        const numValue = parseInt(value.replace(/[^0-9]/g, ''));
-        if (!isNaN(numValue) && numValue <= 10000000) {
-            setInvestmentAmount(numValue);
-        }
-    };
-
-    const incrementInvestment = () => {
-        if (investmentAmount < 10000000) {
-            setInvestmentAmount(prev => Math.min(prev + 1000, 10000000));
-        }
-    };
-
-    const decrementInvestment = () => {
-        if (investmentAmount > 1000) {
-            setInvestmentAmount(prev => prev - 1000);
-        }
-    };
 
     const handleRangeChange = (e) => {
         const value = parseInt(e.target.value);
@@ -71,7 +100,6 @@ const Calculator = () => {
         });
     };
 
-    // Debounce the range changes
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedRange(earningsRange);
@@ -80,7 +108,6 @@ const Calculator = () => {
         return () => clearTimeout(timer);
     }, [earningsRange]);
 
-    // Get available companies info
     const getAvailableCompaniesInfo = () => {
         if (!availableCompanies) return null;
 
@@ -92,48 +119,41 @@ const Calculator = () => {
         return `${availableCount} companies have sufficient history for this range`;
     };
 
-    // Calculate percentage position for timeline visual
     const getTimelinePosition = (value) => {
-        // Adjust calculation to account for thumb width
         const percentage = (value / MAX_EARNINGS) * 100;
-        const thumbOffset = 10; // Half the thumb width in pixels
+        const thumbOffset = 10;
         const trackWidth = document.querySelector('.timeline-track')?.offsetWidth || 0;
         const offsetPercentage = (thumbOffset / trackWidth) * 100;
 
-        return percentage + (value === 0 ? offsetPercentage : -offsetPercentage);
+        return percentage + (value === 1 ? offsetPercentage : -offsetPercentage);
     };
 
-    // Fetch calculator results
     const fetchCalculatorResults = useCallback(async () => {
         try {
             setCalculatorLoading(true);
-            const count = debouncedRange[1] - debouncedRange[0];
-            const startIndex = debouncedRange[0];
-            const endIndex = debouncedRange[1];
-
+            const count = debouncedRange[1] - debouncedRange[0] + 1;
+            
             const response = await fetch(
-                `/api/calculator?amount=${investmentAmount}&earnings=${count}&start=${startIndex}&end=${endIndex}`
+                `/api/calculator?amount=${debouncedInvestment}&earnings=${count}&start=${debouncedRange[0]}&end=${debouncedRange[1]}`
             );
-            const data = await response.json();
             
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to fetch data');
+                throw new Error('Failed to fetch calculator data');
             }
             
+            const data = await response.json();
             setCalculatorResults(data);
         } catch (error) {
             console.error('Error fetching calculator data:', error);
         } finally {
             setCalculatorLoading(false);
         }
-    }, [investmentAmount, debouncedRange]);
+    }, [debouncedInvestment, debouncedRange]);
 
-    // Fetch results when calculator inputs change
     useEffect(() => {
         fetchCalculatorResults();
-    }, [investmentAmount, debouncedRange, fetchCalculatorResults]);
+    }, [debouncedInvestment, debouncedRange, fetchCalculatorResults]);
 
-    // Sorting function for calculator results
     const handleSort = (column) => {
         if (sortColumn === column) {
             setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
@@ -143,52 +163,64 @@ const Calculator = () => {
         }
     };
 
-    const sortedResults = calculatorResults ? [...calculatorResults].sort((a, b) => {
-        const direction = sortDirection === 'asc' ? 1 : -1;
-        switch (sortColumn) {
-            case 'symbol':
-                return direction * a.symbol.localeCompare(b.symbol);
-            case 'tradeReturn':
-                return direction * (a.tradeReturn - b.tradeReturn);
-            case 'tradeReturnPercent':
-                return direction * (a.tradeReturnPercent - b.tradeReturnPercent);
-            case 'holdValue':
-                return direction * (a.holdValue - b.holdValue);
-            case 'holdReturn':
-                return direction * (a.holdReturn - b.holdReturn);
-            case 'avgReturn':
-                return direction * (a.avgReturn - b.avgReturn);
-            default:
-                return 0;
-        }
-    }) : [];
+    const sortedResults = calculatorResults ? [...calculatorResults]
+        .sort((a, b) => {
+            const direction = sortDirection === 'asc' ? 1 : -1;
+            switch (sortColumn) {
+                case 'symbol':
+                    return direction * a.symbol.localeCompare(b.symbol);
+                case 'tradeReturn':
+                    return direction * (a.tradeReturn - b.tradeReturn);
+                case 'tradeReturnPercent':
+                    return direction * (a.tradeReturnPercent - b.tradeReturnPercent);
+                case 'holdReturn':
+                    return direction * (a.holdReturn - b.holdReturn);
+                case 'holdReturnPercent':
+                    return direction * (a.holdReturnPercent - b.holdReturnPercent);
+                case 'avgReturn':
+                    return direction * (a.avgReturn - b.avgReturn);
+                default:
+                    return 0;
+            }
+        }) : [];
 
     return (
         <div className="calculator-container">
             <div className="calculator-controls">
-                <div className="investment-input">
-                    <label>Investment Amount:</label>
-                    <div className="input-group">
-                        <button 
-                            onClick={decrementInvestment}
-                            className="amount-button"
-                            disabled={investmentAmount <= 1000}
-                        >
-                            -
-                        </button>
-                        <input
-                            type="text"
-                            value={formatCurrency(investmentAmount)}
-                            onChange={(e) => handleInvestmentChange(e.target.value)}
-                            className="amount-input"
-                        />
-                        <button 
-                            onClick={incrementInvestment}
-                            className="amount-button"
-                            disabled={investmentAmount >= 10000000}
-                        >
-                            +
-                        </button>
+                <div className="investment-section">
+                    <div className="investment-input">
+                        <label>Investment Amount per Earnings:</label>
+                        <div className="input-group">
+                            <button 
+                                onMouseDown={() => startIncrement(false)}
+                                onMouseUp={stopIncrement}
+                                onMouseLeave={stopIncrement}
+                                onTouchStart={() => startIncrement(false)}
+                                onTouchEnd={stopIncrement}
+                                className="amount-button"
+                            >
+                                -
+                            </button>
+                            <input
+                                type="text"
+                                value={formatCurrency(investmentAmount)}
+                                onChange={(e) => handleInvestmentChange(e.target.value)}
+                                className="amount-input"
+                            />
+                            <button 
+                                onMouseDown={() => startIncrement(true)}
+                                onMouseUp={stopIncrement}
+                                onMouseLeave={stopIncrement}
+                                onTouchStart={() => startIncrement(true)}
+                                onTouchEnd={stopIncrement}
+                                className="amount-button"
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div className="total-invested">
+                        Total Investment: {formatCurrency(getTotalInvestment())}
                     </div>
                 </div>
 
@@ -207,7 +239,7 @@ const Calculator = () => {
                         <input
                             type="range"
                             id="startRange"
-                            min="0"
+                            min="1"
                             max={MAX_EARNINGS}
                             value={earningsRange[0]}
                             onChange={handleRangeChange}
@@ -216,7 +248,7 @@ const Calculator = () => {
                         <input
                             type="range"
                             id="endRange"
-                            min="0"
+                            min="1"
                             max={MAX_EARNINGS}
                             value={earningsRange[1]}
                             onChange={handleRangeChange}
@@ -230,7 +262,7 @@ const Calculator = () => {
                     <div className="timeline-info">
                         Analyzing earnings {earningsRange[0]} to {earningsRange[1]} 
                         <br />
-                        <small>({earningsRange[1] - earningsRange[0]} earnings total)</small>
+                        <small>({earningsRange[1] - earningsRange[0] + 1} earnings total)</small>
                         {availableCompanies && (
                             <small className="available-companies">
                                 {getAvailableCompaniesInfo()}
@@ -257,11 +289,11 @@ const Calculator = () => {
                                 <th onClick={() => handleSort('tradeReturnPercent')}>
                                     Trade Return (%) {sortColumn === 'tradeReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th onClick={() => handleSort('holdValue')}>
-                                    Buy & Hold Value ($) {sortColumn === 'holdValue' && (sortDirection === 'asc' ? '↑' : '↓')}
-                                </th>
                                 <th onClick={() => handleSort('holdReturn')}>
-                                    Buy & Hold Return (%) {sortColumn === 'holdReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                    Buy & Hold Return ($) {sortColumn === 'holdReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('holdReturnPercent')}>
+                                    Buy & Hold Return (%) {sortColumn === 'holdReturnPercent' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
                                 <th onClick={() => handleSort('avgReturn')}>
                                     Avg Return/Earnings (%) {sortColumn === 'avgReturn' && (sortDirection === 'asc' ? '↑' : '↓')}
@@ -279,11 +311,11 @@ const Calculator = () => {
                                     <td className={result.tradeReturnPercent >= 0 ? 'positive' : 'negative'}>
                                         {result.tradeReturnPercent > 0 ? '+' : ''}{result.tradeReturnPercent.toFixed(2)}%
                                     </td>
-                                    <td className={result.holdValue >= investmentAmount ? 'positive' : 'negative'}>
-                                        {formatCurrency(result.holdValue)}
-                                    </td>
                                     <td className={result.holdReturn >= 0 ? 'positive' : 'negative'}>
-                                        {result.holdReturn > 0 ? '+' : ''}{result.holdReturn.toFixed(2)}%
+                                        {formatCurrency(result.holdReturn)}
+                                    </td>
+                                    <td className={result.holdReturnPercent >= 0 ? 'positive' : 'negative'}>
+                                        {result.holdReturnPercent > 0 ? '+' : ''}{result.holdReturnPercent.toFixed(2)}%
                                     </td>
                                     <td className={result.avgReturn >= 0 ? 'positive' : 'negative'}>
                                         {result.avgReturn > 0 ? '+' : ''}{result.avgReturn.toFixed(2)}%

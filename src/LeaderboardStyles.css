@@ -1,0 +1,140 @@
+.metrics-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.metrics-header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.metrics-header h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.metrics-description {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.metrics-loading {
+    text-align: center;
+    color: #7f8c8d;
+    margin: 20px 0;
+    padding: 40px;
+    font-size: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.metrics-table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.metrics-table th {
+    background: #f8f9fa;
+    padding: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.metrics-table th:hover {
+    background: #f1f3f5;
+}
+
+.metrics-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f3f5;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.metrics-table tr:hover {
+    background: #f8f9fa;
+}
+
+.metrics-table tr:last-child td {
+    border-bottom: none;
+}
+
+.positive {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.negative {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.small-text {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin-top: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .metrics-container {
+        padding: 16px;
+    }
+
+    .metrics-table {
+        font-size: 12px;
+    }
+
+    .metrics-table th,
+    .metrics-table td {
+        padding: 12px 8px;
+    }
+
+    .metrics-header h2 {
+        font-size: 20px;
+    }
+}
+
+/* Portrait mode specific */
+@media (max-width: 480px) {
+    .metrics-container {
+        padding: 12px;
+    }
+
+    .metrics-table {
+        font-size: 11px;
+        min-width: 800px;
+    }
+
+    .metrics-table-container {
+        margin: 0 -12px;
+        border-radius: 0;
+    }
+}
+
+/* Better touch targets for mobile */
+@media (pointer: coarse) {
+    .metrics-table th {
+        min-height: 44px;
+    }
+}
