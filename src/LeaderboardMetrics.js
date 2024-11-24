@@ -6,12 +6,14 @@ const LeaderboardMetrics = () => {
     const [loading, setLoading] = useState(true);
     const [sortColumn, setSortColumn] = useState('recoveryRate');
     const [sortDirection, setSortDirection] = useState('desc');
+    const [earningsRange, setEarningsRange] = useState([1, 10]);
+    const MAX_EARNINGS = 100;
 
     useEffect(() => {
         const fetchMetricsData = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('/api/metrics/leaderboard');
+                const response = await fetch(`/api/metrics/leaderboard?start=${earningsRange[0]}&end=${earningsRange[1]}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch metrics data');
                 }
@@ -25,7 +27,7 @@ const LeaderboardMetrics = () => {
         };
 
         fetchMetricsData();
-    }, []);
+    }, [earningsRange]);
 
     const handleSort = (column) => {
         if (sortColumn === column) {
@@ -34,6 +36,25 @@ const LeaderboardMetrics = () => {
             setSortColumn(column);
             setSortDirection('desc');
         }
+    };
+
+    const handleRangeChange = (e) => {
+        const value = parseInt(e.target.value);
+        const isEndSlider = e.target.id === 'endRange';
+        
+        setEarningsRange(prev => {
+            const newRange = [...prev];
+            if (isEndSlider) {
+                newRange[1] = Math.max(value, newRange[0]);
+            } else {
+                newRange[0] = Math.min(value, newRange[1]);
+            }
+            return newRange;
+        });
+    };
+
+    const getTimelinePosition = (value) => {
+        return ((value - 1) / (MAX_EARNINGS - 1)) * 100;
     };
 
     const formatNumber = (value, decimals = 1) => {
@@ -59,6 +80,50 @@ const LeaderboardMetrics = () => {
                 <p className="metrics-description">
                     Analysis of how stocks recover after earnings drops
                 </p>
+            </div>
+
+            <div className="calculator-controls">
+                <div className="timeline-container">
+                    <label>Select Earnings Range:</label>
+                    <div className="timeline-slider">
+                        <div className="timeline-track">
+                            <div 
+                                className="timeline-fill"
+                                style={{
+                                    left: `${getTimelinePosition(earningsRange[0])}%`,
+                                    right: `${100 - getTimelinePosition(earningsRange[1])}%`
+                                }}
+                            />
+                        </div>
+                        <input
+                            type="range"
+                            id="startRange"
+                            min="1"
+                            max={MAX_EARNINGS}
+                            value={earningsRange[0]}
+                            onChange={handleRangeChange}
+                            className="timeline-input start"
+                        />
+                        <input
+                            type="range"
+                            id="endRange"
+                            min="1"
+                            max={MAX_EARNINGS}
+                            value={earningsRange[1]}
+                            onChange={handleRangeChange}
+                            className="timeline-input end"
+                        />
+                    </div>
+                    <div className="timeline-labels">
+                        <div className="timeline-label">Most Recent</div>
+                        <div className="timeline-label">Oldest</div>
+                    </div>
+                    <div className="timeline-info">
+                        Analyzing earnings {earningsRange[0]} to {earningsRange[1]} 
+                        <br />
+                        <small>({earningsRange[1] - earningsRange[0] + 1} earnings total)</small>
+                    </div>
+                </div>
             </div>
 
             {loading ? (

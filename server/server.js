@@ -53,16 +53,36 @@ app.use(express.static(path.join(__dirname, '../dist'), {
 app.get('/api/metrics/leaderboard', async (req, res) => {
     try {
         console.log('\n=== Leaderboard Metrics Request Start ===');
+        const startPosition = parseInt(req.query.start) || 1;
+        const endPosition = parseInt(req.query.end) || 10;
+
+        console.log('Analyzing earnings positions:', startPosition, 'to', endPosition);
+
         const companies = await Company.find().lean();
         const results = [];
 
         for (const company of companies) {
             // Get all earnings sorted by date (newest first)
-            const earnings = await Earnings.find({ symbol: company.symbol })
+            const allEarnings = await Earnings.find({ symbol: company.symbol })
                 .sort({ date: -1 })
                 .lean();
 
-            if (earnings.length < 4) continue; // Skip if not enough data
+            if (allEarnings.length < 4) continue;
+
+            // Get the earnings within our range first
+            let rangeEarnings;
+            if (startPosition === 1) {
+                rangeEarnings = allEarnings.slice(0, Math.min(endPosition, allEarnings.length));
+            } else {
+                const startIndex = startPosition - 1;
+                if (startIndex >= allEarnings.length) continue;
+                rangeEarnings = allEarnings.slice(startIndex, Math.min(startIndex + (endPosition - startPosition) + 1, allEarnings.length));
+            }
+
+            if (rangeEarnings.length === 0) {
+                console.log(`Skipping ${company.symbol} - no earnings in range`);
+                continue;
+            }
 
             let dropCount = 0;
             let recoveryCount = 0;
@@ -73,9 +93,9 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
             let worstRecoveryPeriods = 0;
             let fastestRecoveryPeriods = null;
 
-            // Process earnings data
-            for (let i = earnings.length - 1; i >= 0; i--) {
-                const current = earnings[i];
+            // Process earnings within our range
+            for (let i = 0; i < rangeEarnings.length; i++) {
+                const current = rangeEarnings[i];
                 if (!current.closePriceDayBefore || !current.closePriceOnDay) continue;
 
                 const changePercent = ((current.closePriceOnDay - current.closePriceDayBefore) / current.closePriceDayBefore) * 100;
@@ -87,16 +107,16 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 }
                 prevDirection = currentDirection;
 
-                // Check for drops and recoveries
+                // Check for drops and recoveries within our range
                 if (changePercent < 0) {
                     dropCount++;
                     let periodsToRecover = 0;
                     const dropPrice = current.closePriceDayBefore;
                     let foundRecovery = false;
 
-                    // Look ahead until recovery or end of data
-                    for (let j = i - 1; j >= 0; j--) {
-                        const futureEarning = earnings[j];
+                    // Look for recovery only in subsequent earnings within our range
+                    for (let j = i + 1; j < rangeEarnings.length; j++) {
+                        const futureEarning = rangeEarnings[j];
                         if (!futureEarning || !futureEarning.closePriceOnDay) continue;
                         
                         periodsToRecover++;
@@ -121,13 +141,12 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 }
             }
 
-            // Calculate final metrics
             const recoveryRate = dropCount > 0 ? (recoveryCount / dropCount) * 100 : 0;
             const avgRecoveryPeriods = recoveryInstances > 0 ? totalRecoveryPeriods / recoveryInstances : null;
-            const consistencyScore = earnings.length > 1 ? 
-                (consistentDirection / (earnings.length - 1)) * 10 : 0;
+            const consistencyScore = rangeEarnings.length > 1 ? 
+                (consistentDirection / (rangeEarnings.length - 1)) * 10 : 0;
 
-            // Only include companies that have had drops
+            // Only include companies that had drops in our range
             if (dropCount > 0) {
                 results.push({
                     symbol: company.symbol,
@@ -139,7 +158,7 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                     consistencyScore: parseFloat(consistencyScore.toFixed(1)),
                     dropsAnalyzed: dropCount,
                     successfulRecoveries: recoveryCount,
-                    totalEarnings: earnings.length
+                    totalEarnings: rangeEarnings.length
                 });
             }
         }
