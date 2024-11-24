@@ -69,7 +69,7 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
 
             if (allEarnings.length < 4) continue;
 
-            // Get the earnings within our range first
+            // Get the earnings within our range
             let rangeEarnings;
             if (startPosition === 1) {
                 rangeEarnings = allEarnings.slice(0, Math.min(endPosition, allEarnings.length));
@@ -93,7 +93,7 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
             let worstRecoveryPeriods = 0;
             let fastestRecoveryPeriods = null;
 
-            // Process earnings within our range
+            // Process each earnings report in our range
             for (let i = 0; i < rangeEarnings.length; i++) {
                 const current = rangeEarnings[i];
                 if (!current.closePriceDayBefore || !current.closePriceOnDay) continue;
@@ -107,27 +107,28 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 }
                 prevDirection = currentDirection;
 
-                // Check for drops and recoveries within our range
+                // If stock dropped after earnings, track recovery
                 if (changePercent < 0) {
                     dropCount++;
                     let periodsToRecover = 0;
-                    const dropPrice = current.closePriceDayBefore;
+                    const priceToRecover = current.closePriceDayBefore; // Price before the earnings drop
                     let foundRecovery = false;
 
-                    // Look for recovery only in subsequent earnings within our range
+                    // Look forward through future earnings until we find recovery
                     for (let j = i + 1; j < rangeEarnings.length; j++) {
                         const futureEarning = rangeEarnings[j];
                         if (!futureEarning || !futureEarning.closePriceOnDay) continue;
                         
                         periodsToRecover++;
                         
-                        if (futureEarning.closePriceOnDay > dropPrice) {
+                        // Check if price recovered above pre-earnings level
+                        if (futureEarning.closePriceOnDay > priceToRecover) {
                             foundRecovery = true;
                             recoveryCount++;
                             totalRecoveryPeriods += periodsToRecover;
                             recoveryInstances++;
                             
-                            // Update fastest/worst only if we found a recovery
+                            // Update fastest/worst recovery times
                             if (fastestRecoveryPeriods === null) {
                                 fastestRecoveryPeriods = periodsToRecover;
                                 worstRecoveryPeriods = periodsToRecover;
@@ -141,6 +142,7 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 }
             }
 
+            // Calculate final metrics
             const recoveryRate = dropCount > 0 ? (recoveryCount / dropCount) * 100 : 0;
             const avgRecoveryPeriods = recoveryInstances > 0 ? totalRecoveryPeriods / recoveryInstances : null;
             const consistencyScore = rangeEarnings.length > 1 ? 
