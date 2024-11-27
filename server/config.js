@@ -70,6 +70,7 @@ const COMPANIES = [
     { symbol: "GILD", name: "Gilead Sciences Inc.", reportTime: "AMC" },
     { symbol: "SNPS", name: "Synopsys Inc.", reportTime: "AMC" },
     { symbol: "INTU", name: "Intuit Inc.", reportTime: "AMC" },
+    { symbol: "SPOT", name: "Spotify", reportTime: "BMO" },
     { symbol: "MRVL", name: "Marvell Technology Inc.", reportTime: "AMC" },
     { symbol: "TGT", name: "Target Corporation", reportTime: "BMO" }  // Added Target
 ];

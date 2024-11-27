@@ -23,13 +23,13 @@ const App = () => {
     const menuItems = [
         { 
             id: 'search', 
-            label: 'Search Earnings', 
-            sublabel: 'Price Movement After Earnings'
+            label: 'Earnings Move', 
+            sublabel: 'Price History Before & After Earnings'
         },
         { 
             id: 'leaderboard', 
-            label: 'Leaderboard Metrics',
-            sublabel: 'Stock Recovery & Performance Metrics'
+            label: 'Leaderboard & Metrics',
+            sublabel: 'Best & Worst Earnings Performers'
         },
         { 
             id: 'calculator', 

@@ -10,6 +10,23 @@ const LeaderboardMetrics = () => {
     const [debouncedRange, setDebouncedRange] = useState(earningsRange);
     const MAX_EARNINGS = 100;
 
+    const calculateNextEarnings = (lastEarningsDate) => {
+        const lastDate = new Date(lastEarningsDate);
+        const projectedNext = new Date(lastDate);
+        projectedNext.setDate(projectedNext.getDate() + 90); // Add 90 days
+        
+        const today = new Date();
+        const daysUntil = Math.ceil((projectedNext - today) / (1000 * 60 * 60 * 24));
+        
+        if (daysUntil <= 7) {
+            return "Less than 1 week";
+        } else if (daysUntil <= 31) {
+            return "Under 1 month";
+        } else {
+            return "Over 1 month";
+        }
+    };
+
     // Add debounced effect for range changes
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -38,7 +55,7 @@ const LeaderboardMetrics = () => {
         };
 
         fetchMetricsData();
-    }, [debouncedRange]); // Changed dependency to debouncedRange
+    }, [debouncedRange]);
 
     const handleSort = (column) => {
         if (sortColumn === column) {
@@ -75,22 +92,43 @@ const LeaderboardMetrics = () => {
 
     const sortedData = metricsData ? [...metricsData].sort((a, b) => {
         const direction = sortDirection === 'asc' ? 1 : -1;
-        const aValue = a[sortColumn];
-        const bValue = b[sortColumn];
-
-        if (aValue === null) return 1;
-        if (bValue === null) return -1;
         
-        return direction * (aValue - bValue);
+        switch (sortColumn) {
+            case 'symbol':
+                return direction * a.symbol.localeCompare(b.symbol);
+            case 'name':
+                return direction * a.name.localeCompare(b.name);
+            case 'winRate':
+                return direction * (a.winRate - b.winRate);
+            case 'avgMove':
+                return direction * (a.avgMove - b.avgMove);
+            case 'bestMove':
+                return direction * (a.bestMove - b.bestMove);
+            case 'worstMove':
+                return direction * (a.worstMove - b.worstMove);
+            case 'lastQuarterMove':
+                return direction * (a.lastQuarterMove - b.lastQuarterMove);
+            case 'record':
+                const aWinPercent = (a.upMoveCount / (a.upMoveCount + a.downMoveCount)) * 100;
+                const bWinPercent = (b.upMoveCount / (b.upMoveCount + b.downMoveCount)) * 100;
+                return direction * (aWinPercent - bWinPercent);
+            case 'nextEarnings':
+                const aNext = new Date(a.lastEarningsDate);
+                const bNext = new Date(b.lastEarningsDate);
+                aNext.setDate(aNext.getDate() + 90);
+                bNext.setDate(bNext.getDate() + 90);
+                return direction * (aNext - bNext);
+            default:
+                if (a[sortColumn] === null) return 1;
+                if (b[sortColumn] === null) return -1;
+                return direction * (a[sortColumn] - b[sortColumn]);
+        }
     }) : [];
 
     return (
         <div className="metrics-container">
             <div className="metrics-header">
-                <h2>Stock Earnings Performance</h2>
-                <p className="metrics-description">
-                    Compare how stocks perform after earnings announcements
-                </p>
+              
             </div>
 
             <div className="calculator-controls">
@@ -147,7 +185,9 @@ const LeaderboardMetrics = () => {
                                 <th onClick={() => handleSort('symbol')}>
                                     Symbol {sortColumn === 'symbol' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th>Company</th>
+                                <th onClick={() => handleSort('name')}>
+                                    Company {sortColumn === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                </th>
                                 <th onClick={() => handleSort('winRate')} title="Percentage of positive moves after earnings">
                                     Win Rate {sortColumn === 'winRate' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
@@ -163,8 +203,11 @@ const LeaderboardMetrics = () => {
                                 <th onClick={() => handleSort('lastQuarterMove')} title="Most recent earnings move">
                                     Last Quarter {sortColumn === 'lastQuarterMove' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
-                                <th title="Up/Down moves after earnings">
-                                    Record
+                                <th onClick={() => handleSort('record')} title="Up/Down moves after earnings">
+                                    Record {sortColumn === 'record' && (sortDirection === 'asc' ? '↑' : '↓')}
+                                </th>
+                                <th onClick={() => handleSort('nextEarnings')} title="Estimated time until next earnings">
+                                    Next Earnings {sortColumn === 'nextEarnings' && (sortDirection === 'asc' ? '↑' : '↓')}
                                 </th>
                             </tr>
                         </thead>
@@ -193,6 +236,9 @@ const LeaderboardMetrics = () => {
                                         <div className="small-text">
                                             of {stock.totalEarnings} total
                                         </div>
+                                    </td>
+                                    <td>
+                                        {calculateNextEarnings(stock.lastEarningsDate)}
                                     </td>
                                 </tr>
                             ))}

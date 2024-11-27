@@ -83,6 +83,9 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 continue;
             }
 
+            // Get the most recent earnings date
+            const lastEarningsDate = allEarnings[0].date;
+
             // Calculate metrics
             let upMoves = 0;
             let downMoves = 0;
@@ -128,7 +131,8 @@ app.get('/api/metrics/leaderboard', async (req, res) => {
                 bestMove: bestMove === -Infinity ? null : bestMove,
                 worstMove: worstMove === Infinity ? null : worstMove,
                 lastQuarterMove: lastQuarterMove,
-                totalEarnings: validMoves
+                totalEarnings: validMoves,
+                lastEarningsDate: lastEarningsDate  // Added this new field
             };
 
             console.log(`Processed ${company.symbol}:`, result);

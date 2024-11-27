@@ -5,7 +5,6 @@ const STOCK_EARNINGS_TIMING = {
     'AAPL': 'AMC',  // Apple - Always reports after market
     'MSFT': 'AMC',  // Microsoft - After market
     'GOOGL': 'AMC', // Alphabet - After market
-    'GOOG': 'AMC',  // Alphabet Class C
     'META': 'AMC',  // Meta - After market
     'NVDA': 'AMC',  // NVIDIA - After market
     'AVGO': 'AMC',  // Broadcom - After market
@@ -14,6 +13,7 @@ const STOCK_EARNINGS_TIMING = {
     'ORCL': 'AMC',  // Oracle - After market
     'NFLX': 'AMC',  // Netflix - After market
     'CRM': 'AMC',   // Salesforce - After market
+    'SPOT': 'BMO',   // Spotify - Before market
     'WDAY': 'AMC',   // Workday - After market
 
     // Before Market Open (BMO)
