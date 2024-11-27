@@ -62,6 +62,15 @@ const COMPANIES = [
     { symbol: "ABBV", name: "AbbVie Inc.", reportTime: "BMO" },
     { symbol: "LLY", name: "Eli Lilly and Company", reportTime: "BMO" },
     { symbol: "PFE", name: "Pfizer Inc.", reportTime: "BMO" },
+    { symbol: "TM", name: "Toyota", reportTime: "AMC" },
+    { symbol: "WDAY", name: "Workday Inc.", reportTime: "AMC" },
+    { symbol: "ABNB", name: "Airbnb Inc.", reportTime: "AMC" },
+    { symbol: "WDAY", name: "Workday Inc.", reportTime: "AMC" },
+    { symbol: "ADSK", name: "Autodesk Inc.", reportTime: "AMC" },
+    { symbol: "GILD", name: "Gilead Sciences Inc.", reportTime: "AMC" },
+    { symbol: "SNPS", name: "Synopsys Inc.", reportTime: "AMC" },
+    { symbol: "INTU", name: "Intuit Inc.", reportTime: "AMC" },
+    { symbol: "MRVL", name: "Marvell Technology Inc.", reportTime: "AMC" },
     { symbol: "TGT", name: "Target Corporation", reportTime: "BMO" }  // Added Target
 ];
 

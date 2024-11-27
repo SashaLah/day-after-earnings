@@ -14,6 +14,7 @@ const STOCK_EARNINGS_TIMING = {
     'ORCL': 'AMC',  // Oracle - After market
     'NFLX': 'AMC',  // Netflix - After market
     'CRM': 'AMC',   // Salesforce - After market
+    'WDAY': 'AMC',   // Workday - After market
 
     // Before Market Open (BMO)
     'TGT': 'BMO',   // Target - Always before market

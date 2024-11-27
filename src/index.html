@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-29MR7HXGV7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-29MR7HXGV7');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Track stock price movements after earnings announcements">
@@ -12,7 +21,7 @@
     <!-- Security headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://www.alphavantage.co; img-src 'self' data: https:; connect-src 'self' http://localhost:* https://www.alphavantage.co;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://www.alphavantage.co https://www.googletagmanager.com https://www.google-analytics.com; img-src 'self' data: https:; connect-src 'self' http://localhost:* https://www.alphavantage.co https://www.google-analytics.com;">
     
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="DayAfterEarnings - Stock Earnings Movement Tracker">
