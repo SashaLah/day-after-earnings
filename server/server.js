@@ -336,7 +336,7 @@ app.get('/api/stock/:symbol', async (req, res) => {
             )
             .map(item => {
                 const earningsDate = new Date(item.date);
-                earningsDate.setDate(earningsDate.getDate() + 1);
+                earningsDate.setDate(earningsDate.getDate() + 0);
                 return {
                     date: earningsDate.toLocaleDateString('en-US', {
                         year: 'numeric',
